@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import './Footer.css';
+import Link from 'next/link';
 import { FaFacebookF, FaInstagram, FaXTwitter } from "react-icons/fa6";
 
 const quickLinks = [
@@ -86,10 +87,10 @@ export default function Footer() {
               <ul className="footer-list">
                 {quickLinks.map((link) => (
                   <li key={link.label}>
-                    <a href={link.href} className="footer-link">
+                    <Link href={link.href} className="footer-link">
                       <span className="footer-link-arrow" aria-hidden="true">⇢</span>
                       {link.label}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -107,7 +108,7 @@ export default function Footer() {
                     <path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.9 21 3 13.1 3 3.9c0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.5.1.4 0 .8-.2 1L6.6 10.8z" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 </span>
-                <a href="tel:+922138222273">+ 92 21 3822 273</a>
+                <Link href="tel:+922138222273">+ 92 21 3822 273</Link>
               </li>
 
               <li className="footer-contact-item">
@@ -117,7 +118,7 @@ export default function Footer() {
                     <path d="M4 6.5l8 6.5 8-6.5" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 </span>
-                <a href="mailto:hello@crescentcare.pk">hello@crescentcare.pk</a>
+                <Link href="mailto:hello@crescentcare.pk">hello@crescentcare.pk</Link>
               </li>
 
               <li className="footer-contact-item">
@@ -140,7 +141,7 @@ export default function Footer() {
 
         <div className="footer-bottom">
           <div className="footer-socials">
-            <a
+            <Link
               href="https://www.facebook.com/crescentcare.co/"
               target="_blank"
               rel="noopener noreferrer"
@@ -148,8 +149,8 @@ export default function Footer() {
               aria-label="Facebook"
             >
               <FaFacebookF />
-            </a>
-            <a
+            </Link>
+            <Link
               href="https://www.instagram.com/crescentcare.health.tpa/"
               target="_blank"
               rel="noopener noreferrer"
@@ -157,8 +158,8 @@ export default function Footer() {
               aria-label="Instagram"
             >
               <FaInstagram />
-            </a>
-            <a
+            </Link>
+            <Link
               href="https://x.com"
               target="_blank"
               rel="noopener noreferrer"
@@ -166,19 +167,19 @@ export default function Footer() {
               aria-label="X"
             >
               <FaXTwitter />
-            </a>
+            </Link>
           </div>
 
           <p className="footer-copyright">
             Copyright &copy; Crescentcare 2022 &ndash; 2026 | Designed &amp; Managed by{' '}
-            <a
+            <Link
               href="https://zellesolutions.com/"
               target="_blank"
               rel="noopener noreferrer"
               className="footer-credit-link"
             >
               Zelle Solution Pvt. Ltd.
-            </a>
+            </Link>
           </p>
         </div>
       </div>
