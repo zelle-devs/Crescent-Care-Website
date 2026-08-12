@@ -1,0 +1,182 @@
+/* ==================== OUR CLIENTS SECTION ==================== */
+.clients-section-light {
+  position: relative;
+  width: 100%;
+  padding: var(--spacing-3xl) var(--spacing-xl)!important;
+  background: transparent!important;
+  overflow: hidden;
+}
+
+.clients-container-light {
+  width: 100%;
+  max-width: 1560px;
+  margin: 0 auto;
+}
+
+/* ---------- Header ---------- */
+.clients-header-light {
+  max-width: 640px;
+  margin: 0 auto var(--spacing-3xl);
+  text-align: center;
+}
+
+.clients-eyebrow-light {
+  display: inline-block;
+  font-family: var(--font-secondary);
+  font-size: var(--font-xs);
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: var(--spacing-sm);
+}
+
+.clients-title-light {
+  font-family: var(--font-secondary);
+  font-size: var(--font-4xl);
+  font-weight: 700;
+  color: var(--color-white);
+  line-height: var(--line-height-tight);
+  margin: 0 0 var(--spacing-sm);
+}
+
+.clients-subtitle-light {
+  font-family: var(--font-primary);
+  font-size: var(--font-base);
+  line-height: var(--line-height-normal);
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0;
+}
+
+/* ---------- Grid ---------- */
+.clients-grid-light {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: var(--spacing-lg);
+}
+
+/* ---------- Card ---------- */
+.client-card-light {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: var(--spacing-xl) var(--spacing-lg);
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(8.2px);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              border-color 0.5s ease,
+              background 0.5s ease;
+}
+
+.client-card-light:hover {
+  transform: translateY(-6px);
+  border-color: var(--color-accent);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.client-card-light:hover .client-name-light {
+  color: var(--color-accent);
+  transition: color 0.5s ease;
+}
+
+/* Partner ID tag */
+.client-tag-light {
+  position: absolute;
+  top: var(--spacing-md);
+  right: var(--spacing-lg);
+  font-family: var(--font-secondary);
+  font-size: var(--font-xs);
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  color: rgba(255, 255, 255, 0.28);
+  transition: color 0.5s ease;
+}
+
+.client-card-light:hover .client-tag-light {
+  color: var(--color-accent);
+}
+
+/* Logo plate */
+.client-logo-plate-light {
+  width: 100%;
+  height: 84px;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-sm) var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+}
+
+.client-logo-light {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  filter: grayscale(1) opacity(0.75);
+  transition: filter 0.5s ease;
+}
+
+.client-card-light:hover .client-logo-light {
+  filter: grayscale(0) opacity(1);
+}
+
+.client-name-light {
+  font-family: var(--font-primary);
+  font-size: var(--font-lg);
+  font-weight: 600;
+  color: var(--color-white);
+  margin: 0 0 var(--spacing-xs);
+  line-height: var(--line-height-tight);
+}
+
+.client-description-light {
+  font-family: var(--font-primary);
+  font-size: var(--font-sm);
+  line-height: var(--line-height-normal);
+  color: rgba(255, 255, 255, 0.55);
+  margin: 0;
+}
+
+/* ==================== RESPONSIVE ==================== */
+
+/* Ultra-wide desktops */
+@media (min-width: 1800px) {
+  .clients-container-light {
+    max-width: 1900px;
+  }
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .clients-grid-light {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+}
+
+/* Small tablet / large mobile */
+@media (max-width: 640px) {
+  .clients-grid-light {
+    grid-template-columns: 1fr;
+  }
+
+  .client-card-light {
+    align-items: flex-start;
+  }
+}
+
+/* Very small phones */
+@media (max-width: 340px) {
+  .clients-section-light {
+    padding: var(--spacing-2xl) var(--spacing-sm)!important;
+  }
+
+  .client-logo-plate-light {
+    height: 56px;
+  }
+}

@@ -1,0 +1,234 @@
+/* ==================== CLIENTS SLIDER SECTION ==================== */
+.clients-section {
+  width: 100%;
+  background-color: var(--color-white);
+  padding: var(--spacing-2xl) 0;
+  overflow: hidden;
+}
+
+.clients-container {
+  margin: 0 auto;
+  padding: 0;
+}
+
+/* ==================== HEADING ==================== */
+.clients-heading {
+  font-size: var(--font-4xl);
+  font-weight: 700;
+  color: var(--color-primary);
+  text-align: center;
+  margin-bottom: var(--spacing-2xl);
+  font-family: var(--font-secondary);
+  position: relative;
+  padding: 0 var(--spacing-xl);
+}
+
+.clients-heading::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 3px;
+  background-color: var(--color-secondary);
+  border-radius: 2px;
+}
+
+/* ==================== MARQUEE WRAPPER ==================== */
+.clients-marquee-wrapper {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Gradient fade effect on edges */
+.clients-marquee-wrapper::before,
+.clients-marquee-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 60px;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.clients-marquee-wrapper::before {
+  left: 0;
+  background: linear-gradient(to right, var(--color-white) 0%, transparent 100%);
+}
+
+.clients-marquee-wrapper::after {
+  right: 0;
+  background: linear-gradient(to left, var(--color-white) 0%, transparent 100%);
+}
+
+/* ==================== MARQUEE TRACK ==================== */
+.clients-marquee-track {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+}
+
+/* ==================== LOGO WRAPPER ==================== */
+.clients-logo-wrapper {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 280px;
+  padding: 0 30px;
+}
+
+.clients-logo {
+  width: 100%;
+  height: auto;
+  max-height: 180px;
+  object-fit: contain;
+  display: block;
+  filter: grayscale(100%);
+  opacity: 0.7;
+  transition: all var(--transition-normal);
+}
+
+.clients-logo:hover {
+  filter: grayscale(0%);
+  opacity: 1;
+}
+
+/* ==================== RESPONSIVE ==================== */
+
+/* Ultrawide (1600px+) */
+@media (min-width: 1600px) {
+  .clients-logo-wrapper {
+    width: 300px;
+    padding: 0 35px;
+  }
+
+  .clients-logo {
+    max-height: 200px;
+  }
+
+  .clients-marquee-wrapper::before,
+  .clients-marquee-wrapper::after {
+    width: 80px;
+  }
+}
+
+/* Desktop (1024px - 1599px) */
+@media (min-width: 1024px) and (max-width: 1599px) {
+  .clients-logo-wrapper {
+    width: 250px;
+    padding: 0 28px;
+  }
+
+  .clients-logo {
+    max-height: 170px;
+  }
+
+  .clients-marquee-wrapper::before,
+  .clients-marquee-wrapper::after {
+    width: 60px;
+  }
+}
+
+/* Tablet (768px - 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .clients-section {
+    padding: var(--spacing-xl) 0;
+  }
+
+  .clients-heading {
+    font-size: var(--font-3xl);
+    margin-bottom: var(--spacing-xl);
+    padding: 0 var(--spacing-lg);
+  }
+
+  .clients-logo-wrapper {
+    width: 200px;
+    padding: 0 20px;
+  }
+
+  .clients-logo {
+    max-height: 140px;
+  }
+
+  .clients-marquee-wrapper::before,
+  .clients-marquee-wrapper::after {
+    width: 40px;
+  }
+}
+
+/* Mobile (480px - 767px) */
+@media (min-width: 480px) and (max-width: 767px) {
+  .clients-section {
+    padding: var(--spacing-lg) 0;
+  }
+
+  .clients-heading {
+    font-size: var(--font-2xl);
+    margin-bottom: var(--spacing-lg);
+    padding: 0 var(--spacing-md);
+  }
+
+  .clients-heading::after {
+    width: 35px;
+    height: 2px;
+    bottom: -6px;
+  }
+
+  .clients-logo-wrapper {
+    width: 160px;
+    padding: 0 15px;
+  }
+
+  .clients-logo {
+    max-height: 120px;
+  }
+
+  .clients-marquee-wrapper::before,
+  .clients-marquee-wrapper::after {
+    width: 30px;
+  }
+}
+
+/* Small Mobile (300px - 479px) */
+@media (max-width: 479px) {
+  .clients-section {
+    padding: var(--spacing-md) 0;
+  }
+
+  .clients-heading {
+    font-size: var(--font-xl);
+    margin-bottom: var(--spacing-md);
+    padding: 0 var(--spacing-md);
+  }
+
+  .clients-heading::after {
+    width: 30px;
+    height: 2px;
+    bottom: -6px;
+  }
+
+  .clients-logo-wrapper {
+    width: 140px;
+    padding: 0 12px;
+  }
+
+  .clients-logo {
+    max-height: 100px;
+  }
+
+  .clients-marquee-wrapper::before,
+  .clients-marquee-wrapper::after {
+    width: 20px;
+  }
+}
+
+/* Pause animation on hover */
+@media (hover: hover) {
+  .clients-marquee-wrapper:hover .clients-marquee-track {
+    animation-play-state: paused;
+  }
+}
