@@ -1,0 +1,584 @@
+/* ==================== DATA TABLE COMPONENT ====================
+   Built entirely on top of the design tokens already defined in
+   global.css (--color-*, --font-*, --spacing-*, --radius-*, --shadow-*).
+   No hardcoded hex/px values for anything token-driven.
+================================================================= */
+
+.dt-wrapper {
+  --dt-shadow-resting: 0 1px 2px rgba(20, 24, 42, 0.04), 0 8px 24px -8px rgba(20, 24, 42, 0.10);
+  --dt-shadow-row-hover: 0 4px 14px -4px rgba(36, 64, 152, 0.18);
+
+  width: 100%;
+  background: var(--color-white);
+  border: 1px solid var(--color-light-gray);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--dt-shadow-resting);
+  overflow: hidden;
+  font-family: var(--font-primary);
+}
+
+/* ---------- Header: title + controls ---------- */
+
+.dt-header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+  padding: clamp(1.1rem, 0.9rem + 0.9vw, 1.875rem) clamp(1.1rem, 0.9rem + 0.9vw, 1.875rem);
+  border-bottom: 1px solid var(--color-light-gray);
+  background: var(--color-white);
+}
+
+.dt-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-primary-light) 55%, var(--color-secondary) 100%);
+}
+
+.dt-title-group {
+  display: flex;
+  align-items: baseline;
+  gap: var(--spacing-sm);
+  min-width: 0;
+}
+
+.dt-title {
+  font-family: var(--font-secondary);
+  font-weight: 600;
+  font-size: clamp(1.05rem, 0.95rem + 0.5vw, 1.375rem);
+  color: var(--color-dark);
+  letter-spacing: var(--letter-spacing-tight);
+  margin: 0;
+}
+
+.dt-count-badge {
+  flex-shrink: 0;
+  font-family: var(--font-primary);
+  font-size: var(--font-xs);
+  font-weight: 700;
+  color: var(--color-primary-dark);
+  background: rgba(36, 64, 152, 0.08);
+  border-radius: var(--radius-full);
+  padding: 0.2rem 0.65rem;
+  white-space: nowrap;
+}
+
+.dt-controls {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-lg);
+  flex-wrap: wrap;
+  margin-left: auto;
+}
+
+/* ---------- Entries per page ---------- */
+
+.dt-entries {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  white-space: nowrap;
+}
+
+.dt-entries-label {
+  font-size: var(--font-sm);
+  color: var(--color-dark-gray);
+}
+
+.dt-select-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.dt-select {
+  appearance: none;
+  -webkit-appearance: none;
+  background: var(--color-off-white);
+  border: 1.5px solid transparent;
+  border-radius: var(--radius-md);
+  padding: 0.5rem var(--spacing-2xl) 0.5rem var(--spacing-sm);
+  font-size: var(--font-sm);
+  font-weight: 600;
+  color: var(--color-dark);
+  cursor: pointer;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
+}
+
+.dt-select:hover {
+  background: var(--color-light-gray);
+}
+
+.dt-select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  background: var(--color-white);
+  box-shadow: 0 0 0 3px rgba(36, 64, 152, 0.12);
+}
+
+.dt-select-icon {
+  position: absolute;
+  right: var(--spacing-sm);
+  pointer-events: none;
+  color: var(--color-gray);
+}
+
+/* ---------- Search ---------- */
+
+.dt-search {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: clamp(180px, 100%, 280px);
+}
+
+.dt-search-icon {
+  position: absolute;
+  left: var(--spacing-sm);
+  color: var(--color-gray);
+  pointer-events: none;
+}
+
+.dt-search-input {
+  width: 100%;
+  font-size: var(--font-sm);
+  color: var(--color-dark);
+  background: var(--color-off-white);
+  border: 1.5px solid transparent;
+  border-radius: var(--radius-md);
+  padding: 0.55rem var(--spacing-2xl) 0.55rem calc(var(--spacing-lg) + 0.5rem);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
+}
+
+.dt-search-input::placeholder {
+  color: var(--color-gray);
+}
+
+.dt-search-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  background: var(--color-white);
+  box-shadow: 0 0 0 3px rgba(36, 64, 152, 0.12);
+}
+
+.dt-clear-btn {
+  position: absolute;
+  right: var(--spacing-sm);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border: none;
+  border-radius: var(--radius-full);
+  background: var(--color-light-gray);
+  color: var(--color-dark-gray);
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+
+.dt-clear-btn:hover {
+  background: var(--color-accent);
+  color: var(--color-white);
+}
+
+/* ---------- Table ---------- */
+
+.dt-table-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.dt-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.dt-th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: var(--color-off-white);
+  color: var(--color-dark-gray);
+  font-family: var(--font-primary);
+  font-size: var(--font-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-wide);
+  padding: 0.85rem var(--spacing-lg);
+  border-bottom: 1.5px solid var(--color-light-gray);
+  white-space: nowrap;
+  user-select: none;
+}
+
+.dt-th--sortable {
+  cursor: pointer;
+  transition: color var(--transition-fast), background var(--transition-fast);
+}
+
+.dt-th--sortable:hover {
+  color: var(--color-primary);
+  background: var(--color-light-gray);
+}
+
+.dt-th--active {
+  color: var(--color-primary);
+}
+
+.dt-th-content {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.dt-sort-icon {
+  display: inline-flex;
+  align-items: center;
+  opacity: 0.75;
+}
+
+.dt-row {
+  position: relative;
+  transition: box-shadow var(--transition-fast), transform var(--transition-fast);
+}
+
+.dt-row::after {
+  content: '';
+  position: absolute;
+  left: var(--spacing-lg);
+  right: var(--spacing-lg);
+  bottom: 0;
+  height: 1px;
+  background: var(--color-light-gray);
+}
+
+.dt-row:last-child::after {
+  display: none;
+}
+
+.dt-row:hover {
+  box-shadow: inset 3px 0 0 var(--color-primary), var(--dt-shadow-row-hover);
+  transform: translateY(-1px);
+  z-index: 1;
+}
+
+.dt-row:hover::after {
+  opacity: 0;
+}
+
+.dt-td {
+  padding: 0.95rem var(--spacing-lg);
+  font-size: var(--font-sm);
+  color: var(--color-dark);
+  vertical-align: middle;
+  background: var(--color-white);
+}
+
+.dt-td-value {
+  display: inline-block;
+}
+
+/* ---------- Avatar + badge helpers (DataTable.Avatar / DataTable.Badge) ---------- */
+
+.dt-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-md);
+  font-family: var(--font-secondary);
+  font-size: var(--font-sm);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.dt-avatar--primary {
+  background: rgba(36, 64, 152, 0.1);
+  color: var(--color-primary-dark);
+}
+
+.dt-avatar--secondary {
+  background: rgba(57, 126, 63, 0.12);
+  color: var(--color-secondary-dark);
+}
+
+.dt-avatar--accent {
+  background: rgba(215, 62, 42, 0.1);
+  color: var(--color-accent-dark);
+}
+
+.dt-badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: var(--font-xs);
+  font-weight: 700;
+  letter-spacing: var(--letter-spacing-wide);
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-md);
+  white-space: nowrap;
+}
+
+.dt-badge--primary {
+  background: rgba(36, 64, 152, 0.09);
+  color: var(--color-primary-dark);
+}
+
+.dt-badge--secondary {
+  background: rgba(57, 126, 63, 0.12);
+  color: var(--color-secondary-dark);
+}
+
+.dt-badge--neutral {
+  background: var(--color-off-white);
+  color: var(--color-dark-gray);
+  border: 1px solid var(--color-light-gray);
+}
+
+/* ---------- Empty state ---------- */
+
+.dt-empty {
+  padding: var(--spacing-3xl) var(--spacing-lg);
+  text-align: center;
+}
+
+.dt-empty-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-sm);
+  color: var(--color-gray);
+}
+
+.dt-empty-inner p {
+  font-size: var(--font-sm);
+  color: var(--color-gray);
+}
+
+/* ---------- Footer + pagination ---------- */
+
+.dt-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+  padding: clamp(0.85rem, 0.75rem + 0.5vw, 1.25rem) clamp(1rem, 0.85rem + 0.7vw, 1.75rem);
+  border-top: 1px solid var(--color-light-gray);
+  background: var(--color-white);
+}
+
+.dt-footer-info {
+  font-size: var(--font-sm);
+  color: var(--color-gray);
+  margin: 0;
+}
+
+.dt-pagination {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  flex-wrap: wrap;
+}
+
+.dt-page-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 34px;
+  height: 34px;
+  padding: 0 var(--spacing-xs);
+  border: none;
+  border-radius: var(--radius-md);
+  background: transparent;
+  color: var(--color-dark-gray);
+  font-size: var(--font-sm);
+  font-weight: 600;
+  transition: all var(--transition-fast);
+}
+
+.dt-page-btn:hover:not(:disabled) {
+  background: var(--color-off-white);
+  color: var(--color-primary);
+}
+
+.dt-page-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.dt-page-btn--nav {
+  background: var(--color-off-white);
+  color: var(--color-dark-gray);
+}
+
+.dt-page-btn--nav:hover:not(:disabled) {
+  background: var(--color-light-gray);
+  color: var(--color-primary);
+}
+
+.dt-page-btn--active {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  color: var(--color-white);
+  box-shadow: 0 3px 10px rgba(36, 64, 152, 0.38);
+}
+
+.dt-page-btn--active:hover {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  color: var(--color-white);
+}
+
+.dt-ellipsis {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 24px;
+  color: var(--color-gray);
+  font-size: var(--font-sm);
+}
+
+/* ==================== RESPONSIVE ====================
+   Table melts into stacked cards below 640px using the
+   data-label technique — same markup, no duplicated DOM.
+======================================================= */
+
+@media (max-width: 640px) {
+  .dt-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .dt-controls {
+    flex-direction: column;
+    align-items: stretch;
+    margin-left: 0;
+    gap: var(--spacing-sm);
+  }
+
+  .dt-entries {
+    justify-content: space-between;
+  }
+
+  .dt-search {
+    width: 100%;
+  }
+
+  .dt-table-container {
+    overflow-x: visible;
+  }
+
+  .dt-table,
+  .dt-table thead,
+  .dt-table tbody {
+    display: block;
+    width: 100%;
+  }
+
+  .dt-th {
+    display: none;
+  }
+
+  .dt-row {
+    display: block;
+    background: var(--color-white);
+    border: 1px solid var(--color-light-gray);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    margin-bottom: var(--spacing-md);
+    padding: var(--spacing-sm) var(--spacing-md);
+    overflow: hidden;
+    transform: none;
+  }
+
+  .dt-row::after {
+    display: none;
+  }
+
+  .dt-row:hover {
+    box-shadow: var(--dt-shadow-row-hover);
+    transform: none;
+  }
+
+  .dt-td {
+    background: transparent;
+  }
+
+  .dt-td {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--spacing-md);
+    padding: var(--spacing-sm) 0;
+    border-bottom: 1px dashed var(--color-light-gray);
+    text-align: right !important;
+  }
+
+  .dt-td:last-child {
+    border-bottom: none;
+  }
+
+  .dt-td::before {
+    content: attr(data-label);
+    flex-shrink: 0;
+    font-size: var(--font-xs);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-wide);
+    color: var(--color-gray);
+    text-align: left;
+  }
+
+  .dt-footer {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .dt-pagination {
+    justify-content: center;
+  }
+}
+
+/* ---------- Fluid scaling for very large screens ---------- */
+@media (min-width: 1921px) {
+  .dt-td,
+  .dt-th {
+    padding-top: var(--spacing-lg);
+    padding-bottom: var(--spacing-lg);
+  }
+}
+
+/* ---------- Tiny screens (down to 300px) ---------- */
+@media (max-width: 360px) {
+  .dt-header,
+  .dt-footer {
+    padding: var(--spacing-sm) var(--spacing-sm);
+  }
+
+  .dt-row {
+    padding: var(--spacing-xs) var(--spacing-sm);
+  }
+
+  .dt-page-btn {
+    min-width: 28px;
+    height: 28px;
+    font-size: var(--font-xs);
+  }
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .dt-row,
+  .dt-select,
+  .dt-search-input,
+  .dt-page-btn,
+  .dt-clear-btn {
+    transition: none !important;
+  }
+}

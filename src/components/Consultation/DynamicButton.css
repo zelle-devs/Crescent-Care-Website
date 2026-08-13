@@ -1,0 +1,202 @@
+/* ==================== DYNAMIC BUTTON ==================== */
+.dynamic-btn {
+  /* Layout */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  cursor: pointer;
+  outline: none;
+  overflow: hidden;
+  border: none;
+  border-radius: var(--radius-lg);
+  transition: var(--transition-normal);
+  font-family: var(--font-primary);
+  padding: 0 var(--spacing-lg);
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* --- SIZE PRESETS --- */
+.btn-sm { 
+  height: 36px; 
+  padding: 0 var(--spacing-md);
+}
+.btn-sm .btn-text { 
+  font-size: var(--font-sm); 
+}
+
+.btn-md { 
+  height: 50px; 
+  padding: 0 var(--spacing-lg);
+}
+.btn-md .btn-text { 
+  font-size: var(--font-base); 
+}
+
+.btn-lg { 
+  height: 60px; 
+  padding: 0 var(--spacing-xl);
+}
+.btn-lg .btn-text { 
+  font-size: var(--font-lg); 
+}
+
+/* --- SOLID VARIANT (Neumorphic Style) --- */
+.btn-solid {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  /* Soft Neumorphic Depth */
+  box-shadow: 
+    0 10px 20px -15px rgba(36, 64, 152, 0.4),
+    inset 0 1px 1px rgba(255, 255, 255, 0.2);
+}
+
+.btn-solid::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(145deg, var(--color-primary), var(--color-primary-dark));
+  opacity: 1;
+  transition: var(--transition-normal);
+  border-radius: inherit;
+}
+
+.btn-solid .btn-text { 
+  color: var(--color-white); 
+}
+
+.btn-solid:hover::before { 
+  opacity: 0; 
+}
+
+.btn-solid:hover {
+  background-color: var(--color-primary-dark);
+  box-shadow: 0 15px 25px -5px rgba(36, 64, 152, 0.5);
+  transform: translateY(-2px);
+}
+
+.btn-solid:active {
+  transform: translateY(0);
+  box-shadow: 
+    0 5px 15px -5px rgba(36, 64, 152, 0.4),
+    inset 0 1px 1px rgba(255, 255, 255, 0.2);
+}
+
+/* --- OUTLINE VARIANT --- */
+.btn-outline {
+  background-color: transparent;
+  border: 2px solid var(--color-primary);
+  color: var(--color-primary);
+}
+
+.btn-outline .btn-text {
+  color: var(--color-primary);
+}
+
+.btn-outline:hover {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px -10px rgba(36, 64, 152, 0.3);
+}
+
+.btn-outline:hover .btn-text {
+  color: var(--color-white);
+}
+
+.btn-outline:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+/* --- FOCUS STATE --- */
+.dynamic-btn:focus-visible {
+  outline: 3px solid var(--color-primary-light);
+  outline-offset: 2px;
+}
+
+/* --- DISABLED STATE --- */
+.dynamic-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+.dynamic-btn:disabled:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+.dynamic-btn:disabled.btn-solid:hover {
+  background-color: var(--color-primary);
+}
+
+.dynamic-btn:disabled.btn-outline:hover {
+  background-color: transparent;
+  border-color: var(--color-primary);
+}
+
+.dynamic-btn:disabled.btn-outline:hover .btn-text {
+  color: var(--color-primary);
+}
+
+/* --- TEXT STYLE --- */
+.btn-text {
+  position: relative;
+  z-index: 1;
+  font-weight: 600;
+  letter-spacing: var(--letter-spacing-wide);
+  white-space: nowrap;
+  transition: var(--transition-normal);
+  pointer-events: none;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 768px) {
+  .btn-md { 
+    height: 44px; 
+  }
+  .btn-lg { 
+    height: 50px; 
+    padding: 0 var(--spacing-lg);
+  }
+  .btn-lg .btn-text {
+    font-size: var(--font-base);
+  }
+}
+
+@media (max-width: 480px) {
+  .btn-sm {
+    height: 32px;
+    padding: 0 var(--spacing-sm);
+  }
+  
+  .btn-md {
+    height: 40px;
+    padding: 0 var(--spacing-md);
+  }
+  
+  .btn-lg {
+    height: 46px;
+    padding: 0 var(--spacing-md);
+  }
+  
+  .btn-lg .btn-text {
+    font-size: var(--font-sm);
+  }
+}
+
+/* --- REDUCED MOTION --- */
+@media (prefers-reduced-motion: reduce) {
+  .dynamic-btn,
+  .btn-text,
+  .btn-solid::before {
+    transition-duration: 0.01ms;
+  }
+  
+  .dynamic-btn:hover {
+    transform: none;
+  }
+}

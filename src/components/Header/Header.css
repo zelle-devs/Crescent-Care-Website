@@ -52,7 +52,7 @@
   font-family: var(--font-primary);
   cursor: pointer;
 
-  padding: var(--spacing-sm);
+  padding: var(--spacing-sm) var(--spacing-md);
   border-radius: var(--radius-sm);
 
   display: flex;
