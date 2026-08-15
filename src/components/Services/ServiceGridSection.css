@@ -1,0 +1,122 @@
+/* ==================== SERVICE GRID SECTION ==================== */
+.service-grid-section {
+  width: 100%;
+  padding: 80px 24px;
+  background-color: var(--color-off-white);
+}
+
+.service-grid-container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.service-grid-heading {
+  font-family: var(--font-secondary);
+  font-size: var(--font-4xl);
+  font-weight: 700;
+  color: var(--color-primary-dark);
+  text-align: center;
+  margin-bottom: var(--spacing-2xl);
+  line-height: var(--line-height-tight);
+}
+
+.service-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-lg);
+}
+
+.service-grid-card {
+  background: var(--color-white);
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-xl);
+  text-align: center;
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-normal);
+}
+
+.service-grid-card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-4px);
+}
+
+.service-grid-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-full);
+  background: var(--color-primary);
+  color: var(--color-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto var(--spacing-md);
+}
+
+.service-grid-icon svg {
+  width: 28px;
+  height: 28px;
+}
+
+.service-grid-title {
+  font-family: var(--font-secondary);
+  font-size: var(--font-lg);
+  font-weight: 600;
+  color: var(--color-dark);
+  margin-bottom: var(--spacing-sm);
+  line-height: var(--line-height-tight);
+}
+
+.service-grid-desc {
+  font-family: var(--font-primary);
+  font-size: var(--font-sm);
+  color: var(--color-gray);
+  line-height: var(--line-height-normal);
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 1024px) {
+  .service-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-md);
+  }
+}
+
+@media (max-width: 767px) {
+  .service-grid-section {
+    padding: var(--spacing-xl) var(--spacing-md);
+  }
+  
+  .service-grid-heading {
+    font-size: var(--font-2xl);
+    margin-bottom: var(--spacing-xl);
+  }
+  
+  .service-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+  }
+  
+  .service-grid-card {
+    padding: var(--spacing-lg);
+  }
+}
+
+@media (max-width: 400px) {
+  .service-grid-section {
+    padding: var(--spacing-lg) var(--spacing-sm);
+  }
+  
+  .service-grid-heading {
+    font-size: var(--font-xl);
+  }
+  
+  .service-grid-icon {
+    width: 48px;
+    height: 48px;
+  }
+  
+  .service-grid-icon svg {
+    width: 22px;
+    height: 22px;
+  }
+}

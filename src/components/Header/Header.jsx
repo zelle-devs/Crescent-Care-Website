@@ -20,7 +20,7 @@ const Header = () => {
       items: [
         { 
           label: "Members", 
-          href: "/members",
+          href: "https://app.crescentcare.co/",
           tooltip: {
             title: "Members Portal",
             description: "Access your personal health records, claims, and benefits information securely."
@@ -28,7 +28,7 @@ const Header = () => {
         },
         { 
           label: "HR", 
-          href: "/hr",
+          href: "https://app.crescentcare.co/",
           tooltip: {
             title: "HR Dashboard",
             description: "Manage employee health benefits, track claims, and generate reports efficiently."
@@ -36,7 +36,7 @@ const Header = () => {
         },
         { 
           label: "Insurance Partner", 
-          href: "/insurance-partner",
+          href: "https://clientportal.crescentcare.co/",
           tooltip: {
             title: "Insurance Partners",
             description: "Dedicated portal for insurance partners to manage policies and process claims."
@@ -44,7 +44,7 @@ const Header = () => {
         },
         { 
           label: "Hospital/Provider", 
-          href: "/hospital-provider",
+          href: "https://hospitalportal.crescentcare.co/",
           tooltip: {
             title: "Healthcare Providers",
             description: "Streamline patient care with our provider portal. Access medical records and billing."
@@ -52,7 +52,7 @@ const Header = () => {
         },
         { 
           label: "Employee", 
-          href: "/employee",
+          href: "https://backofficeportal.crescentcare.co/login",
           tooltip: {
             title: "Employee Benefits",
             description: "View your health coverage, submit claims, and track your wellness journey."
@@ -63,10 +63,10 @@ const Header = () => {
     download: {
       label: "Download",
       items: [
-        { label: "Company Profile", href: "/downloads/company-profile" },
-        { label: "Crescent Care OPD Claim Form", href: "/downloads/opd-claim-form" },
-        { label: "Crescent Care IPD Claim Form", href: "/downloads/ipd-claim-form" },
-        { label: "New CC Intimation Form", href: "/downloads/cc-intimation-form" }
+        { label: "Company Profile", href: "https://crescentcare.pk/wp-content/uploads/2024/07/Crescent-Care-Profile.pdf" },
+        { label: "Crescent Care OPD Claim Form", href: "https://crescentcare.pk/wp-content/uploads/2024/07/CRESCENT-CARE-OPD-CLAIM-FORM.pdf" },
+        { label: "Crescent Care IPD Claim Form", href: "https://crescentcare.pk/wp-content/uploads/2024/07/CRESCENT-CARE-IPD-CLAIM-FORM.pdf" },
+        { label: "New CC Intimation Form", href: "https://crescentcare.pk/wp-content/uploads/2024/07/NEW-CC-INTIMATION-FORM.pdf" }
       ]
     }
   };
@@ -83,8 +83,7 @@ const Header = () => {
       items: [
         { label: "Panel Hospital", href: "/network-partners/panel-hospital" },
         { label: "Discount Centers", href: "/network-partners/discount-centers" },
-        { label: "Panel List for MOFA", href: "/network-partners/mofa" },
-        { label: "KSA", href: "/network-partners/ksa" }
+        { label: "Panel List for MOFA-KSA", href: "/network-partners/panel-list-for-mofa-ksa" },
       ]
     },
     { label: "News & Media", href: "/news-media" },
@@ -161,19 +160,20 @@ const Header = () => {
   };
 
   // Hover handlers for main navigation dropdown
-  const handleNavDropdownMouseEnter = (dropdownName) => {
-    if (closeTimeoutRef.current) {
-      clearTimeout(closeTimeoutRef.current);
-    }
-    setOpenNavDropdown(dropdownName);
-    setOpenDropdown(null);
-  };
+const handleNavDropdownMouseEnter = (dropdownName) => {
+  if (closeTimeoutRef.current) {
+    clearTimeout(closeTimeoutRef.current);
+  }
+  // Immediate open without delay
+  setOpenNavDropdown(dropdownName);
+  setOpenDropdown(null);
+};
 
-  const handleNavDropdownMouseLeave = () => {
-    closeTimeoutRef.current = setTimeout(() => {
-      setOpenNavDropdown(null);
-    }, 200);
-  };
+ const handleNavDropdownMouseLeave = () => {
+  closeTimeoutRef.current = setTimeout(() => {
+    setOpenNavDropdown(null);
+  }, 100); // Reduced from 200ms to 100ms
+};
 
   // Mobile toggle handlers
   const toggleDropdownMobile = (dropdownName) => {
@@ -259,6 +259,7 @@ const Header = () => {
                         href={item.href} 
                         className={`nav-dropdown-link ${item.tooltip ? 'has-tooltip' : ''}`}
                         onClick={handleMobileLinkClick}
+                        target="_blank"
                       >
                         {item.label}
                       </Link>
@@ -298,11 +299,22 @@ const Header = () => {
         {mainNavData.map((item, index) => (
           <li key={index} className="main-nav-item">
            {item.isDropdown ? (
-  <div 
-    className={`main-nav-dropdown ${openNavDropdown === item.label ? 'open' : ''}`}
-    onMouseEnter={() => handleNavDropdownMouseEnter(item.label)}
-    onMouseLeave={handleNavDropdownMouseLeave}
-  >
+<div 
+  className={`main-nav-dropdown ${openNavDropdown === item.label ? 'open' : ''}`}
+  onMouseEnter={(e) => {
+    e.stopPropagation();
+    if (closeTimeoutRef.current) {
+      clearTimeout(closeTimeoutRef.current);
+    }
+    setOpenNavDropdown(item.label);
+    setOpenDropdown(null);
+  }}
+  onMouseLeave={(e) => {
+    closeTimeoutRef.current = setTimeout(() => {
+      setOpenNavDropdown(null);
+    }, 100);
+  }}
+>
     <button
                   className="main-nav-dropdown-trigger"
                   onClick={(e) => {
@@ -383,6 +395,7 @@ const Header = () => {
                     href={item.href} 
                     className="nav-dropdown-link"
                     onClick={handleMobileLinkClick}
+                    target="_blank"
                   >
                     {item.label}
                   </Link>

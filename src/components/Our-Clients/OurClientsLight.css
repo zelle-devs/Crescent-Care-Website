@@ -83,7 +83,10 @@
   color: var(--color-accent);
   transition: color 0.5s ease;
 }
-
+.client-card-light:hover .client-description-light{
+color: var(--color-white);
+  transition: color 0.5s ease;
+}
 /* Partner ID tag */
 .client-tag-light {
   position: absolute;

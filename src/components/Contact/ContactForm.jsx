@@ -65,7 +65,7 @@ const ContactForm = () => {
                 }}
               />
               <span className="contact-bar"></span>
-              <label className="contact-float-label">Name</label>
+              <label className="contact-float-label">Name *</label>
             </div>
 
             {/* Phone Field - Only numbers, +, -, spaces */}
@@ -84,7 +84,7 @@ const ContactForm = () => {
                 maxLength={11}
               />
               <span className="contact-bar"></span>
-              <label className="contact-float-label">Phone Number</label>
+              <label className="contact-float-label">Phone Number *</label>
             </div>
 
             {/* Email Field - Standard email validation */}
@@ -97,7 +97,7 @@ const ContactForm = () => {
                 pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}"
               />
               <span className="contact-bar"></span>
-              <label className="contact-float-label">Email</label>
+              <label className="contact-float-label">Email *</label>
             </div>
 
             {/* Message Field - Text allowed */}

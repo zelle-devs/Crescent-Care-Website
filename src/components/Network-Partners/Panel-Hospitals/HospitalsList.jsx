@@ -1,113 +1,166 @@
 "use client";
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useRef, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
+import {
   FiSearch,
-  FiArrowUp, 
-  FiArrowDown, 
-  FiList, 
-  FiGrid, 
-  FiChevronLeft, 
+  FiArrowUp,
+  FiArrowDown,
+  FiList,
+  FiGrid,
+  FiChevronLeft,
   FiChevronRight,
-  FiChevronDown
+  FiChevronDown,
+  FiX,
+  FiMapPin,
+  FiPhone,
+  FiHash,
+  FiGlobe,
+  FiInfo,
+  FiHome,
+  FiActivity,
+  FiCheckCircle,
+  FiUser
 } from 'react-icons/fi';
 import './HospitalsList.css';
+import { Hospital, Building2, FlaskConical, Microscope, Stethoscope, HeartPulse } from 'lucide-react';
+import { FaCity, FaBuilding, FaFlask, FaUserMd, FaHospital, FaClinicMedical, FaVial, FaHeartbeat } from 'react-icons/fa';
+import { BsFillGlobeAmericasFill, BsBuildingFillAdd, BsHospital } from 'react-icons/bs';
 
-const HospitalsList = () => {
-  const hospitals = [
-    { sno: 1, name: 'Aga Khan University Hospital', city: 'Karachi', province: 'Sindh', address: 'Stadium Road', contact: '3493-0051' },
-    { sno: 2, name: 'Aga Khan Hospital For Women-Karimabad', city: 'Karachi', province: 'Sindh', address: 'Block-7, Shahra-e-Pakistan, F B Area', contact: '36823045 / 36323465' },
-    { sno: 3, name: 'Aga Khan Maternity Home-Garden', city: 'Karachi', province: 'Sindh', address: 'Gold Street, Garden East', contact: '3225-0966 / 0522, +92 21 3225 6903 ext. 7468' },
-    { sno: 4, name: 'Aga Khan Maternity Home-Kharadar', city: 'Karachi', province: 'Sindh', address: 'Atmaram Pritam Das Road, Kharadar', contact: '32526315/32524618(EXT 318)' },
-    { sno: 5, name: 'Agha Khan University Health Services', city: 'Karachi', province: 'Sindh', address: 'G-69, Block-7, Kehkashan Clifton.', contact: '35837965-86' },
-    { sno: 6, name: 'South City Hospital', city: 'Karachi', province: 'Sindh', address: 'St-1 Shahrah-e-Firdousi, Block 3 Clifton, Karachi,', contact: '(021) 111 724 000' },
-    { sno: 7, name: 'Liaquat National Hospital', city: 'Karachi', province: 'Sindh', address: 'NATIONAL STADIUM ROAD KARACHI.', contact: '4412712 -4412811 , (021) 111 456 456' },
-    { sno: 8, name: 'Ziauddin Hospital - Clifton', city: 'Karachi', province: 'Sindh', address: 'Block-6, Scheme-5, Clifton', contact: '35862937-9 Ext 251' },
-    { sno: 9, name: 'Ziauddin Hospital - Kemari', city: 'Karachi', province: 'Sindh', address: 'Plot # 33, Behind KPT Hospital, Kemari', contact: '285-1881-5' },
-    { sno: 10, name: 'Ziauddin Hospital - North', city: 'Karachi', province: 'Sindh', address: 'North Nazimabad.', contact: '664-8237-8-9 Ext:503/504' },
-    { sno: 11, name: 'Liaquat National Hospital', city: 'Karachi', province: 'Sindh', address: 'NATIONAL STADIUM ROAD KARACHI.', contact: '4412712 -4412811 , (021) 111 456 456' },
-    { sno: 12, name: 'Ziauddin Hospital - Clifton', city: 'Karachi', province: 'Sindh', address: 'Block-6, Scheme-5, Clifton', contact: '35862937-9 Ext 251' },
-    { sno: 13, name: 'Ziauddin Hospital - Kemari', city: 'Karachi', province: 'Sindh', address: 'Plot # 33, Behind KPT Hospital, Kemari', contact: '285-1881-5' },
-    { sno: 14, name: 'Ziauddin Hospital - North', city: 'Karachi', province: 'Sindh', address: 'North Nazimabad.', contact: '664-8237-8-9 Ext:503/504' },
-    { sno: 15, name: 'Patel Hospital', city: 'Karachi', province: 'Sindh', address: 'ST-18, Block 4, Gulshan-e-Iqbal', contact: '34821284' },
-    { sno: 16, name: 'Tabba Heart Institute', city: 'Karachi', province: 'Sindh', address: 'St-15, Block 7, F.B Area', contact: '111-822-822' },
-    { sno: 17, name: 'National Medical Centre', city: 'Karachi', province: 'Sindh', address: 'D.H.A Phase 1, Korangi Road', contact: '111-662-662' },
-    { sno: 18, name: 'Saifee Hospital', city: 'Karachi', province: 'Sindh', address: 'St-15, Block 7, F.B Area', contact: '36824000' },
-    { sno: 19, name: 'Burhani Hospital', city: 'Karachi', province: 'Sindh', address: 'M.A Jinnah Road', contact: '111-777-111' },
-    { sno: 20, name: 'Karachi Adventist Hospital', city: 'Karachi', province: 'Sindh', address: '91 Depot Lines, M.A Jinnah Road', contact: '32784500' },
-    { sno: 21, name: 'Holy Family Hospital', city: 'Karachi', province: 'Sindh', address: 'Street 10-A, Block 3, Nazimabad', contact: '36617812' },
-    { sno: 22, name: 'Memon Medical Institute', city: 'Karachi', province: 'Sindh', address: 'Block-6, Scheme-5, Clifton', contact: '111-664-664' },
-    { sno: 23, name: 'United Medical & Dental College', city: 'Karachi', province: 'Sindh', address: 'St-20, Block 4, Gulshan-e-Iqbal', contact: '34982479' },
-    { sno: 24, name: 'Darul Sehat Hospital', city: 'Karachi', province: 'Sindh', address: 'Block-3, Gulistan-e-Jauhar', contact: '111-374-374' },
-    { sno: 25, name: 'Zainab Panjwani Memorial Hospital', city: 'Karachi', province: 'Sindh', address: 'Block-6, Scheme-5, Clifton', contact: '35862450' },
-    { sno: 26, name: 'Hill Park General Hospital', city: 'Karachi', province: 'Sindh', address: 'Shaheed-e-Millat Road', contact: '34532315' },
-    { sno: 27, name: 'Kiran Hospital', city: 'Karachi', province: 'Sindh', address: 'Saudabad, Malir', contact: '34512345' },
-    { sno: 28, name: 'Medicare Cardiac & General Hospital', city: 'Karachi', province: 'Sindh', address: 'St-17, Block 6, F.B Area', contact: '36324673' },
-    { sno: 29, name: 'Rabia Moon Trust Hospital', city: 'Karachi', province: 'Sindh', address: 'Block-14, Gulistan-e-Jauhar', contact: '34612345' },
-    { sno: 30, name: 'Sir Syed Hospital', city: 'Karachi', province: 'Sindh', address: 'Block-16, F.B Area', contact: '36324567' },
-    { sno: 31, name: 'Usman Memorial Hospital', city: 'Karachi', province: 'Sindh', address: 'A-1, Block-1, North Nazimabad', contact: '36601234' },
-    { sno: 32, name: 'Wazir Ali Shah Hospital', city: 'Karachi', province: 'Sindh', address: 'Near Disco Bakery, Gulshan-e-Iqbal', contact: '34981234' },
-    { sno: 33, name: 'Yaseen Medical Center', city: 'Karachi', province: 'Sindh', address: 'Block-7, F.B Area', contact: '36329876' },
-    { sno: 34, name: 'Al-Noor Hospital', city: 'Karachi', province: 'Sindh', address: 'Sector 11-B, North Karachi', contact: '36902345' },
-    { sno: 35, name: 'Al-Shifa Hospital', city: 'Karachi', province: 'Sindh', address: 'Block-10, F.B Area', contact: '36324500' },
-  ];
+const HospitalsList = ({
+  hospitals = [],
+  title = "Hospitals List",
+  id = "panel-hospitals-section",
+  columns = [
+    { key: 'sno', label: 'S.No', width: '60px', sortable: true, icon: 'hash', type: 'badge' },
+    { key: 'name', label: 'Hospital Name', sortable: true, icon: 'hospital', type: 'text' },
+    { key: 'city', label: 'City', width: '100px', sortable: true, icon: 'city', type: 'cityBadge' },
+    { key: 'province', label: 'Province', width: '100px', sortable: true, icon: 'globe', type: 'text' },
+    { key: 'address', label: 'Address', sortable: true, icon: 'map', type: 'text' },
+    { key: 'contact', label: 'Contact', width: '180px', sortable: true, icon: 'phone', type: 'contact' }
+  ],
+  searchPlaceholder = "Search...",
+  emptyMessage = "No records found",
+  itemsPerPageOptions = [10, 20, 30, 50, 100]
+}) => {
 
   const [viewMode, setViewMode] = useState('list');
-  const [sortConfig, setSortConfig] = useState({ key: 'sno', direction: 'asc' });
+  const [sortConfig, setSortConfig] = useState({ key: columns[0]?.key || 'sno', direction: 'asc' });
   const [searchQuery, setSearchQuery] = useState('');
-  const [entriesPerPage, setEntriesPerPage] = useState(10);
+  const [entriesPerPage, setEntriesPerPage] = useState(itemsPerPageOptions[0] || 10);
   const [currentPage, setCurrentPage] = useState(1);
   const [showEntriesDropdown, setShowEntriesDropdown] = useState(false);
+  const [showPageDropdown, setShowPageDropdown] = useState(false);
+  const [isSearchFocused, setIsSearchFocused] = useState(false);
+  const [selectedItem, setSelectedItem] = useState(null);
 
-  const handleSort = (key) => {
-    let direction = 'asc';
-    if (sortConfig.key === key && sortConfig.direction === 'asc') {
-      direction = 'desc';
+  const entriesDropdownRef = useRef(null);
+  const pageDropdownRef = useRef(null);
+  const searchInputRef = useRef(null);
+
+  // Close dropdowns on outside click
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (entriesDropdownRef.current && !entriesDropdownRef.current.contains(event.target)) {
+        setShowEntriesDropdown(false);
+      }
+      if (pageDropdownRef.current && !pageDropdownRef.current.contains(event.target)) {
+        setShowPageDropdown(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  // Reset page on search or entries change
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchQuery, entriesPerPage]);
+
+  // Lock body scroll when modal open
+  useEffect(() => {
+    if (selectedItem) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
     }
-    setSortConfig({ key, direction });
-  };
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [selectedItem]);
 
-  const filteredHospitals = useMemo(() => {
+  // Update sort config if columns change
+  useEffect(() => {
+    if (columns.length > 0) {
+      setSortConfig({ key: columns[0].key, direction: 'asc' });
+    }
+  }, [columns]);
+
+  const handleSort = useCallback((key) => {
+    setSortConfig(prev => ({
+      key,
+      direction: prev.key === key && prev.direction === 'asc' ? 'desc' : 'asc'
+    }));
+  }, []);
+
+  // Dynamic filter function
+  const filteredItems = useMemo(() => {
     if (!searchQuery.trim()) return hospitals;
     const query = searchQuery.toLowerCase().trim();
-    return hospitals.filter(hospital => 
-      hospital.name.toLowerCase().includes(query) ||
-      hospital.city.toLowerCase().includes(query) ||
-      hospital.province.toLowerCase().includes(query) ||
-      hospital.address.toLowerCase().includes(query) ||
-      hospital.contact.toLowerCase().includes(query)
+    return hospitals.filter(item =>
+      columns.some(column =>
+        item[column.key] &&
+        item[column.key].toString().toLowerCase().includes(query)
+      )
     );
-  }, [hospitals, searchQuery]);
+  }, [hospitals, searchQuery, columns]);
 
-  const sortedHospitals = useMemo(() => {
-    return [...filteredHospitals].sort((a, b) => {
+  const sortedItems = useMemo(() => {
+    return [...filteredItems].sort((a, b) => {
       const aValue = a[sortConfig.key];
       const bValue = b[sortConfig.key];
-      
+
+      if (aValue === undefined || aValue === null) return 0;
+      if (bValue === undefined || bValue === null) return 0;
+
       if (typeof aValue === 'number' && typeof bValue === 'number') {
         return sortConfig.direction === 'asc' ? aValue - bValue : bValue - aValue;
       }
-      
-      if (aValue < bValue) return sortConfig.direction === 'asc' ? -1 : 1;
-      if (aValue > bValue) return sortConfig.direction === 'asc' ? 1 : -1;
+
+      const aString = aValue.toString().toLowerCase();
+      const bString = bValue.toString().toLowerCase();
+
+      if (aString < bString) return sortConfig.direction === 'asc' ? -1 : 1;
+      if (aString > bString) return sortConfig.direction === 'asc' ? 1 : -1;
       return 0;
     });
-  }, [filteredHospitals, sortConfig]);
+  }, [filteredItems, sortConfig]);
 
-  const totalPages = Math.ceil(sortedHospitals.length / entriesPerPage);
+  const totalPages = Math.ceil(sortedItems.length / entriesPerPage);
   const indexOfLastEntry = currentPage * entriesPerPage;
   const indexOfFirstEntry = indexOfLastEntry - entriesPerPage;
-  const currentEntries = sortedHospitals.slice(indexOfFirstEntry, indexOfLastEntry);
+  const currentEntries = sortedItems.slice(indexOfFirstEntry, indexOfLastEntry);
 
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
-    setCurrentPage(1);
   };
 
   const handleEntriesChange = (value) => {
     setEntriesPerPage(value);
-    setCurrentPage(1);
     setShowEntriesDropdown(false);
+  };
+
+  const handleClearSearch = () => {
+    setSearchQuery('');
+    searchInputRef.current?.focus();
+  };
+
+  const openModal = (item) => {
+    setSelectedItem(item);
+  };
+
+  const closeModal = () => {
+    setSelectedItem(null);
   };
 
   const containerVariants = {
@@ -122,295 +175,536 @@ const HospitalsList = () => {
     }
   };
 
-  const rowContainerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.04,
-        delayChildren: 0.2
-      }
-    }
-  };
-
   const rowVariants = {
-    hidden: { opacity: 0, x: -20 },
+    hidden: { opacity: 0, x: -10 },
     visible: {
       opacity: 1,
       x: 0,
       transition: {
-        duration: 0.4,
+        duration: 0.3,
         ease: [0.25, 0.1, 0.25, 1]
       }
     },
     exit: {
       opacity: 0,
-      x: 20,
+      x: 10,
       transition: {
-        duration: 0.3
+        duration: 0.2
       }
     }
+  };
+
+  // Dynamic icon mapping
+  const getColumnIcon = (iconName, size = 12) => {
+    const iconProps = { size };
+    switch (iconName) {
+      case 'hash':
+        return <FiHash {...iconProps} />;
+      case 'hospital':
+        return <Hospital {...iconProps} />;
+      case 'building':
+        return <FaBuilding {...iconProps} />;
+      case 'flask':
+        return <FaFlask {...iconProps} />;
+      case 'user':
+        return <FiUser {...iconProps} />;
+      case 'userMd':
+        return <FaUserMd {...iconProps} />;
+      case 'city':
+        return <FaCity {...iconProps} />;
+      case 'globe':
+        return <BsFillGlobeAmericasFill {...iconProps} />;
+      case 'map':
+        return <FiMapPin {...iconProps} />;
+      case 'phone':
+        return <FiPhone {...iconProps} />;
+      case 'info':
+        return <FiInfo {...iconProps} />;
+      case 'home':
+        return <FiHome {...iconProps} />;
+      case 'activity':
+        return <FiActivity {...iconProps} />;
+      case 'check':
+        return <FiCheckCircle {...iconProps} />;
+      case 'heart':
+        return <FaHeartbeat {...iconProps} />;
+      case 'clinic':
+        return <FaClinicMedical {...iconProps} />;
+      case 'vial':
+        return <FaVial {...iconProps} />;
+      case 'microscope':
+        return <Microscope {...iconProps} />;
+      case 'stethoscope':
+        return <Stethoscope {...iconProps} />;
+      case 'heartPulse':
+        return <HeartPulse {...iconProps} />;
+      case 'buildingIcon':
+        return <Building2 {...iconProps} />;
+      case 'flaskIcon':
+        return <FlaskConical {...iconProps} />;
+      default:
+        return <FiInfo {...iconProps} />;
+    }
+  };
+
+  // Dynamic cell rendering
+  const renderCellContent = (item, column) => {
+    const value = item[column.key];
+
+    if (value === undefined || value === null) return '-';
+
+    switch (column.type) {
+      case 'badge':
+        return <span className="hospitals-sno-badge">{value}</span>;
+      case 'cityBadge':
+        return <span className="hospitals-city-badge">{value}</span>;
+      case 'statusBadge':
+        const statusClass = value.toLowerCase() === 'active' ? 'status-active' :
+          value.toLowerCase() === 'inactive' ? 'status-inactive' :
+            value.toLowerCase() === 'pending' ? 'status-pending' : '';
+        return <span className={`status-badge ${statusClass}`}>{value}</span>;
+      case 'providerType':
+        let providerClass = '';
+        const typeValue = value.toLowerCase();
+        if (typeValue.includes('hospital')) {
+          providerClass = 'provider-hospital';
+        } else if (typeValue.includes('clinic')) {
+          providerClass = 'provider-clinic';
+        } else if (typeValue.includes('diagnostic')) {
+          providerClass = 'provider-diagnostic';
+        } else if (typeValue.includes('lab')) {
+          providerClass = 'provider-lab';
+        } else if (typeValue.includes('pharmacy')) {
+          providerClass = 'provider-pharmacy';
+        } else {
+          providerClass = 'provider-other';
+        }
+        return <span className={`provider-badge ${providerClass}`}>{value}</span>;
+      case 'contact':
+        return <span className="hospitals-contact-text">{value}</span>;
+
+      // case 'yesNo':
+      //   const isYes = value.toLowerCase() === 'yes' || value === true || value === 'true';
+      //   return (
+      //     <span className={isYes ? 'yes-badge' : 'no-badge'}>
+      //       {value}
+      //     </span>
+      //   );
+      case 'yesNo':
+  const isYes = value.toLowerCase() === 'yes' || value === true || value === 'true';
+  return (
+    <span className={isYes ? 'yes-badge' : 'no-badge'}>
+      {isYes ? '✓ Yes' : '✗ No'}
+    </span>
+  );
+      case 'name':
+        return <span className="hospitals-td-name">{value}</span>;
+      default:
+        return value;
+    }
+  };
+
+  // Get title field (second column usually)
+  const getTitleKey = () => {
+    const nameColumn = columns.find(col => col.key === 'name') ||
+      columns.find(col => col.key === 'laboratory') ||
+      columns.find(col => col.key === 'title') ||
+      columns[1] || columns[0];
+    return nameColumn.key;
+  };
+
+  // Get sno/badge field (first column usually)
+  const getSnoKey = () => {
+    const snoColumn = columns.find(col => col.key === 'sno') ||
+      columns.find(col => col.key === 'id') ||
+      columns[0];
+    return snoColumn.key;
+  };
+
+  const titleKey = getTitleKey();
+  const snoKey = getSnoKey();
+
+  // Get icon for title
+  const getTitleIcon = () => {
+    const titleColumn = columns.find(col => col.key === titleKey);
+    return titleColumn?.icon || 'info';
   };
 
   const SortIcon = ({ column }) => {
     if (sortConfig.key !== column) {
       return <FiArrowUp className="hospitals-sort-icon" style={{ opacity: 0.3 }} />;
     }
-    return sortConfig.direction === 'asc' ? 
-      <FiArrowUp className="hospitals-sort-icon" /> : 
+    return sortConfig.direction === 'asc' ?
+      <FiArrowUp className="hospitals-sort-icon" /> :
       <FiArrowDown className="hospitals-sort-icon" />;
   };
 
   return (
-    <motion.div
-      className="hospitals-section"
-      variants={containerVariants}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.1 }}
-    >
-      <div className="hospitals-container">
-        <motion.div 
-          className="hospitals-card"
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true, amount: 0.1 }}
-          transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
-        >
-          {/* Top Control Bar */}
-          <div className="hospitals-header">
-            <motion.h2 
-              className="hospitals-title"
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-            >
-              Hospitals List
-            </motion.h2>
-            
-            <div className="hospitals-controls">
-              {/* Search Bar */}
-              <div className="hospitals-search-wrapper">
-                <FiSearch className="hospitals-search-icon" />
-                <input 
-                  type="text" 
-                  className="hospitals-search-input"
-                  placeholder="Search hospitals..."
-                  value={searchQuery}
-                  onChange={handleSearchChange}
-                />
+    <>
+      <motion.div
+        id={id}
+        className="hospitals-section"
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.1 }}
+      >
+        <div className="hospitals-container">
+          <motion.div
+            className="hospitals-card"
+            initial={{ opacity: 0, scale: 0.98 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, amount: 0.1 }}
+            transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
+          >
+            {/* Top Control Bar */}
+            <div className="hospitals-header">
+              <div className="hospitals-header-left">
+                <motion.h2
+                  className="hospitals-title"
+                  initial={{ opacity: 0, x: -10 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: 0.1 }}
+                >
+                  <span className='icons'>
+                    {getColumnIcon('buildingIcon', 20)}
+                    {title}
+                  </span>
+                </motion.h2>
+                <span className="hospitals-count-badge">{filteredItems.length} Total</span>
               </div>
-              
-              {/* View Toggle */}
-              <div className="hospitals-view-toggle">
-                <motion.button 
-                  className={`hospitals-view-btn ${viewMode === 'list' ? 'hospitals-view-active' : ''}`}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={() => setViewMode('list')}
-                  title="List View"
-                >
-                  <FiList className="hospitals-view-icon" />
-                </motion.button>
-                <motion.button 
-                  className={`hospitals-view-btn ${viewMode === 'grid' ? 'hospitals-view-active' : ''}`}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={() => setViewMode('grid')}
-                  title="Grid View"
-                >
-                  <FiGrid className="hospitals-view-icon" />
-                </motion.button>
-              </div>
-              
-              {/* Entries Per Page Dropdown */}
-              <div className="hospitals-entries-wrapper">
-                <div 
-                  className="hospitals-entries-select"
-                  onClick={() => setShowEntriesDropdown(!showEntriesDropdown)}
-                >
-                  <span>{entriesPerPage}</span>
-                  <FiChevronDown size={14} className={showEntriesDropdown ? 'hospitals-entries-chevron-rotate' : ''} />
-                </div>
-                <span className="hospitals-entries-label">entries per page</span>
-                
-                <AnimatePresence>
-                  {showEntriesDropdown && (
-                    <motion.div 
-                      className="hospitals-entries-dropdown"
-                      initial={{ opacity: 0, y: -10, scale: 0.95 }}
-                      animate={{ opacity: 1, y: 0, scale: 1 }}
-                      exit={{ opacity: 0, y: -10, scale: 0.95 }}
-                      transition={{ duration: 0.2 }}
+
+              <div className="hospitals-controls">
+                {/* Search Bar */}
+                <div className={`hospitals-search-wrapper ${isSearchFocused ? 'hospitals-search-focused' : ''}`}>
+                  <FiSearch className="hospitals-search-icon" />
+                  <input
+                    ref={searchInputRef}
+                    type="text"
+                    className="hospitals-search-input"
+                    placeholder={searchPlaceholder}
+                    value={searchQuery}
+                    onChange={handleSearchChange}
+                    onFocus={() => setIsSearchFocused(true)}
+                    onBlur={() => setIsSearchFocused(false)}
+                  />
+                  {searchQuery && (
+                    <button
+                      className="hospitals-search-clear"
+                      onClick={handleClearSearch}
+                      aria-label="Clear search"
                     >
-                      {[10, 20, 30, 50, 100].map(value => (
-                        <motion.div 
-                          key={value}
-                          className={`hospitals-entries-option ${entriesPerPage === value ? 'hospitals-entries-option-active' : ''}`}
-                          onClick={() => handleEntriesChange(value)}
-                          whileHover={{ backgroundColor: '#F1F3F5' }}
-                        >
-                          {value}
-                        </motion.div>
-                      ))}
-                    </motion.div>
+                      <FiX size={14} />
+                    </button>
                   )}
-                </AnimatePresence>
+                </div>
+
+                {/* View Toggle */}
+                <div className="hospitals-view-toggle">
+                  <motion.button
+                    className={`hospitals-view-btn ${viewMode === 'list' ? 'hospitals-view-active' : ''}`}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => setViewMode('list')}
+                    title="List View"
+                  >
+                    <FiList className="hospitals-view-icon" />
+                  </motion.button>
+                  <motion.button
+                    className={`hospitals-view-btn ${viewMode === 'grid' ? 'hospitals-view-active' : ''}`}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => setViewMode('grid')}
+                    title="Grid View"
+                  >
+                    <FiGrid className="hospitals-view-icon" />
+                  </motion.button>
+                </div>
               </div>
             </div>
-          </div>
 
-          {/* Data Table - List View */}
-          {viewMode === 'list' ? (
-            <div className="hospitals-table-wrapper">
-              <table className="hospitals-table">
-                <thead>
-                  <tr className="hospitals-table-header">
-                    <th className="hospitals-th" onClick={() => handleSort('sno')} style={{ width: '70px' }}>
-                      <div className="hospitals-th-content">
-                        S.No
-                        <SortIcon column="sno" />
+            {/* Data Table - List View */}
+            {viewMode === 'list' ? (
+              <div className="hospitals-table-wrapper">
+                <table className="hospitals-table">
+                  <thead>
+                    <tr className="hospitals-table-header">
+                      {columns.map((column) => (
+                        <th
+                          key={column.key}
+                          className={`hospitals-th ${column.key === 'address' ? 'hospitals-th-address' : ''} ${column.key === 'contact' ? 'hospitals-th-contact' : ''}`}
+                          onClick={() => column.sortable !== false && handleSort(column.key)}
+                          style={{
+                            width: column.width || 'auto',
+                            cursor: column.sortable !== false ? 'pointer' : 'default'
+                          }}
+                        >
+                          <div className="hospitals-th-content">
+                            {column.icon && getColumnIcon(column.icon)}
+                            {column.label}
+                            {column.sortable !== false && <SortIcon column={column.key} />}
+                          </div>
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <AnimatePresence mode="wait">
+                      {currentEntries.map((item, index) => (
+                        <motion.tr
+                          key={item.id || item[snoKey] || index}
+                          className="hospitals-table-row"
+                          variants={rowVariants}
+                          initial="hidden"
+                          animate="visible"
+                          exit="exit"
+                          whileHover={{ backgroundColor: '#F8F9FA' }}
+                          transition={{ duration: 0.2 }}
+                          onClick={() => openModal(item)}
+                          style={{ cursor: 'pointer' }}
+                        >
+                          {columns.map((column) => (
+                            <td
+                              key={column.key}
+                              className={`hospitals-td ${column.key === snoKey ? 'hospitals-td-sno' : ''} ${column.key === titleKey ? 'hospitals-td-name' : ''} ${column.key === 'address' ? 'hospitals-td-address' : ''} ${column.key === 'contact' ? 'hospitals-td-contact' : ''}`}
+                            >
+                              {renderCellContent(item, column)}
+                            </td>
+                          ))}
+                        </motion.tr>
+                      ))}
+                    </AnimatePresence>
+                  </tbody>
+                </table>
+
+                {currentEntries.length === 0 && (
+                  <div className="hospitals-empty-state">
+                    <FiSearch size={32} />
+                    <p>{emptyMessage}</p>
+                  </div>
+                )}
+              </div>
+            ) : (
+              /* Grid View */
+              <motion.div
+                className="hospitals-grid-view"
+                initial="hidden"
+                animate="visible"
+              >
+                {currentEntries.map((item, index) => {
+                  const nameColumn = columns.find(col => col.key === titleKey) || columns[1] || columns[0];
+                  const snoColumn = columns.find(col => col.key === snoKey) || columns[0];
+                  const otherColumns = columns.filter(col => col.key !== titleKey && col.key !== snoKey);
+
+                  return (
+                    <motion.div
+                      key={item.id || item[snoKey] || index}
+                      className="hospitals-grid-card"
+                      variants={rowVariants}
+                      whileHover={{ scale: 1.02, boxShadow: '0 8px 16px rgba(0,0,0,0.1)' }}
+                      transition={{ duration: 0.2 }}
+                      onClick={() => openModal(item)}
+                    >
+                      <div className="hospitals-grid-header">
+                        <span className="hospitals-grid-sno">#{item[snoColumn.key]}</span>
+                        {otherColumns.length > 0 && (
+                          <span className="hospitals-grid-province">
+                            {item[otherColumns[0].key]}
+                          </span>
+                        )}
                       </div>
-                    </th>
-                    <th className="hospitals-th" onClick={() => handleSort('name')}>
-                      <div className="hospitals-th-content">
-                        Hospital Name
-                        <SortIcon column="name" />
+                      <h3 className="hospitals-grid-name">
+                        {getColumnIcon(nameColumn.icon || 'info', 14)}
+                        {item[nameColumn.key]}
+                      </h3>
+                      <div className="hospitals-grid-details">
+                        {otherColumns.map((column, idx) => (
+                          <p className="hospitals-grid-detail" key={column.key}>
+                            {column.icon && getColumnIcon(column.icon, 12)}
+                            <span className="hospitals-grid-label">{column.label}:</span> {item[column.key]}
+                          </p>
+                        ))}
                       </div>
-                    </th>
-                    <th className="hospitals-th" onClick={() => handleSort('city')} style={{ width: '120px' }}>
-                      <div className="hospitals-th-content">
-                        City
-                        <SortIcon column="city" />
-                      </div>
-                    </th>
-                    <th className="hospitals-th" onClick={() => handleSort('province')} style={{ width: '120px' }}>
-                      <div className="hospitals-th-content">
-                        Province
-                        <SortIcon column="province" />
-                      </div>
-                    </th>
-                    <th className="hospitals-th hospitals-th-address" onClick={() => handleSort('address')}>
-                      <div className="hospitals-th-content">
-                        Address
-                        <SortIcon column="address" />
-                      </div>
-                    </th>
-                    <th className="hospitals-th hospitals-th-contact" onClick={() => handleSort('contact')} style={{ width: '200px' }}>
-                      <div className="hospitals-th-content">
-                        Contact
-                        <SortIcon column="contact" />
-                      </div>
-                    </th>
-                  </tr>
-                </thead>
-                <motion.tbody
-                  variants={rowContainerVariants}
-                  initial="hidden"
-                  animate="visible"
-                >
-                  <AnimatePresence mode="wait">
-                    {currentEntries.map((hospital) => (
-                      <motion.tr 
-                        key={hospital.sno} 
-                        className="hospitals-table-row"
-                        variants={rowVariants}
-                        initial="hidden"
-                        animate="visible"
-                        exit="exit"
-                        whileHover={{ backgroundColor: '#F8F9FA' }}
+                    </motion.div>
+                  );
+                })}
+              </motion.div>
+            )}
+
+            {/* Pagination Footer */}
+            <div className="hospitals-footer">
+              <div className="hospitals-footer-left">
+                <p className="hospitals-results">
+                  Showing <strong>{indexOfFirstEntry + 1}-{Math.min(indexOfLastEntry, sortedItems.length)}</strong> of <strong>{sortedItems.length}</strong> results
+                </p>
+              </div>
+
+              <div className="hospitals-footer-right">
+                {/* Entries Per Page */}
+                <div className="hospitals-entries-wrapper" ref={entriesDropdownRef}>
+                  <span className="hospitals-entries-label">Show</span>
+                  <div
+                    className="hospitals-entries-select"
+                    onClick={() => setShowEntriesDropdown(!showEntriesDropdown)}
+                  >
+                    <span>{entriesPerPage}</span>
+                    <FiChevronDown size={14} className={showEntriesDropdown ? 'hospitals-entries-chevron-rotate' : ''} />
+                  </div>
+                  <span className="hospitals-entries-label">entries</span>
+
+                  <AnimatePresence>
+                    {showEntriesDropdown && (
+                      <motion.div
+                        className="hospitals-entries-dropdown hospitals-entries-dropdown-footer"
+                        initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: 10, scale: 0.95 }}
                         transition={{ duration: 0.2 }}
                       >
-                        <td className="hospitals-td hospitals-td-sno">{hospital.sno}</td>
-                        <td className="hospitals-td hospitals-td-name">{hospital.name}</td>
-                        <td className="hospitals-td">{hospital.city}</td>
-                        <td className="hospitals-td">{hospital.province}</td>
-                        <td className="hospitals-td hospitals-td-address">{hospital.address}</td>
-                        <td className="hospitals-td hospitals-td-contact">{hospital.contact}</td>
-                      </motion.tr>
-                    ))}
+                        {itemsPerPageOptions.map(value => (
+                          <motion.div
+                            key={value}
+                            className={`hospitals-entries-option ${entriesPerPage === value ? 'hospitals-entries-option-active' : ''}`}
+                            onClick={() => handleEntriesChange(value)}
+                            whileHover={{ backgroundColor: '#F1F3F5' }}
+                          >
+                            {value}
+                          </motion.div>
+                        ))}
+                      </motion.div>
+                    )}
                   </AnimatePresence>
-                </motion.tbody>
-              </table>
-            </div>
-          ) : (
-            /* Grid View */
-            <motion.div 
-              className="hospitals-grid-view"
-              variants={rowContainerVariants}
-              initial="hidden"
-              animate="visible"
-            >
-              {currentEntries.map((hospital) => (
-                <motion.div 
-                  key={hospital.sno}
-                  className="hospitals-grid-card"
-                  variants={rowVariants}
-                  whileHover={{ scale: 1.02, boxShadow: '0 8px 16px rgba(0,0,0,0.1)' }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <div className="hospitals-grid-header">
-                    <span className="hospitals-grid-sno">#{hospital.sno}</span>
-                    <span className="hospitals-grid-province">{hospital.province}</span>
-                  </div>
-                  <h3 className="hospitals-grid-name">{hospital.name}</h3>
-                  <div className="hospitals-grid-details">
-                    <p className="hospitals-grid-detail">
-                      <span className="hospitals-grid-label">City:</span> {hospital.city}
-                    </p>
-                    <p className="hospitals-grid-detail">
-                      <span className="hospitals-grid-label">Address:</span> {hospital.address}
-                    </p>
-                    <p className="hospitals-grid-detail">
-                      <span className="hospitals-grid-label">Contact:</span> {hospital.contact}
-                    </p>
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
-          )}
+                </div>
 
-          {/* Pagination Footer */}
-          <div className="hospitals-footer">
-            <p className="hospitals-results">
-              Showing results {indexOfFirstEntry + 1} to {Math.min(indexOfLastEntry, sortedHospitals.length)} of {sortedHospitals.length}
-            </p>
-            
-            <div className="hospitals-pagination">
-              <motion.button 
-                className="hospitals-pagination-btn"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-                onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
-                disabled={currentPage === 1}
-                style={{ opacity: currentPage === 1 ? 0.4 : 1, cursor: currentPage === 1 ? 'not-allowed' : 'pointer' }}
-              >
-                <FiChevronLeft size={16} />
-              </motion.button>
-              
-              <div className="hospitals-page-select">
-                <span>{currentPage}</span>
-                <FiChevronDown size={14} />
+                {/* Pagination */}
+                <div className="hospitals-pagination">
+                  <motion.button
+                    className="hospitals-pagination-btn"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                    disabled={currentPage === 1}
+                    style={{ opacity: currentPage === 1 ? 0.4 : 1, cursor: currentPage === 1 ? 'not-allowed' : 'pointer' }}
+                  >
+                    <FiChevronLeft size={16} />
+                  </motion.button>
+
+                  <div className="hospitals-page-select" ref={pageDropdownRef}>
+                    <div
+                      className="hospitals-page-select-trigger"
+                      onClick={() => setShowPageDropdown(!showPageDropdown)}
+                    >
+                      <span>{currentPage}</span>
+                      <FiChevronDown size={14} className={showPageDropdown ? 'hospitals-entries-chevron-rotate' : ''} />
+                    </div>
+
+                    <AnimatePresence>
+                      {showPageDropdown && (
+                        <motion.div
+                          className="hospitals-page-dropdown"
+                          initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                          animate={{ opacity: 1, y: 0, scale: 1 }}
+                          exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                          transition={{ duration: 0.2 }}
+                        >
+                          {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
+                            <motion.div
+                              key={page}
+                              className={`hospitals-page-option ${currentPage === page ? 'hospitals-page-option-active' : ''}`}
+                              onClick={() => {
+                                setCurrentPage(page);
+                                setShowPageDropdown(false);
+                              }}
+                              whileHover={{ backgroundColor: '#F1F3F5' }}
+                            >
+                              {page}
+                            </motion.div>
+                          ))}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+
+                  <span className="hospitals-page-text">of {totalPages}</span>
+
+                  <motion.button
+                    className="hospitals-pagination-btn hospitals-pagination-active"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                    disabled={currentPage === totalPages}
+                    style={{ opacity: currentPage === totalPages ? 0.4 : 1, cursor: currentPage === totalPages ? 'not-allowed' : 'pointer' }}
+                  >
+                    <FiChevronRight size={16} />
+                  </motion.button>
+                </div>
               </div>
-              
-              <span className="hospitals-page-text">of {totalPages}</span>
-              
-              <motion.button 
-                className="hospitals-pagination-btn hospitals-pagination-active"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-                onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
-                disabled={currentPage === totalPages}
-                style={{ opacity: currentPage === totalPages ? 0.4 : 1, cursor: currentPage === totalPages ? 'not-allowed' : 'pointer' }}
-              >
-                <FiChevronRight size={16} />
-              </motion.button>
             </div>
-          </div>
-        </motion.div>
-      </div>
-    </motion.div>
+          </motion.div>
+        </div>
+      </motion.div>
+
+      {/* Dynamic Details Modal */}
+      <AnimatePresence>
+        {selectedItem && (
+          <motion.div
+            className="hospital-modal-overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            onClick={closeModal}
+          >
+            <motion.div
+              className="hospital-modal"
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="hospital-modal-header">
+                <div className="hospital-modal-header-left">
+                  <div className="hospital-modal-icon">
+                    {getColumnIcon(getTitleIcon(), 20)}
+                  </div>
+                  <div className="hospital-modal-header-title">
+                    <span className="hospital-modal-badge">#{selectedItem[snoKey]}</span>
+                    <h2 className="hospital-modal-name">{selectedItem[titleKey]}</h2>
+                  </div>
+                </div>
+                <button className="hospital-modal-close" onClick={closeModal}>
+                  <FiX size={18} />
+                </button>
+              </div>
+
+              <div className="hospital-modal-content">
+                <div className="hospital-modal-details">
+                  {columns
+                    .filter(col => col.key !== titleKey && col.key !== snoKey)
+                    .map((column) => (
+                      <div className="hospital-modal-detail-item" key={column.key}>
+                        {column.icon && (
+                          <span className="hospital-modal-detail-icon">
+                            {getColumnIcon(column.icon, 16)}
+                          </span>
+                        )}
+                        <div>
+                          <span className="hospital-modal-detail-label">{column.label}</span>
+                          <span className="hospital-modal-detail-value">
+                            {selectedItem[column.key] || '-'}
+                          </span>
+                        </div>
+                      </div>
+                    ))}
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 };
 

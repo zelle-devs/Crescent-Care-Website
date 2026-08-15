@@ -18,10 +18,38 @@ const TeamHero = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const autoPlayRef = useRef(null);
   
-  // Card dimensions
-  const CARD_GAP = 240;
-  const CARD_WIDTH = 240;
-  const CARD_HEIGHT = 280;
+  // Card dimensions - Responsive
+  const [cardDimensions, setCardDimensions] = useState({
+    gap: 240,
+    width: 240,
+    height: 280
+  });
+
+  // Update card dimensions based on screen size
+  useEffect(() => {
+    const updateDimensions = () => {
+      const width = window.innerWidth;
+      if (width <= 400) {
+        setCardDimensions({ gap: 160, width: 160, height: 200 });
+      } else if (width <= 600) {
+        setCardDimensions({ gap: 180, width: 180, height: 220 });
+      } else if (width <= 768) {
+        setCardDimensions({ gap: 200, width: 200, height: 240 });
+      } else if (width <= 1024) {
+        setCardDimensions({ gap: 220, width: 220, height: 260 });
+      } else {
+        setCardDimensions({ gap: 240, width: 240, height: 280 });
+      }
+    };
+
+    updateDimensions();
+    window.addEventListener('resize', updateDimensions);
+    return () => window.removeEventListener('resize', updateDimensions);
+  }, []);
+
+  const CARD_GAP = cardDimensions.gap;
+  const CARD_WIDTH = cardDimensions.width;
+  const CARD_HEIGHT = cardDimensions.height;
 
   // Calculate circular position for each card
   const getCardPosition = useCallback((cardIndex) => {
@@ -67,7 +95,7 @@ const TeamHero = () => {
       zIndex,
       opacity,
     };
-  }, [getCardPosition]);
+  }, [getCardPosition, cardDimensions]);
 
   // Start autoplay with cleanup
   const startAutoPlay = useCallback(() => {
@@ -215,6 +243,8 @@ const TeamHero = () => {
                     height: CARD_HEIGHT,
                     marginLeft: -CARD_WIDTH / 2,
                     marginTop: -CARD_HEIGHT / 2,
+                    maxWidth: '80vw',
+                    maxHeight: '60vh',
                     transformStyle: 'preserve-3d',
                     cursor: 'pointer',
                     willChange: 'transform, opacity',

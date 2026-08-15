@@ -1,0 +1,268 @@
+/* ==================== EXPERTISE CARDS ====================
+   All sizing via px + explicit media-query breakpoints
+   (no clamp()). Built entirely on global.css tokens for
+   color, radius, shadow and transitions.
+============================================================= */
+
+.expertise-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  margin: 0 auto;
+  padding: 0 16px 12px;
+  background-color: var(--color-white);
+}
+
+.expertise-card {
+  position: relative;
+  background: var(--color-white);
+  border: 1px solid var(--color-light-gray);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: 20px;
+  overflow: hidden;
+  transition: box-shadow 0.35s ease, border-color 0.35s ease;
+}
+
+.expertise-card:hover {
+  box-shadow: var(--shadow-xl);
+  border-color: transparent;
+}
+
+/* ---------- Big faded number ---------- */
+
+.expertise-number {
+  position: absolute;
+  top: 4px;
+  right: 14px;
+  font-family: var(--font-secondary);
+  font-weight: 700;
+  font-size: 56px;
+  line-height: 1;
+  color: var(--color-primary);
+  opacity: 0.06;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.expertise-card--secondary .expertise-number {
+  color: var(--color-secondary);
+}
+.expertise-card--accent .expertise-number {
+  color: var(--color-accent);
+}
+
+/* ---------- Icon badge ---------- */
+
+.expertise-icon-badge {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  margin-bottom: 16px;
+  background: rgba(36, 64, 152, 0.08);
+  color: var(--color-primary);
+}
+
+.expertise-card--secondary .expertise-icon-badge {
+  background: rgba(57, 126, 63, 0.1);
+  color: var(--color-secondary);
+}
+.expertise-card--accent .expertise-icon-badge {
+  background: rgba(215, 62, 42, 0.09);
+  color: var(--color-accent);
+}
+
+/* ---------- Text ---------- */
+
+.expertise-title {
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-secondary);
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 1.25;
+  color: var(--color-dark);
+  letter-spacing: -0.01em;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.expertise-desc {
+    text-align: center;
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-primary);
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: var(--color-gray);
+}
+
+/* ---------- Bottom accent bar ---------- */
+
+.expertise-bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  background: var(--color-primary);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.expertise-card--secondary .expertise-bar {
+  background: var(--color-secondary);
+}
+.expertise-card--accent .expertise-bar {
+  background: var(--color-accent);
+}
+
+.expertise-card:hover .expertise-bar {
+  transform: scaleX(1);
+}
+
+/* ==================== RESPONSIVE (px, mobile-first) ==================== */
+
+@media (min-width: 480px) {
+  .expertise-grid {
+    gap: 20px;
+    padding: 0 20px 16px;
+  }
+  .expertise-card {
+    padding: 24px;
+  }
+  .expertise-title {
+    font-size: 18px;
+  }
+  .expertise-desc {
+    font-size: 14px;
+  }
+  .expertise-number {
+    font-size: 64px;
+  }
+}
+
+@media (min-width: 768px) {
+  .expertise-grid {
+    gap: 24px;
+    padding: 0 24px 20px;
+  }
+  .expertise-card {
+    padding: 28px;
+  }
+  .expertise-icon-badge {
+    width: 46px;
+    height: 46px;
+    margin-bottom: 18px;
+  }
+  .expertise-title {
+    font-size: 19px;
+  }
+  .expertise-desc {
+    font-size: 14.5px;
+  }
+  .expertise-number {
+    font-size: 72px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .expertise-grid {
+    gap: 28px;
+    padding: 0 32px 28px;
+  }
+  .expertise-card {
+    padding: 32px;
+  }
+  .expertise-icon-badge {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 20px;
+  }
+  .expertise-title {
+    font-size: 20px;
+    margin-bottom: 12px;
+  }
+  .expertise-desc {
+    font-size: 15px;
+  }
+  .expertise-number {
+    font-size: 84px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .expertise-grid {
+    /* max-width: 1300px; */
+    gap: 32px;
+  }
+  .expertise-card {
+    padding: 36px;
+  }
+  .expertise-title {
+    font-size: 21px;
+  }
+  .expertise-desc {
+    font-size: 15.5px;
+  }
+  .expertise-number {
+    font-size: 96px;
+  }
+}
+
+@media (min-width: 1921px) {
+  .expertise-grid {
+    /* max-width: 1500px; */
+    gap: 36px;
+  }
+  .expertise-card {
+    padding: 40px;
+  }
+  .expertise-icon-badge {
+    width: 52px;
+    height: 52px;
+  }
+  .expertise-title {
+    font-size: 22px;
+  }
+  .expertise-desc {
+    font-size: 16px;
+  }
+  .expertise-number {
+    font-size: 108px;
+  }
+}
+
+/* ---------- Tiny screens ---------- */
+@media (max-width: 359px) {
+  .expertise-grid {
+    gap: 14px;
+    padding: 0 12px 8px;
+  }
+  .expertise-card {
+    padding: 16px;
+  }
+  .expertise-title {
+    font-size: 16px;
+  }
+  .expertise-desc {
+    font-size: 13px;
+  }
+  .expertise-number {
+    font-size: 48px;
+  }
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .expertise-card,
+  .expertise-bar {
+    transition: none;
+  }
+}

@@ -10,13 +10,13 @@ const FormStep = ({ formData, setFormData, openDropdown, setOpenDropdown, select
     const CustomSelect = ({ label, value, options, fieldName, placeholder, required = true }) => {
         const isOpen = openDropdown === fieldName;
         const isFocused = focusedField === fieldName;
-        
+
         return (
             <div className="input-group">
                 <label>{label} {required && <span className="required-star">*</span>}</label>
                 <div className="custom-select-wrapper">
-                    <div 
-                        className="neu-input custom-trigger" 
+                    <div
+                        className="neu-input custom-trigger"
                         onClick={() => {
                             setOpenDropdown(isOpen ? null : fieldName);
                             setFocusedField(fieldName);
@@ -42,8 +42,8 @@ const FormStep = ({ formData, setFormData, openDropdown, setOpenDropdown, select
                     {isOpen && (
                         <div className="neu-dropdown-list" data-dropdown>
                             {options.map(opt => (
-                                <div key={opt} className="neu-option" onClick={() => { 
-                                    setFormData({ ...formData, [fieldName]: opt }); 
+                                <div key={opt} className="neu-option" onClick={() => {
+                                    setFormData({ ...formData, [fieldName]: opt });
                                     setOpenDropdown(null);
                                     setFocusedField(null);
                                 }}>
@@ -59,7 +59,7 @@ const FormStep = ({ formData, setFormData, openDropdown, setOpenDropdown, select
 
     const MultiSelectChips = ({ label, options, fieldName, required = false }) => {
         const selected = formData[fieldName] || [];
-        
+
         const toggleOption = (option) => {
             const updated = selected.includes(option)
                 ? selected.filter(item => item !== option)
@@ -92,7 +92,7 @@ const FormStep = ({ formData, setFormData, openDropdown, setOpenDropdown, select
 
     const RadioGroup = ({ label, options, fieldName, required = false }) => {
         const value = formData[fieldName] || '';
-        
+
         return (
             <div className="input-group">
                 <label>{label} {required && <span className="required-star">*</span>}</label>
@@ -150,36 +150,37 @@ const FormStep = ({ formData, setFormData, openDropdown, setOpenDropdown, select
         <div className="split-layout-form">
             <div className="form-container-left">
                 <div className="form-card">
+                    {/* <h2 className="step-title">Let&apos;s Get to Know You</h2>
+                    <p className="form-subtitle">Please share a few details so we can personalize your demo.</p> */}
                     <h2 className="step-title">Let&apos;s Get to Know You</h2>
-                    <p className="form-subtitle">Please share a few details so we can personalize your HRMS demo.</p>
-
+                    <p className="form-subtitle">Get a Personalized Demo for Your Insurance Operations</p>
                     {/* Section 1: Personal Information */}
                     <div className="section-label">Personal Information</div>
                     <div className="row2">
                         <div className="input-group">
                             <label>First Name <span className="required-star">*</span></label>
-                            <input 
-                                type="text" 
+                            <input
+                                type="text"
                                 placeholder={focusedField === 'Fname' ? '' : "John"}
-                                value={formData.Fname} 
-                                className="neu-input" 
+                                value={formData.Fname}
+                                className="neu-input"
                                 onChange={(e) => setFormData({ ...formData, Fname: e.target.value })}
                                 onFocus={() => handleInputFocus('Fname')}
                                 onBlur={handleInputBlur}
-                                required 
+                                required
                             />
                         </div>
                         <div className="input-group">
                             <label>Last Name <span className="required-star">*</span></label>
-                            <input 
-                                type="text" 
+                            <input
+                                type="text"
                                 placeholder={focusedField === 'Lname' ? '' : "Doe"}
-                                value={formData.Lname} 
-                                className="neu-input" 
+                                value={formData.Lname}
+                                className="neu-input"
                                 onChange={(e) => setFormData({ ...formData, Lname: e.target.value })}
                                 onFocus={() => handleInputFocus('Lname')}
                                 onBlur={handleInputBlur}
-                                required 
+                                required
                             />
                         </div>
                     </div>
@@ -187,26 +188,26 @@ const FormStep = ({ formData, setFormData, openDropdown, setOpenDropdown, select
                     <div className="row2">
                         <div className="input-group">
                             <label>Work Email <span className="required-star">*</span></label>
-                            <input 
-                                type="email" 
+                            <input
+                                type="email"
                                 placeholder={focusedField === 'workEmail' ? '' : "john@company.com"}
-                                value={formData.workEmail || ''} 
-                                className={`neu-input ${emailError ? 'error-input' : ''}`} 
+                                value={formData.workEmail || ''}
+                                className={`neu-input ${emailError ? 'error-input' : ''}`}
                                 onChange={handleEmailChange}
                                 onFocus={() => handleInputFocus('workEmail')}
                                 onBlur={handleInputBlur}
-                                required 
+                                required
                             />
                             {emailError && <span className="error-msg">{emailError}</span>}
                         </div>
                         <div className="input-group">
                             <label>Phone Number <span className="required-star">*</span></label>
-                            <input 
-                                type="tel" 
-                                inputMode="numeric" 
+                            <input
+                                type="tel"
+                                inputMode="numeric"
                                 placeholder={focusedField === 'phone' ? '' : "+1 234 567 8900"}
-                                value={formData.phone || ''} 
-                                className="neu-input" 
+                                value={formData.phone || ''}
+                                className="neu-input"
                                 onChange={(e) => {
                                     const val = e.target.value;
                                     if (/^[0-9+\- ]*$/.test(val) || val === "") {
@@ -215,7 +216,7 @@ const FormStep = ({ formData, setFormData, openDropdown, setOpenDropdown, select
                                 }}
                                 onFocus={() => handleInputFocus('phone')}
                                 onBlur={handleInputBlur}
-                                required 
+                                required
                             />
                         </div>
                     </div>
@@ -225,15 +226,15 @@ const FormStep = ({ formData, setFormData, openDropdown, setOpenDropdown, select
                     <div className="row2">
                         <div className="input-group">
                             <label>Company Name <span className="required-star">*</span></label>
-                            <input 
-                                type="text" 
+                            <input
+                                type="text"
                                 placeholder={focusedField === 'companyName' ? '' : "Acme Inc."}
-                                value={formData.companyName || ''} 
-                                className="neu-input" 
+                                value={formData.companyName || ''}
+                                className="neu-input"
                                 onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
                                 onFocus={() => handleInputFocus('companyName')}
                                 onBlur={handleInputBlur}
-                                required 
+                                required
                             />
                         </div>
                         <CustomSelect label="Designation" value={formData.jobTitle} fieldName="jobTitle" placeholder="Select Designation" options={jobTitleOptions} required={true} />
@@ -245,27 +246,27 @@ const FormStep = ({ formData, setFormData, openDropdown, setOpenDropdown, select
                     </div>
 
                     {/* Section 3: Product Information */}
-                    <div className="section-label">Product Information</div>
+                    {/* <div className="section-label">Product Information</div>
                     <div className="row2">
                         <CustomSelect label="Current HR Software" value={formData.currentHRSoftware} fieldName="currentHRSoftware" placeholder="Select Current Software" options={hrSoftwareOptions} required={false} />
                     </div>
 
-                    <MultiSelectChips label="Interested Modules" options={modulesOptions} fieldName="interestedModules" />
+                    <MultiSelectChips label="Interested Modules" options={modulesOptions} fieldName="interestedModules" /> */}
 
                     {/* Section 4: Business Needs */}
-                    <div className="section-label">Business Needs</div>
+                    {/* <div className="section-label">Business Needs</div>
                     <div className="row2">
                         <CustomSelect label="Demo Goal" value={formData.demoGoal} fieldName="demoGoal" placeholder="Select Demo Goal" options={demoGoalOptions} required={false} />
                     </div>
 
-                    <RadioGroup label="Primary Goal" options={primaryGoalOptions} fieldName="primaryGoal" required={false} />
+                    <RadioGroup label="Primary Goal" options={primaryGoalOptions} fieldName="primaryGoal" required={false} /> */}
 
                     {/* Section 5: Message */}
                     <div className="input-group">
-                        <label>Tell us about your requirements</label>
+                        <label>Message (optional)</label>
                         <textarea
                             rows="3"
-                            placeholder={focusedField === 'notes' ? '' : "Describe your HR challenges or what you'd like to see during the demo..."}
+                            placeholder={focusedField === 'notes' ? '' : "Message...."}
                             value={formData.notes || ''}
                             className="neu-input"
                             onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
@@ -321,9 +322,9 @@ const FormStep = ({ formData, setFormData, openDropdown, setOpenDropdown, select
                             <p>
                                 {selectedPlatform === 'onsite' ? 'Onsite'
                                     : selectedPlatform === 'google-meet' ? 'Google Meet'
-                                    : selectedPlatform === 'zoom' ? 'Zoom'
-                                    : selectedPlatform === 'teams' ? 'Microsoft Teams'
-                                    : 'Not selected'}
+                                        : selectedPlatform === 'zoom' ? 'Zoom'
+                                            : selectedPlatform === 'teams' ? 'Microsoft Teams'
+                                                : 'Not selected'}
                             </p>
                         </div>
                     </div>
@@ -332,7 +333,7 @@ const FormStep = ({ formData, setFormData, openDropdown, setOpenDropdown, select
                 <div className="selection-note">
                     <div className="note-content">
                         <IoIosInformationCircle className="note-icon" />
-                        <span>A product specialist will contact you shortly before your scheduled demo.</span>
+                        <span>Our team will contact you shortly before your scheduled demo.</span>
                     </div>
                 </div>
             </div>

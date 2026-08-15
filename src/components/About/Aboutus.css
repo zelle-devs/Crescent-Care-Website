@@ -1,0 +1,343 @@
+/* ==================== ABOUT US — ANIMATED TIMELINE ====================
+   Uses only tokens already defined in global.css
+   (--color-*, --font-*, --spacing-*, --radius-*, --shadow-*, .container, .section-padding).
+======================================================================== */
+
+.about-section {
+  position: relative;
+  background: var(--color-white);
+  overflow: hidden;
+}
+
+.about-container {
+  position: relative;
+}
+
+/* ---------- Center animated line ---------- */
+
+.about-timeline-track {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  transform: translateX(-50%);
+  background: var(--color-light-gray);
+  border-radius: var(--radius-full);
+}
+
+.about-timeline-line {
+  width: 100%;
+  height: 100%;
+  transform-origin: top center;
+  background: linear-gradient(
+    180deg,
+    var(--color-primary) 0%,
+    var(--color-secondary) 50%,
+    var(--color-accent) 100%
+  );
+  border-radius: var(--radius-md);
+}
+
+/* ---------- Row ---------- */
+
+.about-row {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: clamp(1.5rem, 4vw, 4.5rem);
+  padding: clamp(2rem, 5vw, 4.5rem) 0;
+}
+
+.about-row--reverse .about-row-content {
+  order: 2;
+}
+
+.about-row--reverse .about-row-media {
+  order: 1;
+}
+
+.about-row-dot-wrap {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+
+.about-dot {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(42px, 3.5vw, 52px);
+  height: clamp(42px, 3.5vw, 52px);
+  border-radius: var(--radius-full);
+  background: var(--color-white);
+  border: 2px solid currentColor;
+  box-shadow: var(--shadow-md);
+}
+
+.about-dot--primary {
+  color: var(--color-primary);
+}
+.about-dot--secondary {
+  color: var(--color-secondary);
+}
+.about-dot--accent {
+  color: var(--color-accent);
+}
+
+.about-dot-ping {
+  position: absolute;
+  inset: -6px;
+  border-radius: inherit;
+  border: 2px solid currentColor;
+  opacity: 0.5;
+  animation: about-ping 2.4s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes about-ping {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.6;
+  }
+  70%,
+  100% {
+    transform: scale(1.55);
+    opacity: 0;
+  }
+}
+
+/* ---------- Content ---------- */
+
+.about-row-content {
+  min-width: 0;
+}
+
+.about-eyebrow {
+  display: inline-block;
+  font-family: var(--font-primary);
+  font-size: var(--font-xs);
+  font-weight: 700;
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
+  padding: 0.3rem 0.8rem;
+  border-radius: var(--radius-md);
+  margin-bottom: var(--spacing-sm);
+}
+
+.about-eyebrow--primary {
+  color: var(--color-primary);
+  background: rgba(36, 64, 152, 0.08);
+}
+.about-eyebrow--secondary {
+  color: var(--color-secondary-dark);
+  background: rgba(57, 126, 63, 0.1);
+}
+.about-eyebrow--accent {
+  color: var(--color-accent-dark);
+  background: rgba(215, 62, 42, 0.08);
+}
+
+.about-row-title {
+  font-family: var(--font-secondary);
+  font-weight: 600;
+  font-size: clamp(1.375rem, 1.1rem + 1.1vw, 2.25rem);
+  color: var(--color-dark);
+  letter-spacing: var(--letter-spacing-tight);
+  line-height: var(--line-height-tight);
+  margin-bottom: var(--spacing-md);
+}
+
+.about-row-body {
+  font-size: clamp(0.9rem, 0.85rem + 0.2vw, 1.05rem);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-gray);
+  max-width: 480px;
+}
+
+/* ---------- Bullet list (3rd section) ---------- */
+
+.about-bullet-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-sm);
+}
+
+.about-bullet-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-sm);
+  font-size: var(--font-sm);
+  color: var(--color-dark-gray);
+  line-height: var(--line-height-normal);
+}
+
+.about-bullet-icon {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: var(--radius-md);
+  margin-top: 0.1rem;
+}
+
+.about-bullet-icon--primary {
+  background: rgba(36, 64, 152, 0.1);
+  color: var(--color-primary);
+}
+.about-bullet-icon--secondary {
+  background: rgba(57, 126, 63, 0.12);
+  color: var(--color-secondary);
+}
+.about-bullet-icon--accent {
+  background: rgba(215, 62, 42, 0.1);
+  color: var(--color-accent);
+}
+
+/* ---------- Media ---------- */
+
+.about-row-media {
+  position: relative;
+}
+
+.about-media-frame {
+  position: relative;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  /* box-shadow: var(--shadow-xl);
+  background: var(--color-off-white); */
+}
+
+.about-media-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.about-media-glow {
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  border-radius: var(--radius-full);
+  filter: blur(50px);
+  z-index: -1;
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+.about-media-glow--primary {
+  background: var(--color-primary);
+  bottom: -40px;
+  left: -40px;
+}
+.about-media-glow--secondary {
+  background: var(--color-secondary);
+  top: -40px;
+  right: -40px;
+}
+.about-media-glow--accent {
+  background: var(--color-accent);
+  bottom: -40px;
+  right: -40px;
+}
+
+/* ==================== RESPONSIVE ====================
+   Below 860px the alternating layout can't breathe, so the
+   line moves to the left edge and every row stacks in the
+   same order (dot -> content -> media).
+======================================================= */
+
+@media (max-width: 860px) {
+  .about-timeline-track {
+    left: 40px;
+    transform: none;
+  }
+
+  .about-row {
+    grid-template-columns: 1fr;
+    padding-left: clamp(3.25rem, 8vw, 4rem);
+    gap: var(--spacing-lg);
+  }
+
+  .about-row--reverse .about-row-content,
+  .about-row--reverse .about-row-media {
+    order: initial;
+  }
+
+  .about-row-media {
+    order: 2;
+  }
+
+  .about-row-dot-wrap {
+    left: 26px;
+    top: 0.1rem;
+    transform: translate(-50%, 0);
+  }
+
+  .about-media-frame {
+    aspect-ratio: 16 / 10;
+  }
+
+  .about-row-body {
+    max-width: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-timeline-track {
+    left: 35px;
+  }
+
+  .about-row {
+    padding-left: 2.75rem;
+    padding-top: var(--spacing-xl);
+    padding-bottom: var(--spacing-xl);
+  }
+
+  .about-row-dot-wrap {
+    left: 20px;
+  }
+
+  .about-dot {
+    width: 38px;
+    height: 38px;
+  }
+}
+
+@media (max-width: 340px) {
+  .about-row {
+    padding-left: 2.25rem;
+  }
+
+  .about-timeline-track{
+ left: 30px;
+  }
+
+  .about-row-dot-wrap {
+    left: 16px;
+  }
+}
+
+/* ---------- Fluid comfort on very large screens ---------- */
+@media (min-width: 1921px) {
+  .about-container {
+    max-width: 1300px;
+  }
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .about-dot-ping {
+    animation: none;
+    display: none;
+  }
+}

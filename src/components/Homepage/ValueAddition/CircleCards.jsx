@@ -47,6 +47,12 @@ const CircleCards = () => {
       image: "/Homepage/v1.png",
       title: "HEALTH INSURANCE",
       description: "Comprehensive health insurance solutions tailored to meet your needs and protect your family."
+    },
+    {
+      id: 8,
+      image: "/Homepage/v1.png",
+      title: "HEALTH INSURANCE",
+      description: "Comprehensive health insurance solutions tailored to meet your needs and protect your family."
     }
   ];
 

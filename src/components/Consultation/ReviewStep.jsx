@@ -77,7 +77,7 @@ const ReviewStep = ({ formData, selectedDate, selectedTime, onEditDate, onEditFo
                     </div>
 
                     {/* Product Information */}
-                    <div className="section-label">Product Information</div>
+                    {/* <div className="section-label">Product Information</div>
                     <div className="review-grid">
                         <div className="review-item-wrapper">
                             <span>Current HR Software</span>
@@ -91,10 +91,10 @@ const ReviewStep = ({ formData, selectedDate, selectedTime, onEditDate, onEditFo
                                 <p>{interestedModules.length > 0 ? interestedModules.join(', ') : '—'}</p>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
 
                     {/* Business Needs */}
-                    <div className="section-label">Business Needs</div>
+                    {/* <div className="section-label">Business Needs</div>
                     <div className="review-grid">
                         <div className="review-item-wrapper">
                             <span>Demo Goal</span>
@@ -108,7 +108,7 @@ const ReviewStep = ({ formData, selectedDate, selectedTime, onEditDate, onEditFo
                                 <p>{formData.primaryGoal || '—'}</p>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
 
                     {/* Message */}
                     {formData.notes && (
@@ -199,7 +199,7 @@ const ReviewStep = ({ formData, selectedDate, selectedTime, onEditDate, onEditFo
                     <div className="selection-note">
                         <div className="note-content">
                             <IoIosInformationCircle className="note-icon" />
-                            <span>A product specialist will contact you shortly before your scheduled demo.</span>
+                            <span>Our team will contact you shortly before your scheduled demo.</span>
                         </div>
                     </div>
                 </div>

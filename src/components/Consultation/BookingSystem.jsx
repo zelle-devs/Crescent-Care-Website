@@ -147,35 +147,70 @@ const BookingSystem = () => {
     };
 
     // Smooth step transition
+    // const transitionToStep = (newStep) => {
+    //     if (newStep === step) return;
+    //     setIsTransitioning(true);
+    //     setTimeout(() => {
+    //         setStep(newStep);
+    //         updateStepInURL(newStep, router, true);
+    //         window.scrollTo({ top: 0, behavior: 'smooth' });
+    //         setTimeout(() => {
+    //             setIsTransitioning(false);
+    //         }, 100);
+    //     }, 150);
+    // };
+
     const transitionToStep = (newStep) => {
-        if (newStep === step) return;
-        setIsTransitioning(true);
+    if (newStep === step) return;
+    setIsTransitioning(true);
+    setTimeout(() => {
+        setStep(newStep);
+        updateStepInURL(newStep, router, true);
+        // Scroll to booking wrapper instead of top
+        const bookingWrapper = document.querySelector('.booking-main-wrapper');
+        if (bookingWrapper) {
+            const yOffset = bookingWrapper.getBoundingClientRect().top + window.pageYOffset - 20;
+            window.scrollTo({ top: yOffset, behavior: 'smooth' });
+        }
         setTimeout(() => {
-            setStep(newStep);
-            updateStepInURL(newStep, router, true);
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            setTimeout(() => {
-                setIsTransitioning(false);
-            }, 100);
-        }, 150);
-    };
+            setIsTransitioning(false);
+        }, 100);
+    }, 150);
+};
+
 
     // Update URL when step changes with validation
+    // const handleStepChange = (newStep) => {
+    //     if (newStep === step) return;
+    //     setDirection(newStep > step ? 1 : -1);
+    //     if (newStep < step) {
+    //         transitionToStep(newStep);
+    //     } else {
+    //         if (step === 1 && validateStep1()) {
+    //             transitionToStep(newStep);
+    //         } else if (step === 2 && validateStep2()) {
+    //             transitionToStep(newStep);
+    //         } else {
+    //             showErrorToast(`Please complete ${step === 1 ? "date & time" : "personal details"} before proceeding`);
+    //         }
+    //     }
+    // };
+
     const handleStepChange = (newStep) => {
-        if (newStep === step) return;
-        setDirection(newStep > step ? 1 : -1);
-        if (newStep < step) {
+    if (newStep === step) return;
+    setDirection(newStep > step ? 1 : -1);
+    if (newStep < step) {
+        transitionToStep(newStep);
+    } else {
+        if (step === 1 && validateStep1()) {
+            transitionToStep(newStep);
+        } else if (step === 2 && validateStep2()) {
             transitionToStep(newStep);
         } else {
-            if (step === 1 && validateStep1()) {
-                transitionToStep(newStep);
-            } else if (step === 2 && validateStep2()) {
-                transitionToStep(newStep);
-            } else {
-                showErrorToast(`Please complete ${step === 1 ? "date & time" : "personal details"} before proceeding`);
-            }
+            showErrorToast(`Please complete ${step === 1 ? "date & time" : "personal details"} before proceeding`);
         }
-    };
+    }
+};
 
     // Next button handler
     const handleNext = () => {
@@ -204,38 +239,76 @@ const BookingSystem = () => {
     };
 
     // Handle confirm booking
+    // const handleConfirm = () => {
+    //     if (validateStep2()) {
+    //         setIsConfirming(true);
+    //         setTimeout(() => {
+    //             setIsConfirming(false);
+    //             setIsConfirmed(true);
+    //             window.scrollTo({ top: 0, behavior: 'smooth' });
+    //         }, 2000);
+    //     } else {
+    //         showErrorToast('Please complete all required fields before confirming');
+    //     }
+    // };
+
     const handleConfirm = () => {
-        if (validateStep2()) {
-            setIsConfirming(true);
-            setTimeout(() => {
-                setIsConfirming(false);
-                setIsConfirmed(true);
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }, 2000);
-        } else {
-            showErrorToast('Please complete all required fields before confirming');
-        }
-    };
+    if (validateStep2()) {
+        setIsConfirming(true);
+        setTimeout(() => {
+            setIsConfirming(false);
+            setIsConfirmed(true);
+            // Scroll to booking wrapper
+            const bookingWrapper = document.querySelector('.booking-main-wrapper');
+            if (bookingWrapper) {
+                const yOffset = bookingWrapper.getBoundingClientRect().top + window.pageYOffset - 20;
+                window.scrollTo({ top: yOffset, behavior: 'smooth' });
+            }
+        }, 2000);
+    } else {
+        showErrorToast('Please complete all required fields before confirming');
+    }
+};
+
 
     // Sync step with URL when back/forward buttons are used
+    // useEffect(() => {
+    //     const currentStep = getStepFromPath(searchParams);
+    //     if (currentStep !== step && !isUpdatingFromURL) {
+    //         setIsUpdatingFromURL(true);
+    //         if (currentStep < step) {
+    //             transitionToStep(currentStep);
+    //         } else if (currentStep > step) {
+    //             if (step === 1 && validateStep1()) {
+    //                 transitionToStep(currentStep);
+    //             } else if (step === 2 && validateStep2()) {
+    //                 transitionToStep(currentStep);
+    //             } else {
+    //                 updateStepInURL(step, router, true);
+    //             }
+    //         }
+    //         setIsUpdatingFromURL(false);
+    //     }
+    // }, [searchParams]);
+
     useEffect(() => {
-        const currentStep = getStepFromPath(searchParams);
-        if (currentStep !== step && !isUpdatingFromURL) {
-            setIsUpdatingFromURL(true);
-            if (currentStep < step) {
+    const currentStep = getStepFromPath(searchParams);
+    if (currentStep !== step && !isUpdatingFromURL) {
+        setIsUpdatingFromURL(true);
+        if (currentStep < step) {
+            transitionToStep(currentStep);
+        } else if (currentStep > step) {
+            if (step === 1 && validateStep1()) {
                 transitionToStep(currentStep);
-            } else if (currentStep > step) {
-                if (step === 1 && validateStep1()) {
-                    transitionToStep(currentStep);
-                } else if (step === 2 && validateStep2()) {
-                    transitionToStep(currentStep);
-                } else {
-                    updateStepInURL(step, router, true);
-                }
+            } else if (step === 2 && validateStep2()) {
+                transitionToStep(currentStep);
+            } else {
+                updateStepInURL(step, router, true);
             }
-            setIsUpdatingFromURL(false);
         }
-    }, [searchParams]);
+        setIsUpdatingFromURL(false);
+    }
+}, [searchParams]);
 
     useEffect(() => {
         const handleGlobalClick = (event) => {

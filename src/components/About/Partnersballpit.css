@@ -1,0 +1,237 @@
+
+/* ==================== OUR PARTNERS — BALL PIT ====================
+   All balls are the same (large) size and settle at the bottom
+   under gravity. px + explicit breakpoints only (no clamp()).
+   Built on global.css tokens.
+==================================================================== */
+
+.partners-section {
+  background: var(--color-white);
+  overflow: hidden;
+}
+
+.partners-stage {
+  --ball-size: 90px;
+
+  position: relative;
+  width: 100%;
+  min-height: 280px;
+  border: 1px solid var(--color-light-gray);
+  /* border-radius: var(--radius-xl); */
+  background: var(--color-off-white);
+  overflow: hidden;
+  touch-action: none;
+}
+
+/* subtle floor shadow so the pile reads as sitting inside the container */
+.partners-stage::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 40%;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.04) 50%, rgba(0, 0, 0, 0.08) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ---------- Fixed text ---------- */
+
+.partners-center-text {
+  position: absolute;
+  top: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+  width: 240px;
+  text-align: center;
+  pointer-events: none;
+  /* From https://css.glass */
+background: rgba(65, 177, 213, 0.25);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(7.6px);
+-webkit-backdrop-filter: blur(7.6px);
+border: 1px solid rgba(65, 177, 213, 0.3);
+  border-radius: var(--radius-lg);
+  padding: 10px 14px;
+}
+
+.partners-title {
+  font-family: var(--font-secondary);
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 1.25;
+  color: var(--color-dark);
+  letter-spacing: -0.01em;
+  margin-bottom: 8px;
+}
+
+.partners-desc {
+  font-family: var(--font-primary);
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--color-gray);
+}
+
+/* ---------- Balls ---------- */
+
+.ball {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: var(--ball-size);
+  height: var(--ball-size);
+  z-index: 2;
+  will-change: transform;
+}
+
+.ball-inner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-full);
+  background: var(--color-white);
+  border: 1px solid var(--color-light-gray);
+  box-shadow: var(--shadow-lg);
+  cursor: pointer;
+}
+
+.ball-logo {
+  width: 80%;
+  height: auto;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+}
+
+.ball-fallback {
+  font-family: var(--font-secondary);
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--color-primary);
+  letter-spacing: 0.02em;
+}
+
+/* ==================== RESPONSIVE (px, mobile-first) ==================== */
+
+@media (min-width: 480px) {
+  .partners-stage {
+    --ball-size: 108px;
+    min-height: 320px;
+  }
+  .partners-center-text {
+    width: 280px;
+  }
+  .partners-title {
+    font-size: 25px;
+  }
+  .partners-desc {
+    font-size: 13px;
+  }
+  .ball-fallback {
+    font-size: 17px;
+  }
+}
+
+@media (min-width: 768px) {
+  .partners-stage {
+    --ball-size: 128px;
+    min-height: 380px;
+  }
+  .partners-center-text {
+    width: 320px;
+    top: 32px;
+  }
+  .partners-title {
+    font-size: 30px;
+  }
+  .partners-desc {
+    font-size: 14px;
+  }
+  .ball-fallback {
+    font-size: 19px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .partners-stage {
+    --ball-size: 144px;
+    min-height: 420px;
+  }
+  .partners-center-text {
+    width: 360px;
+    top: 36px;
+  }
+  .partners-title {
+    font-size: 34px;
+  }
+  .partners-desc {
+    font-size: 15px;
+  }
+  .ball-fallback {
+    font-size: 21px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .partners-stage {
+    --ball-size: 158px;
+    min-height: 460px;
+  }
+  .partners-center-text {
+    width: 400px;
+    top: 40px;
+  }
+  .partners-title {
+    font-size: 38px;
+  }
+  .partners-desc {
+    font-size: 16px;
+  }
+  .ball-fallback {
+    font-size: 23px;
+  }
+}
+
+@media (min-width: 1921px) {
+  .partners-stage {
+    --ball-size: 172px;
+    min-height: 500px;
+    width: 100%;
+  }
+  .partners-center-text {
+    width: 440px;
+    top: 48px;
+  }
+  .partners-title {
+    font-size: 42px;
+  }
+  .partners-desc {
+    font-size: 17px;
+  }
+  .ball-fallback {
+    font-size: 25px;
+  }
+}
+
+/* ---------- Tiny screens ---------- */
+@media (max-width: 359px) {
+  .partners-stage {
+    --ball-size: 76px;
+    min-height: 260px;
+  }
+  .partners-center-text {
+    width: 200px;
+    padding: 8px 10px;
+  }
+  .partners-title {
+    font-size: 19px;
+  }
+  .partners-desc {
+    font-size: 11px;
+  }
+}

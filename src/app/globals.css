@@ -273,7 +273,6 @@
 
   .section-padding {
     padding-top: var(--section-gap);
-    /* padding-bottom: var(--section-gap); */
   }
   @media (min-width: 1921px) {
     :root {
@@ -332,4 +331,76 @@
   --radius-lg: var(--radius-xl);
   --radius-lg-before: var(--radius-xl);
   --card-radius: var(--radius-md);
+}
+
+/* ==================== PREMIUM GLOBAL SCROLLBAR ==================== */
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+
+*:hover {
+  scrollbar-color: #CBD5E1 transparent;
+}
+
+/* Webkit browsers */
+*::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 10px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: 10px;
+  transition: all 0.4s ease;
+}
+
+*:hover::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
+
+*::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* Specific elements jo hamesha visible scrollbar chahiye */
+.hospitals-table-wrapper,
+.hospital-modal,
+.hospitals-page-dropdown {
+  scrollbar-width: thin;
+  scrollbar-color: #CBD5E1 transparent;
+}
+
+.hospitals-table-wrapper::-webkit-scrollbar-thumb,
+.hospital-modal::-webkit-scrollbar-thumb,
+.hospitals-page-dropdown::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+}
+
+.hospitals-table-wrapper:hover::-webkit-scrollbar-thumb,
+.hospital-modal:hover::-webkit-scrollbar-thumb,
+.hospitals-page-dropdown:hover::-webkit-scrollbar-thumb {
+  background: #94A3B8;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  *::-webkit-scrollbar {
+    width: 3px;
+    height: 3px;
+  }
+  
+  *::-webkit-scrollbar-thumb {
+    border-radius: 6px;
+  }
 }

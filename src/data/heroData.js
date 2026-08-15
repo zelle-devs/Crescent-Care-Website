@@ -11,7 +11,7 @@ const heroData = [
     subHeading: "All your Healthcare Needs in One Place",
     description: "From precriptions to lab tests and online consultations, Crescent care makes healthcare simple, fast, and accessible.",
     buttonText: "Explore App",
-    buttonLink: "/get-started",
+    buttonLink: "https://app.crescentcare.co/",
     logo: "/tag-tpa-1-2.png"
   },
   {
@@ -26,7 +26,7 @@ const heroData = [
     subHeading: "Smart Healthcare, Anytime, Anywhere.",
     description: "Download Crescent Care app to book doctors, order medicines, access labs - all from the comfort of your home.",
     buttonText: "Download App",
-    buttonLink: "/about",
+    buttonLink: "#",
     logo: "/tag-tpa-1-2.png"
   },
   {
@@ -41,7 +41,7 @@ const heroData = [
     subHeading: "The Best TPA Company in Pakistan",
     description: "TPA caters to health care administration for the beneift of both the insured and the insurer.",
     buttonText: "Explore Now",
-    buttonLink: "/contact",
+    buttonLink: "/about",
     logo: "/tag-tpa-1-2.png"
   }
 ];

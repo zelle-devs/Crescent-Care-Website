@@ -1,0 +1,135 @@
+/* ==================== GLASS FAN CARDS ====================
+   Based on the Uiverse glass-card concept, rebuilt on top of
+   your global.css tokens. No hardcoded colors/spacing/radius.
+============================================================= */
+
+.fan-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  flex-wrap: wrap;
+  /* max-width: 1400px; */
+  margin: 0 auto;
+  padding: clamp(2rem, 5vw, 4rem) clamp(1rem, 4vw, 2rem);
+  background-color: white;
+}
+
+.fan-glass {
+  position: relative;
+  width: 30%;
+  min-height: clamp(180px, 22vw, 240px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: clamp(1.1rem, 3vw, 1.75rem);
+
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.02));
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-xl);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  margin: 0 clamp(-2.5rem, -3vw, -1.5rem);
+  transform: rotate(calc(var(--r) * 1deg));
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), margin 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.4s ease;
+}
+
+.fan-container:hover .fan-glass {
+  transform: rotate(0deg) translateY(-6px);
+  margin: 0 clamp(0.4rem, 1vw, 0.75rem);
+  box-shadow: var(--shadow-xl), 0 30px 60px -20px rgba(0, 0, 0, 0.45);
+}
+
+.fan-glass::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 14%;
+  right: 14%;
+  height: 2px;
+  border-radius: var(--radius-full);
+}
+
+.fan-glass--primary::before {
+  background: var(--color-primary-light);
+}
+.fan-glass--secondary::before {
+  background: var(--color-secondary);
+}
+.fan-glass--accent::before {
+  background: var(--color-accent);
+}
+
+.fan-glass-inner {
+  position: relative;
+  z-index: 1;
+}
+
+.fan-glass-title {
+  font-family: var(--font-secondary);
+  font-weight: 600;
+  font-size: clamp(1rem, 0.9rem + 0.4vw, 1.2rem);
+  color: var(--color-dark);
+  letter-spacing: var(--letter-spacing-tight);
+  margin-bottom: var(--spacing-sm);
+}
+
+.fan-glass-desc {
+  font-family: var(--font-primary);
+  font-size: clamp(0.78rem, 0.7rem + 0.25vw, 0.9rem);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-dark);
+}
+
+/* ==================== RESPONSIVE ====================
+   Below 640px the overlapping fan can't breathe (and hover
+   isn't reliable on touch), so cards stack full-width instead.
+======================================================= */
+
+@media (max-width: 640px) {
+  .fan-container {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-lg);
+    padding: var(--spacing-lg) var(--spacing-md);
+  }
+
+  .fan-glass {
+    width: 100%;
+    /* max-width: 380px; */
+    min-height: auto;
+    margin: 0 !important;
+    transform: none !important;
+  }
+
+  .fan-container:hover .fan-glass {
+    transform: none;
+    margin: 0 !important;
+  }
+}
+
+/* ---------- Tiny screens ---------- */
+@media (max-width: 340px) {
+  .fan-glass {
+    padding: var(--spacing-md);
+  }
+
+  .fan-glass-title {
+    font-size: var(--font-base);
+  }
+
+  .fan-glass-desc {
+    font-size: var(--font-xs);
+  }
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .fan-glass {
+    transition: none;
+  }
+}

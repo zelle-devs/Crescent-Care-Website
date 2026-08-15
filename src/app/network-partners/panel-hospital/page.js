@@ -3,14 +3,27 @@
 import HeroSection from "@/components/Homepage/HeroSection/HeroSection";
 import DataTable from "@/components/Network-Partners/Panel-Hospitals/Datatable";
 import panelHospitalsData from "@/data/panelHospitalsData";
-import { hospitals } from "@/data/panel";
+import { hospitals } from "@/data/PanelHospitalList";
 import { Phone } from "lucide-react";
 import HospitalsList from "@/components/Network-Partners/Panel-Hospitals/HospitalsList";
 export default function Panel() {
   return (
     <>
       <HeroSection slides={panelHospitalsData} showWave={true}/>
-      <HospitalsList/>
+      <HospitalsList 
+  hospitals={hospitals} 
+  title="Hospitals List"
+  id="panel-hospitals-section"
+  columns={[
+    { key: 'sno', label: 'S.No', width: '60px', icon: 'hash', type: 'badge' },
+    { key: 'name', label: 'Hospital Name', icon: 'hospital', type: 'text' },
+    { key: 'city', label: 'City', width: '100px', icon: 'city', type: 'cityBadge' },
+    { key: 'province', label: 'Province', width: '100px', icon: 'globe', type: 'text' },
+    { key: 'address', label: 'Address', icon: 'map', type: 'text' },
+    { key: 'contact', label: 'Contact', width: '180px', icon: 'phone', type: 'contact' }
+  ]}
+/>
+
       <DataTable
       title="Hospital Directory"
       rowKey="sno"
