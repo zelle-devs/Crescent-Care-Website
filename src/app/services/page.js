@@ -8,7 +8,7 @@ import servicesData from "@/data/servicesData";
 export default function Services() {
   return (
     <>
-      <HeroSection slides={servicesData} showWave={true}/>
+      <HeroSection slides={servicesData} showWave={true} height="70vh"/>
       <ServicesCards/>
     </>
   );

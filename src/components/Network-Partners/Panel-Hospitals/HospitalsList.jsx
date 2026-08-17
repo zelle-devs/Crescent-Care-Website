@@ -19,7 +19,8 @@ import {
   FiHome,
   FiActivity,
   FiCheckCircle,
-  FiUser
+  FiUser,
+  FiDownload
 } from 'react-icons/fi';
 import './HospitalsList.css';
 import { Hospital, Building2, FlaskConical, Microscope, Stethoscope, HeartPulse } from 'lucide-react';
@@ -375,7 +376,18 @@ const HospitalsList = ({
                 <span className="hospitals-count-badge">{filteredItems.length} Total</span>
               </div>
 
-              <div className="hospitals-controls">
+                            <div className="hospitals-controls">
+                {/* Download Button */}
+                <motion.button
+                  className="hospitals-download-btn"
+                  // whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  title="Download List"
+                >
+                  <FiDownload size={16} />
+                  <span>Download</span>
+                </motion.button>
+
                 {/* Search Bar */}
                 <div className={`hospitals-search-wrapper ${isSearchFocused ? 'hospitals-search-focused' : ''}`}>
                   <FiSearch className="hospitals-search-icon" />
@@ -532,17 +544,17 @@ const HospitalsList = ({
               </motion.div>
             )}
 
-            {/* Pagination Footer */}
-            <div className="hospitals-footer">
-              <div className="hospitals-footer-left">
-                <p className="hospitals-results">
-                  Showing <strong>{indexOfFirstEntry + 1}-{Math.min(indexOfLastEntry, sortedItems.length)}</strong> of <strong>{sortedItems.length}</strong> results
-                </p>
-              </div>
+                       {/* Footer */}
+            <div className="dt-footer">
+              <p className="dt-footer-info">
+              {sortedItems.length === 0
+  ? 'Showing 0 entries'
+  : `Showing ${indexOfFirstEntry + 1} to ${Math.min(indexOfLastEntry, sortedItems.length)} of ${sortedItems.length} entries`}
+              </p>
 
               <div className="hospitals-footer-right">
                 {/* Entries Per Page */}
-                <div className="hospitals-entries-wrapper" ref={entriesDropdownRef}>
+                {/* <div className="hospitals-entries-wrapper" ref={entriesDropdownRef}>
                   <span className="hospitals-entries-label">Show</span>
                   <div
                     className="hospitals-entries-select"
@@ -575,70 +587,46 @@ const HospitalsList = ({
                       </motion.div>
                     )}
                   </AnimatePresence>
-                </div>
+                </div> */}
 
                 {/* Pagination */}
-                <div className="hospitals-pagination">
-                  <motion.button
-                    className="hospitals-pagination-btn"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
-                    disabled={currentPage === 1}
-                    style={{ opacity: currentPage === 1 ? 0.4 : 1, cursor: currentPage === 1 ? 'not-allowed' : 'pointer' }}
-                  >
-                    <FiChevronLeft size={16} />
-                  </motion.button>
-
-                  <div className="hospitals-page-select" ref={pageDropdownRef}>
-                    <div
-                      className="hospitals-page-select-trigger"
-                      onClick={() => setShowPageDropdown(!showPageDropdown)}
+                {totalPages > 1 && (
+                  <div className="dt-pagination">
+                    <motion.button
+                      className="dt-page-btn dt-page-btn--nav"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                      disabled={currentPage === 1}
+                      aria-label="Previous page"
                     >
-                      <span>{currentPage}</span>
-                      <FiChevronDown size={14} className={showPageDropdown ? 'hospitals-entries-chevron-rotate' : ''} />
-                    </div>
+                      <FiChevronLeft size={16} />
+                    </motion.button>
 
-                    <AnimatePresence>
-                      {showPageDropdown && (
-                        <motion.div
-                          className="hospitals-page-dropdown"
-                          initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                          animate={{ opacity: 1, y: 0, scale: 1 }}
-                          exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                          transition={{ duration: 0.2 }}
-                        >
-                          {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
-                            <motion.div
-                              key={page}
-                              className={`hospitals-page-option ${currentPage === page ? 'hospitals-page-option-active' : ''}`}
-                              onClick={() => {
-                                setCurrentPage(page);
-                                setShowPageDropdown(false);
-                              }}
-                              whileHover={{ backgroundColor: '#F1F3F5' }}
-                            >
-                              {page}
-                            </motion.div>
-                          ))}
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
+                    {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
+                      <motion.button
+                        key={page}
+                        className={`dt-page-btn ${page === currentPage ? 'dt-page-btn--active' : ''}`}
+                        onClick={() => setCurrentPage(page)}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        {page}
+                      </motion.button>
+                    ))}
+
+                    <motion.button
+                      className="dt-page-btn dt-page-btn--nav"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                      disabled={currentPage === totalPages}
+                      aria-label="Next page"
+                    >
+                      <FiChevronRight size={16} />
+                    </motion.button>
                   </div>
-
-                  <span className="hospitals-page-text">of {totalPages}</span>
-
-                  <motion.button
-                    className="hospitals-pagination-btn hospitals-pagination-active"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
-                    disabled={currentPage === totalPages}
-                    style={{ opacity: currentPage === totalPages ? 0.4 : 1, cursor: currentPage === totalPages ? 'not-allowed' : 'pointer' }}
-                  >
-                    <FiChevronRight size={16} />
-                  </motion.button>
-                </div>
+                )}
               </div>
             </div>
           </motion.div>

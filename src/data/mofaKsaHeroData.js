@@ -10,9 +10,9 @@ const mofaKsaHeroData = [
     },
     subHeading: "Approved Healthcare Providers for Saudi Arabia Visa",
     description: "Access our network of MOFA approved healthcare providers offering comprehensive medical services for KSA visa applicants.",
-    buttonText: "View Panel List",
-    buttonLink: "#mofa-ksa-panel-section",
-    logo: "/tag-tpa-1-2.png"
+    // buttonText: "View Panel List",
+    // buttonLink: "#mofa-ksa-panel-section",
+    // logo: "/tag-tpa-1-2.png"
   }
 ];
 

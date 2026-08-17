@@ -22,40 +22,40 @@ const Header = () => {
           label: "Members", 
           href: "https://app.crescentcare.co/",
           tooltip: {
-            title: "Members Portal",
-            description: "Access your personal health records, claims, and benefits information securely."
+            // title: "Members Portal",
+            description: "Access your health benefits, claims, and treatment history."
           }
         },
         { 
           label: "HR", 
           href: "https://app.crescentcare.co/",
           tooltip: {
-            title: "HR Dashboard",
-            description: "Manage employee health benefits, track claims, and generate reports efficiently."
+            // title: "HR Dashboard",
+            description: "Manage employee health plans, and access utilization reports."
           }
         },
         { 
           label: "Insurance Partner", 
           href: "https://clientportal.crescentcare.co/",
           tooltip: {
-            title: "Insurance Partners",
-            description: "Dedicated portal for insurance partners to manage policies and process claims."
+            // title: "Insurance Partners",
+            description: "View policy data member approvals, and claims processing."
           }
         },
         { 
           label: "Hospital/Provider", 
           href: "https://hospitalportal.crescentcare.co/",
           tooltip: {
-            title: "Healthcare Providers",
-            description: "Streamline patient care with our provider portal. Access medical records and billing."
+            // title: "Healthcare Providers",
+            description: "Submit claims, check apporvals, and manage patient treatments."
           }
         },
         { 
           label: "Employee", 
           href: "https://backofficeportal.crescentcare.co/login",
           tooltip: {
-            title: "Employee Benefits",
-            description: "View your health coverage, submit claims, and track your wellness journey."
+            // title: "Employee Benefits",
+            description: "Creascent care internal portal for staff access and operations."
           }
         }
       ]
@@ -265,7 +265,7 @@ const handleNavDropdownMouseEnter = (dropdownName) => {
                       </Link>
                       {item.tooltip && (
                         <div className="tooltip">
-                          <h4 className="tooltip-title">{item.tooltip.title}</h4>
+                          {/* <h4 className="tooltip-title">{item.tooltip.title}</h4> */}
                           <p className="tooltip-description">{item.tooltip.description}</p>
                         </div>
                       )}

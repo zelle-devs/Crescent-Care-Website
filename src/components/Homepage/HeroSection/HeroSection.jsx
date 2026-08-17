@@ -6,11 +6,12 @@ import Link from "next/link";
 import "./HeroSection.css";
 import heroData from "@/data/heroData";
 
-const HeroSection = ({ 
-  slides = [heroData], 
+const HeroSection = ({
+  slides = [heroData],
   showDots = true,
   autoPlayInterval = 5000,
-  showWave = false
+  showWave = false,
+  height = "100vh"
 }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
@@ -19,6 +20,9 @@ const HeroSection = ({
   const dragStartX = useRef(0);
   const dragEndX = useRef(0);
   const isDragging = useRef(false);
+  const [sliceComplete, setSliceComplete] = useState(false);
+  const stripCount = 30;
+  const slicerStrips = Array.from({ length: stripCount });
 
   if (!slides || slides.length === 0) {
     return null;
@@ -29,8 +33,8 @@ const HeroSection = ({
   // Content animation variants
   const contentVariants = {
     initial: { y: 50, opacity: 0 },
-    animate: { 
-      y: 0, 
+    animate: {
+      y: 0,
       opacity: 1,
       transition: {
         duration: 0.6,
@@ -38,8 +42,8 @@ const HeroSection = ({
         staggerChildren: 0.2
       }
     },
-    exit: { 
-      y: -50, 
+    exit: {
+      y: -50,
       opacity: 0,
       transition: { duration: 0.4, ease: "easeIn" }
     }
@@ -47,8 +51,8 @@ const HeroSection = ({
 
   const childVariants = {
     initial: { y: 30, opacity: 0 },
-    animate: { 
-      y: 0, 
+    animate: {
+      y: 0,
       opacity: 1,
       transition: { duration: 0.5, ease: "easeOut" }
     }
@@ -167,20 +171,85 @@ const HeroSection = ({
   const slideAnimation = getSlideAnimation();
 
   return (
-    <motion.section
+    <section
       className="hero-section"
-      initial={{ clipPath: "inset(8% round 30px)", opacity: 0, scale: 0.92 }}
-      whileInView={{ clipPath: "inset(0% round 0px)", opacity: 1, scale: 1 }}
-      viewport={{ once: true }}
-      transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
-      onMouseDown={handleMouseDown}
-      onMouseMove={handleMouseMove}
-      onMouseUp={handleMouseUp}
-      onMouseLeave={handleMouseUp}
-      onTouchStart={handleTouchStart}
-      onTouchMove={handleTouchMove}
-      onTouchEnd={handleTouchEnd}
+       style={{ height }}
+  onMouseDown={handleMouseDown}
+  onMouseMove={handleMouseMove}
+  onMouseUp={handleMouseUp}
+  onMouseLeave={handleMouseUp}
+  onTouchStart={handleTouchStart}
+  onTouchMove={handleTouchMove}
+  onTouchEnd={handleTouchEnd}
     >
+      {/* {!sliceComplete && slides[currentSlide].backgroundImage && (
+  <div className="hero-slice-reveal" aria-hidden="true">
+    {slicerStrips.map((_, i) => {
+      const filled = i % 2 === 0;
+      const bgPositionX = stripCount === 1 ? 0 : (i / (stripCount - 1)) * 100;
+      return (
+        <motion.div
+          key={i}
+          className="hero-slice-strip"
+          style={{
+            left: `${(i / stripCount) * 100}%`,
+            width: `${100 / stripCount}%`,
+            backgroundImage: `url(${slides[currentSlide].backgroundImage})`,
+            backgroundSize: `${stripCount * 100}% 100%`,
+            backgroundPosition: `${bgPositionX}% center`,
+          }}
+          initial={{
+            clipPath: filled ? "inset(0% 0% 0% 0%)" : "inset(0% 50% 0% 50%)",
+          }}
+          animate={{ clipPath: "inset(0% 0% 0% 0%)" }}
+          transition={{
+            duration: filled ? 0 : 0.6,
+            delay: filled ? 0 : 0.3 + i * 0.05,
+            ease: [0.65, 0, 0.35, 1],
+          }}
+          onAnimationComplete={() => {
+            if (i === stripCount - 1) setSliceComplete(true);
+          }}
+        />
+      );
+    })}
+  </div>
+)} */}
+      {!sliceComplete && slides[currentSlide].backgroundImage && (
+        <div className="hero-slice-reveal" aria-hidden="true">
+          {slicerStrips.map((_, i) => {
+            const filled = i % 2 === 0;
+            const stripW = 100 / stripCount;
+            const leftEdge = i * stripW;
+            const rightEdge = 100 - (i + 1) * stripW;
+            const mid = leftEdge + stripW / 2;
+
+            const fullBandClip = `inset(0% ${rightEdge}% 0% ${leftEdge}%)`;
+            const collapsedClip = `inset(0% ${100 - mid}% 0% ${mid}%)`;
+
+            return (
+              <motion.div
+                key={i}
+                className="hero-slice-strip"
+                style={{
+                  backgroundImage: `url(${slides[currentSlide].backgroundImage})`,
+                }}
+                initial={{ clipPath: filled ? fullBandClip : collapsedClip }}
+                animate={{ clipPath: fullBandClip }}
+                transition={{
+                  duration: filled ? 0 : 0.6,
+                  // delay: filled ? 0 : 0.3 + i * 0.05,
+                  delay: filled ? 0 : 0.3 + 0.05,
+                  ease: [0.65, 0, 0.35, 1],
+                }}
+                onAnimationComplete={() => {
+                  if (i === stripCount - 1) setSliceComplete(true);
+                }}
+              />
+            );
+          })}
+        </div>
+      )}
       <div className="hero-slider">
         <AnimatePresence mode="popLayout" initial={false}>
           <motion.div
@@ -189,21 +258,24 @@ const HeroSection = ({
             initial={slideAnimation.initial}
             animate={slideAnimation.animate}
             exit={slideAnimation.exit}
-            transition={{ 
-              duration: 0.6, 
-              ease: [0.65, 0, 0.35, 1] 
+            transition={{
+              duration: 0.6,
+              ease: [0.65, 0, 0.35, 1]
             }}
             style={{ cursor: total > 1 ? 'grab' : 'default' }}
           >
-            {slides[currentSlide].backgroundImage && (
-              <>
-                <div 
-                  className="hero-slide-bg"
-                  style={{ backgroundImage: `url(${slides[currentSlide].backgroundImage})` }}
-                />
-                <div className="hero-slide-overlay" />
-              </>
-            )}
+           {slides[currentSlide].backgroundImage && (
+  <>
+    <div 
+      className="hero-slide-bg"
+      style={{ 
+        backgroundImage: `url(${slides[currentSlide].backgroundImage})`,
+        opacity: sliceComplete ? 1 : 0,
+      }}
+    />
+    <div className="hero-slide-overlay" />
+  </>
+)}
 
             {/* Content */}
             <div className="hero-content-container">
@@ -211,14 +283,14 @@ const HeroSection = ({
                 className="hero-content"
                 variants={contentVariants}
                 initial="initial"
-                animate="animate"
+                animate={sliceComplete ? "animate" : "initial"}
                 exit="exit"
               >
                 {/* Heading */}
                 {slides[currentSlide].heading && (
                   <motion.h1 className="hero-heading" variants={childVariants}>
                     {slides[currentSlide].heading.part1 && (
-                      <span 
+                      <span
                         className="hero-heading-part1"
                         style={{ color: slides[currentSlide].heading.color1 || '#FFFFFF' }}
                       >
@@ -226,23 +298,23 @@ const HeroSection = ({
                       </span>
                     )}
                     {slides[currentSlide].heading.part2 && (
-                      <span 
+                      <span
                         className={`hero-heading-part2 ${showWave ? 'wave-text' : ''}`}
                         style={{ color: slides[currentSlide].heading.color2 || '#FFFFFF' }}
                       >
-                        {showWave 
+                        {showWave
                           ? slides[currentSlide].heading.part2.split('').map((letter, letterIndex) => (
-                              <span 
-                                key={letterIndex} 
-                                className="wave-letter"
-                                style={{ 
-                                  animationDelay: `${letterIndex * 0.1}s`,
-                                  display: 'inline-block'
-                                }}
-                              >
-                                {letter === ' ' ? '\u00A0' : letter}
-                              </span>
-                            ))
+                            <span
+                              key={letterIndex}
+                              className="wave-letter"
+                              style={{
+                                animationDelay: `${letterIndex * 0.1}s`,
+                                display: 'inline-block'
+                              }}
+                            >
+                              {letter === ' ' ? '\u00A0' : letter}
+                            </span>
+                          ))
                           : slides[currentSlide].heading.part2
                         }
                       </span>
@@ -267,8 +339,8 @@ const HeroSection = ({
                 {/* Button */}
                 {slides[currentSlide].buttonText && slides[currentSlide].buttonLink && (
                   <motion.div variants={childVariants}>
-                    <a 
-                      href={slides[currentSlide].buttonLink} 
+                    <a
+                      href={slides[currentSlide].buttonLink}
                       className="hero-cta-button"
                       target={slides[currentSlide].buttonLink.startsWith('http') ? '_blank' : ''}
                       rel={slides[currentSlide].buttonLink.startsWith('http') ? 'noopener noreferrer' : ''}
@@ -306,321 +378,8 @@ const HeroSection = ({
           ))}
         </div>
       )}
-    </motion.section>
+    </section>
   );
 };
 
 export default HeroSection;
-
-// "use client";
-
-// import { useState, useEffect, useCallback, useRef } from "react";
-// import { motion, AnimatePresence } from "framer-motion";
-// import Link from "next/link";
-// import "./HeroSection.css";
-// import heroData from "@/data/heroData";
-
-// const HeroSection = ({ 
-//   slides = [heroData], 
-//   showDots = true,
-//   autoPlayInterval = 5000,
-//   showWave = false
-// }) => {
-//   const [currentSlide, setCurrentSlide] = useState(0);
-//   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
-//   const [touchStart, setTouchStart] = useState(0);
-//   const [touchEnd, setTouchEnd] = useState(0);
-//   const [isDragging, setIsDragging] = useState(false);
-//   const [dragStart, setDragStart] = useState(0);
-//   const autoPlayRef = useRef(null);
-
-//   // Don't render if no slides
-//   if (!slides || slides.length === 0) {
-//     return null;
-//   }
-
-//   // Content animation variants
-//   const contentVariants = {
-//     initial: { 
-//       y: 50, 
-//       opacity: 0 
-//     },
-//     animate: { 
-//       y: 0, 
-//       opacity: 1,
-//       transition: {
-//         duration: 0.6,
-//         ease: "easeOut",
-//         staggerChildren: 0.2
-//       }
-//     },
-//     exit: { 
-//       y: -50, 
-//       opacity: 0,
-//       transition: {
-//         duration: 0.4,
-//         ease: "easeIn"
-//       }
-//     }
-//   };
-
-//   const childVariants = {
-//     initial: { 
-//       y: 30, 
-//       opacity: 0 
-//     },
-//     animate: { 
-//       y: 0, 
-//       opacity: 1,
-//       transition: {
-//         duration: 0.5,
-//         ease: "easeOut"
-//       }
-//     }
-//   };
-
-//   // Auto-play functionality
-//   const startAutoPlay = useCallback(() => {
-//     if (slides.length > 1) {
-//       autoPlayRef.current = setInterval(() => {
-//         setCurrentSlide((prev) => (prev + 1) % slides.length);
-//       }, autoPlayInterval);
-//     }
-//   }, [slides.length, autoPlayInterval]);
-
-//   const stopAutoPlay = useCallback(() => {
-//     if (autoPlayRef.current) {
-//       clearInterval(autoPlayRef.current);
-//     }
-//   }, []);
-
-//   useEffect(() => {
-//     if (isAutoPlaying && slides.length > 1) {
-//       startAutoPlay();
-//     }
-//     return () => stopAutoPlay();
-//   }, [isAutoPlaying, startAutoPlay, stopAutoPlay, slides.length]);
-
-//   // Navigation handlers
-//   const goToSlide = (index) => {
-//     setCurrentSlide(index);
-//     stopAutoPlay();
-//     if (isAutoPlaying && slides.length > 1) {
-//       startAutoPlay();
-//     }
-//   };
-
-//   const goToPrev = () => {
-//     setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
-//     stopAutoPlay();
-//     if (isAutoPlaying && slides.length > 1) {
-//       startAutoPlay();
-//     }
-//   };
-
-//   const goToNext = () => {
-//     setCurrentSlide((prev) => (prev + 1) % slides.length);
-//     stopAutoPlay();
-//     if (isAutoPlaying && slides.length > 1) {
-//       startAutoPlay();
-//     }
-//   };
-
-//   // Touch handlers for mobile swipe
-//   const handleTouchStart = (e) => {
-//     if (slides.length <= 1) return;
-//     setTouchStart(e.targetTouches[0].clientX);
-//     setTouchEnd(e.targetTouches[0].clientX);
-//   };
-
-//   const handleTouchMove = (e) => {
-//     if (slides.length <= 1) return;
-//     setTouchEnd(e.targetTouches[0].clientX);
-//   };
-
-//   const handleTouchEnd = () => {
-//     if (slides.length <= 1) return;
-//     if (touchStart - touchEnd > 75) {
-//       goToNext();
-//     }
-//     if (touchStart - touchEnd < -75) {
-//       goToPrev();
-//     }
-//   };
-
-//   // Mouse drag handlers for desktop
-//   const handleMouseDown = (e) => {
-//     if (slides.length <= 1) return;
-//     e.preventDefault();
-//     setIsDragging(true);
-//     setDragStart(e.clientX);
-//   };
-
-//   const handleMouseMove = (e) => {
-//     if (!isDragging || slides.length <= 1) return;
-//     const dragDistance = e.clientX - dragStart;
-//     if (Math.abs(dragDistance) > 100) {
-//       if (dragDistance > 0) {
-//         goToPrev();
-//       } else {
-//         goToNext();
-//       }
-//       setIsDragging(false);
-//     }
-//   };
-
-//   const handleMouseUp = () => {
-//     setIsDragging(false);
-//   };
-
-//   const handleMouseLeave = () => {
-//     setIsAutoPlaying(true);
-//     setIsDragging(false);
-//   };
-
-//   // Keyboard navigation
-//   useEffect(() => {
-//     if (slides.length <= 1) return;
-//     const handleKeyDown = (e) => {
-//       if (e.key === 'ArrowLeft') {
-//         goToPrev();
-//       } else if (e.key === 'ArrowRight') {
-//         goToNext();
-//       }
-//     };
-//     window.addEventListener('keydown', handleKeyDown);
-//     return () => window.removeEventListener('keydown', handleKeyDown);
-//   }, [slides.length]);
-
-//   return (
-//     <section
-//       className="hero-section"
-//       onMouseEnter={() => slides.length > 1 && setIsAutoPlaying(false)}
-//       onMouseLeave={handleMouseLeave}
-//       onTouchStart={handleTouchStart}
-//       onTouchMove={handleTouchMove}
-//       onTouchEnd={handleTouchEnd}
-//       onMouseDown={handleMouseDown}
-//       onMouseMove={handleMouseMove}
-//       onMouseUp={handleMouseUp}
-//     >
-//       <div className="hero-slider">
-//         {slides.map((slide, index) => (
-//           <div
-//             key={slide.id || index}
-//             className={`hero-slide ${index === currentSlide ? 'active' : ''}`}
-//           >
-//             {/* Background Image */}
-//             {slide.backgroundImage && (
-//               <>
-//                 <div 
-//                   className="hero-slide-bg"
-//                   style={{ backgroundImage: `url(${slide.backgroundImage})` }}
-//                 />
-//                 <div className="hero-slide-overlay" />
-//               </>
-//             )}
-
-//             {/* Content */}
-//             <div className="hero-content-container">
-//               <AnimatePresence mode="wait">
-//                 {index === currentSlide && (
-//                   <motion.div
-//                     key={slide.id || index}
-//                     className="hero-content"
-//                     variants={contentVariants}
-//                     initial="initial"
-//                     animate="animate"
-//                     exit="exit"
-//                   >
-//                     {/* Heading */}
-//                     {slide.heading && (
-//                       <motion.h1 className="hero-heading" variants={childVariants}>
-//                         {slide.heading.part1 && (
-//                           <span 
-//                             className="hero-heading-part1"
-//                             style={{ color: slide.heading.color1 || '#FFFFFF' }}
-//                           >
-//                             {slide.heading.part1}{' '}
-//                           </span>
-//                         )}
-//                         {slide.heading.part2 && (
-//                           <span 
-//                             className={`hero-heading-part2 ${showWave ? 'wave-text' : ''}`}
-//                             style={{ color: slide.heading.color2 || '#FFFFFF' }}
-//                           >
-//                             {showWave 
-//                               ? slide.heading.part2.split('').map((letter, letterIndex) => (
-//                                   <span 
-//                                     key={letterIndex} 
-//                                     className="wave-letter"
-//                                     style={{ 
-//                                       animationDelay: `${letterIndex * 0.1}s`,
-//                                       display: 'inline-block'
-//                                     }}
-//                                   >
-//                                     {letter === ' ' ? '\u00A0' : letter}
-//                                   </span>
-//                                 ))
-//                               : slide.heading.part2
-//                             }
-//                           </span>
-//                         )}
-//                       </motion.h1>
-//                     )}
-
-//                     {/* Sub Heading */}
-//                     {slide.subHeading && (
-//                       <motion.h2 className="hero-subheading" variants={childVariants}>
-//                         {slide.subHeading}
-//                       </motion.h2>
-//                     )}
-
-//                     {/* Description */}
-//                     {slide.description && (
-//                       <motion.p className="hero-description" variants={childVariants}>
-//                         {slide.description}
-//                       </motion.p>
-//                     )}
-
-//                     {/* Button */}
-//                     {slide.buttonText && slide.buttonLink && (
-//                       <motion.div variants={childVariants}>
-//                         <Link href={slide.buttonLink} className="hero-cta-button">
-//                           {slide.buttonText}
-//                         </Link>
-//                       </motion.div>
-//                     )}
-
-//                     {/* Logo */}
-//                     {slide.logo && (
-//                       <motion.div className="hero-partner-logo" variants={childVariants}>
-//                         <img src={slide.logo} alt="Partner Logo" />
-//                       </motion.div>
-//                     )}
-//                   </motion.div>
-//                 )}
-//               </AnimatePresence>
-//             </div>
-//           </div>
-//         ))}
-//       </div>
-
-//       {/* Navigation Dots */}
-//       {showDots && slides.length > 1 && (
-//         <div className="slider-dots">
-//           {slides.map((_, index) => (
-//             <button
-//               key={index}
-//               className={`slider-dot ${index === currentSlide ? 'active' : ''}`}
-//               onClick={() => goToSlide(index)}
-//               aria-label={`Go to slide ${index + 1}`}
-//             />
-//           ))}
-//         </div>
-//       )}
-//     </section>
-//   );
-// };
-
-// export default HeroSection;

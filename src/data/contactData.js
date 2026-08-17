@@ -10,9 +10,9 @@ const contactData = [
     },
     subHeading: "We're Here to Help You",
     description: "Have questions about our healthcare services? Reach out to our team and we'll get back to you as soon as possible.",
-    buttonText: "Contact Us",
-    buttonLink: "#contact-section",
-    logo: "/tag-tpa-1-2.png"
+    // buttonText: "Contact Us",
+    // buttonLink: "#contact-section",
+    // logo: "/tag-tpa-1-2.png"
   }
 ];
 

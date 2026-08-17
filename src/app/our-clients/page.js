@@ -7,9 +7,9 @@ import clientData from "@/data/clientData";
 export default function Client() {
   return (
     <>
-      <HeroSection slides={clientData} showWave={true}/>
-      {/* <OurClients/> */}
-      <OurClientsLight/>
+      <HeroSection slides={clientData} showWave={true} height="70vh"/>
+      <OurClients/>
+      {/* <OurClientsLight/> */}
     </>
   );
 }

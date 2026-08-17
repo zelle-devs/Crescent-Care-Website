@@ -10,9 +10,9 @@ const servicesData = [
     },
     subHeading: "Comprehensive Healthcare Solutions",
     description: "From claims processing to provider network management, we offer end-to-end healthcare administration services tailored to your needs.",
-    buttonText: "Explore Services",
-    buttonLink: "#services-section",
-    logo: "/tag-tpa-1-2.png"
+    // buttonText: "Explore Services",
+    // buttonLink: "#services-section",
+    // logo: "/tag-tpa-1-2.png"
   }
 ];
 

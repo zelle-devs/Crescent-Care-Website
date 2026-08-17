@@ -13,8 +13,8 @@ export function generateStaticParams() {
   ];
 }
 
-export default function ServiceDetailPage({ params }) {
-  const { slug } = params;
+export default async function ServiceDetailPage({ params }) {
+  const { slug } = await params;
   const detailData = serviceDetailData[slug] || serviceDetailData['insurers-partners'];
   
   // Hero section data with dynamic content

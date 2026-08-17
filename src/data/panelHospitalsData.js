@@ -10,9 +10,9 @@ const panelHospitalsData = [
     },
     subHeading: "Quality Healthcare Network Near You",
     description: "Access our extensive network of trusted panel hospitals offering cashless treatment and quality healthcare services across the country.",
-    buttonText: "Find Hospitals",
-    buttonLink: "#panel-hospitals-section",
-    logo: "/tag-tpa-1-2.png"
+    // buttonText: "Find Hospitals",
+    // buttonLink: "#panel-hospitals-section",
+    // logo: "/tag-tpa-1-2.png"
   }
 ];
 

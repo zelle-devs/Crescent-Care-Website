@@ -1,161 +1,112 @@
 "use client";
 
-import { motion } from "framer-motion";
-import "./WhyChooseTPA.css";
-import { FaArrowRight } from "react-icons/fa";
-import { FaArrowRightLong } from "react-icons/fa6";
+import React from 'react';
+import { motion } from 'framer-motion';
+import { FaShieldAlt, FaNetworkWired, FaBug } from 'react-icons/fa';
+import './WhyChooseTPA.css';
 
 const WhyChooseTPA = () => {
-  const stepsData = [
+  const features = [
     {
-      id: 1,
-      text: "A Patient with a health insurance policy seeks medical care."
+      icon: <FaShieldAlt />,
+      title: "Privacy Protection",
+      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo."
     },
     {
-      id: 2,
-      text: "The healthcare provider submits a claim to the TPA."
+      icon: <FaNetworkWired />,
+      title: "Secure Network",
+      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo."
     },
     {
-      id: 3,
-      text: "The TPA processes the claim, verifying eligibility, benefits, and potential fraud."
-    },
-    {
-      id: 4,
-      text: "The TPA communicates with the insurance company for approval and reimbursement."
-    },
-    {
-      id: 5,
-      text: "The TPA facilitates payment to the healthcare provider."
+      icon: <FaBug />,
+      title: "Malware & Virus Protection",
+      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo."
     }
   ];
 
-  // Parent container variants
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: {
-        duration: 0.8,
-        staggerChildren: 0.3,
-        ease: "easeOut"
-      }
+      transition: { duration: 0.6, ease: 'easeOut', staggerChildren: 0.15 }
     }
   };
 
-  // Left image blob variants
-  const imageVariants = {
-    hidden: { 
-      opacity: 0, 
-      x: -60 
-    },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: {
-        duration: 0.8,
-        ease: "easeOut"
-      }
-    }
+  const childVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } }
   };
-
-  // Right content variants
-  const contentVariants = {
-    hidden: { 
-      opacity: 0, 
-      x: 60 
-    },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: {
-        duration: 0.8,
-        ease: "easeOut"
-      }
-    }
-  };
-
-  // Steps list variants with stagger
-  const listVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.3
-      }
-    }
-  };
-
-  // Individual step variants
-  const stepVariants = {
-    hidden: { 
-      opacity: 0, 
-      x: -20 
-    },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: {
-        duration: 0.5,
-        ease: "easeOut"
-      }
-    }
-  };
-
 
   return (
-    <section className="tpa-section">
-      {/* Background Dots Pattern */}
-      <div className="tpa-bg-dots"></div>
-
-      <motion.div
-        className="tpa-container"
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
-      >
-       {/* Left Column - Simple Image */}
-<motion.div
-  className="tpa-left"
-  variants={imageVariants}
->
-  <div className="tpa-image-wrapper">
-    <img
-      src="/Homepage/TPA-1.png"
-      alt="Business Meeting"
-      className="tpa-image"
-    />
-  </div>
-</motion.div>
-
-        {/* Right Column - Content */}
-        <motion.div
-          className="tpa-right"
-          variants={contentVariants}
-        >
-          <h2 className="tpa-heading">Why Choose TPA?</h2>
-
-          <motion.ul
-            className="tpa-steps-list"
-            variants={listVariants}
-          >
-            {stepsData.map((step) => (
-              <motion.li
-                key={step.id}
-                className="tpa-step-item"
-                variants={stepVariants}
-              >
-                <span className="tpa-step-arrow"> ⇢</span>
-                <span className="tpa-step-text">{step.text}</span>
-              </motion.li>
-            ))}
-          </motion.ul>
-        </motion.div>
+    <motion.section
+      className="why-choose-us-section"
+      variants={containerVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.2 }}
+    >
+      <div className="why-choose-us-container">
         
-      </motion.div>
-    
-    </section>
+        {/* LEFT COLUMN: Content & Features */}
+        <motion.div className="why-choose-us-content" variants={childVariants}>
+          <span className="why-choose-tag">Why Choose Us ?</span>
+          
+          <h2 className="why-choose-heading">
+            Elevate Your Safety With Our Expertise
+          </h2>
+          
+          <p className="why-choose-intro">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.
+          </p>
+
+          <div className="why-choose-features-list">
+            {features.map((item, index) => (
+              <motion.div 
+                key={index} 
+                className="why-choose-feature-item"
+                variants={childVariants}
+                whileHover={{ x: 5 }}
+              >
+                <div className="why-choose-icon-wrapper">
+                  {item.icon}
+                </div>
+                <div className="why-choose-feature-text">
+                  <h4>{item.title}</h4>
+                  <p>{item.desc}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* RIGHT COLUMN: Image & Badge */}
+        <motion.div className="why-choose-image-wrapper" variants={childVariants}>
+          <motion.div 
+            className="why-choose-image-float"
+            // animate={{ y: [0, -8, 0] }}
+            // transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+          >
+            {/* UPDATED: Double Border Layout matching AboutTrust */}
+            <div className="why-choose-border-container">
+              <div className="why-choose-image-box">
+                <img
+                  src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&h=700&fit=crop"
+                  alt="Expertise"
+                  className="why-choose-image"
+                />
+                
+              </div>
+                {/* Floating Green Badge */}
+                <div className="why-choose-badge">
+                  <span className="badge-number">100%</span>
+                  <span className="badge-text">Satisfaction</span>
+                </div>
+            </div>
+          </motion.div>
+        </motion.div>
+
+      </div>
+    </motion.section>
   );
 };
 

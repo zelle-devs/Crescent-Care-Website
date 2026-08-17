@@ -10,9 +10,9 @@ const clientData = [
     },
     subHeading: "Trusted by Leading Organizations Worldwide",
     description: "We are proud to partner with some of the most respected names in healthcare and insurance across the globe.",
-    buttonText: "Explore Clients",
-    buttonLink: "#clients-grid-section",
-    logo: "/tag-tpa-1-2.png"
+    // buttonText: "Explore Clients",
+    // buttonLink: "#clients-grid-section",
+    // logo: "/tag-tpa-1-2.png"
   }
 ];
 

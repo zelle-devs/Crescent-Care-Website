@@ -7,7 +7,7 @@ import contactData from "@/data/contactData";
 export default function Contact() {
   return (
     <>
-      <HeroSection slides={contactData} showWave={true}/>
+      <HeroSection slides={contactData} showWave={true} height="70vh"/>
     <ContactForm/>
     <LocationMap/>
     </>

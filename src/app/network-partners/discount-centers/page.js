@@ -8,7 +8,7 @@ export default function Discount() {
     
   return (
     <>
-      <HeroSection slides={discountCenterData} showWave={true}/>
+      <HeroSection slides={discountCenterData} showWave={true} height="70vh"/>
       <HospitalsList 
   hospitals={discountCentersTableData} 
   title="Discount Centers"

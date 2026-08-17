@@ -10,9 +10,9 @@ const newsMediaData = [
     },
     subHeading: "Stay Updated with Our Latest News and Press Releases",
     description: "Discover the latest announcements, press coverage, and media resources from our organization.",
-    buttonText: "Explore News",
-    buttonLink: "#news-grid-section",
-    logo: "/tag-tpa-1-2.png"
+    // buttonText: "Explore News",
+    // buttonLink: "#news-grid-section",
+    // logo: "/tag-tpa-1-2.png"
   }
 ];
 

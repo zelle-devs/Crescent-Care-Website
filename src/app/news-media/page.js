@@ -5,7 +5,7 @@ import newsMediaData from "@/data/newsData";
 export default function News() {
   return (
     <>
-      <HeroSection slides={newsMediaData} showWave={true}/>
+      <HeroSection slides={newsMediaData} showWave={true} height="70vh"/>
       <TeamHero/>
     </>
   );

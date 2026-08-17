@@ -8,7 +8,7 @@ import HospitalsList from "@/components/Network-Partners/Panel-Hospitals/Hospita
 export default function MofaKsaPanel() {
   return (
     <>
-      <HeroSection slides={mofaKsaHeroData} showWave={true}/>
+      <HeroSection slides={mofaKsaHeroData} showWave={true} height="70vh"/>
      <HospitalsList 
   hospitals={mofaKsaPanelData} 
   title="MOFA KSA Panel List"

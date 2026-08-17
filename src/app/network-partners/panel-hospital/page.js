@@ -9,7 +9,7 @@ import HospitalsList from "@/components/Network-Partners/Panel-Hospitals/Hospita
 export default function Panel() {
   return (
     <>
-      <HeroSection slides={panelHospitalsData} showWave={true}/>
+      <HeroSection slides={panelHospitalsData} showWave={true} height="70vh"/>
       <HospitalsList 
   hospitals={hospitals} 
   title="Hospitals List"
@@ -24,7 +24,7 @@ export default function Panel() {
   ]}
 />
 
-      <DataTable
+      {/* <DataTable
       title="Hospital Directory"
       rowKey="sno"
       data={hospitals}
@@ -69,7 +69,7 @@ export default function Panel() {
           ),
         },
       ]}
-    />
+    /> */}
     </>
   );
 }

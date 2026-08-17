@@ -3,7 +3,7 @@ const serviceDetailData = {
     title: 'Insurers & Partners',
     subtitle: 'Trusted Third-Party Administration',
     description: 'Comprehensive healthcare solutions for insurers and partners since 2021.',
-    backgroundImage: '/Services/1.jpg',
+    backgroundImage: '/Services/1h.jpg',
     // Additional details for this specific service
     heroHeading: {
       part1: 'Insurers',
@@ -32,7 +32,7 @@ const serviceDetailData = {
     title: 'Insured Members',
     subtitle: 'Quality Care with Complete Transparency',
     description: 'Access quality healthcare with full support and transparency.',
-    backgroundImage: '/Services/2.jpg',
+    backgroundImage: '/Services/2h.jpg',
     heroHeading: {
       part1: 'Insured',
       part2: 'Members',
@@ -58,7 +58,7 @@ const serviceDetailData = {
     title: 'Healthcare Providers',
     subtitle: 'Streamlined Processes and Support',
     description: 'Dedicated assistance for healthcare providers to meet growing demands.',
-    backgroundImage: '/Services/3.jpg',
+    backgroundImage: '/Services/3h.jpg',
     heroHeading: {
       part1: 'Healthcare',
       part2: 'Providers',

@@ -1,82 +1,54 @@
-
-/* ==================== OUR PARTNERS — BALL PIT ====================
-   All balls are the same (large) size and settle at the bottom
-   under gravity. px + explicit breakpoints only (no clamp()).
-   Built on global.css tokens.
-==================================================================== */
-
+/* ==================== OUR PARTNERS — BALL PIT ==================== */
 .partners-section {
-  background: var(--color-white);
-  overflow: hidden;
-}
-
-.partners-stage {
-  --ball-size: 90px;
-
-  position: relative;
+  display: flex;
   width: 100%;
-  min-height: 280px;
-  border: 1px solid var(--color-light-gray);
-  /* border-radius: var(--radius-xl); */
-  background: var(--color-off-white);
+  min-height: 500px;
   overflow: hidden;
-  touch-action: none;
+  border-top: 2px solid var(--color-primary2);
+  border-bottom: 2px solid var(--color-primary2);
 }
 
-/* subtle floor shadow so the pile reads as sitting inside the container */
-.partners-stage::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 40%;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.04) 50%, rgba(0, 0, 0, 0.08) 100%);
-  pointer-events: none;
-  z-index: 1;
-}
-
-/* ---------- Fixed text ---------- */
-
-.partners-center-text {
-  position: absolute;
-  top: 24px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 5;
-  width: 240px;
-  text-align: center;
-  pointer-events: none;
-  /* From https://css.glass */
-background: rgba(65, 177, 213, 0.25);
-border-radius: 16px;
-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-backdrop-filter: blur(7.6px);
--webkit-backdrop-filter: blur(7.6px);
-border: 1px solid rgba(65, 177, 213, 0.3);
-  border-radius: var(--radius-lg);
-  padding: 10px 14px;
+/* ---------- Left Column - Content (Blue Background) ---------- */
+.partners-left {
+  flex: 0 0 40%;
+  max-width: 40%;
+  background: var(--color-primary2);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--spacing-3xl) var(--spacing-2xl);
 }
 
 .partners-title {
   font-family: var(--font-secondary);
-  font-weight: 600;
-  font-size: 22px;
-  line-height: 1.25;
-  color: var(--color-dark);
-  letter-spacing: -0.01em;
-  margin-bottom: 8px;
+  font-weight: 700;
+  font-size: var(--font-3xl);
+  line-height: var(--line-height-tight);
+  color: var(--color-white);
+  letter-spacing: var(--letter-spacing-tight);
+  margin-bottom: var(--spacing-md);
 }
 
 .partners-desc {
   font-family: var(--font-primary);
-  font-size: 12px;
-  line-height: 1.55;
-  color: var(--color-gray);
+  font-size: var(--font-base);
+  line-height: var(--line-height-relaxed);
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* ---------- Right Column - Ball Pit (Black Background, No Container) ---------- */
+.partners-stage {
+  --ball-size: 150px;
+  position: relative;
+  flex: 0 0 60%;
+  max-width: 60%;
+  min-height: 500px;
+  background: var(--color-dark-bg);
+  overflow: hidden;
+  touch-action: none;
 }
 
 /* ---------- Balls ---------- */
-
 .ball {
   position: absolute;
   top: 0;
@@ -95,14 +67,20 @@ border: 1px solid rgba(65, 177, 213, 0.3);
   justify-content: center;
   border-radius: var(--radius-full);
   background: var(--color-white);
-  border: 1px solid var(--color-light-gray);
-  box-shadow: var(--shadow-lg);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
   cursor: pointer;
+  transition: border-color var(--transition-normal), transform var(--transition-normal);
+}
+
+.ball-inner:hover {
+  border-color: var(--color-secondary);
+  transform: scale(1.05);
 }
 
 .ball-logo {
-  width: 80%;
-  height: auto;
+  width: 85%;
+  height: 85%;
   object-fit: contain;
   pointer-events: none;
   user-select: none;
@@ -116,122 +94,101 @@ border: 1px solid rgba(65, 177, 213, 0.3);
   letter-spacing: 0.02em;
 }
 
-/* ==================== RESPONSIVE (px, mobile-first) ==================== */
+/* ==================== RESPONSIVE ==================== */
 
-@media (min-width: 480px) {
+/* Tablet (768px - 1023px) */
+@media (max-width: 1023px) {
+  .partners-section {
+    flex-direction: column;
+  }
+
+  .partners-left {
+    flex: 0 0 100%;
+    max-width: 100%;
+    text-align: center;
+    padding: var(--spacing-xl) var(--spacing-lg);
+  }
+
   .partners-stage {
-    --ball-size: 108px;
-    min-height: 320px;
-  }
-  .partners-center-text {
-    width: 280px;
-  }
-  .partners-title {
-    font-size: 25px;
-  }
-  .partners-desc {
-    font-size: 13px;
-  }
-  .ball-fallback {
-    font-size: 17px;
+    flex: 0 0 100%;
+    max-width: 100%;
+    min-height: 400px;
+    --ball-size: 90px;
   }
 }
 
-@media (min-width: 768px) {
-  .partners-stage {
-    --ball-size: 128px;
-    min-height: 380px;
-  }
-  .partners-center-text {
-    width: 320px;
-    top: 32px;
-  }
+/* Mobile (480px - 767px) */
+@media (max-width: 767px) {
   .partners-title {
-    font-size: 30px;
+    font-size: var(--font-2xl);
   }
+
   .partners-desc {
-    font-size: 14px;
+    font-size: var(--font-sm);
   }
-  .ball-fallback {
-    font-size: 19px;
+
+  .partners-stage {
+    min-height: 350px;
+    --ball-size: 75px;
   }
 }
 
-@media (min-width: 1024px) {
-  .partners-stage {
-    --ball-size: 144px;
-    min-height: 420px;
+/* Small Mobile (300px - 479px) */
+@media (max-width: 479px) {
+  .partners-left {
+    padding: var(--spacing-lg) var(--spacing-md);
   }
-  .partners-center-text {
-    width: 360px;
-    top: 36px;
-  }
+
   .partners-title {
-    font-size: 34px;
+    font-size: var(--font-xl);
   }
+
   .partners-desc {
-    font-size: 15px;
+    font-size: var(--font-xs);
   }
+
+  .partners-stage {
+    min-height: 300px;
+    --ball-size: 60px;
+  }
+
   .ball-fallback {
-    font-size: 21px;
+    font-size: 11px;
   }
 }
 
+/* Large Desktop (1440px+) */
 @media (min-width: 1440px) {
   .partners-stage {
-    --ball-size: 158px;
-    min-height: 460px;
+    --ball-size: 115px;
+    min-height: 550px;
   }
-  .partners-center-text {
-    width: 400px;
-    top: 40px;
-  }
+
   .partners-title {
-    font-size: 38px;
-  }
-  .partners-desc {
-    font-size: 16px;
-  }
-  .ball-fallback {
-    font-size: 23px;
+    font-size: var(--font-4xl);
   }
 }
 
+/* Ultrawide (1921px+) */
 @media (min-width: 1921px) {
-  .partners-stage {
-    --ball-size: 172px;
-    min-height: 500px;
-    width: 100%;
+  .partners-section {
+    min-height: 600px;
   }
-  .partners-center-text {
-    width: 440px;
-    top: 48px;
-  }
-  .partners-title {
-    font-size: 42px;
-  }
-  .partners-desc {
-    font-size: 17px;
-  }
-  .ball-fallback {
-    font-size: 25px;
-  }
-}
 
-/* ---------- Tiny screens ---------- */
-@media (max-width: 359px) {
+  .partners-left {
+    padding: var(--spacing-4xl) var(--spacing-3xl);
+  }
+
   .partners-stage {
-    --ball-size: 76px;
-    min-height: 260px;
+    --ball-size: 125px;
+    min-height: 600px;
   }
-  .partners-center-text {
-    width: 200px;
-    padding: 8px 10px;
-  }
+
   .partners-title {
-    font-size: 19px;
+    font-size: var(--font-5xl);
   }
+
   .partners-desc {
-    font-size: 11px;
+    font-size: var(--font-lg);
   }
 }

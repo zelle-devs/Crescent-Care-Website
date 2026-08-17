@@ -2,27 +2,30 @@
 .showcase-section {
   position: relative;
   width: 100%;
-  background-color: var(--color-white);
+  background-color: var(--color-dark-bg);
   /* padding: var(--spacing-3xl) 0 180px; */
-   padding: var(--spacing-3xl) 0;
+   padding: var(--spacing-2xl) 0;
   overflow: hidden;
 }
 
 /* ==================== CONTAINER ==================== */
 .showcase-container {
   margin: 0 auto;
-  padding: 0 var(--spacing-xl);
+  padding: 0 var(--spacing-2xl);
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: var(--spacing-3xl);
+  justify-content: space-between;
+  gap: var(--spacing-xl);
 }
 
 /* ==================== LEFT COLUMN ==================== */
 .showcase-left {
-  flex: 1 1 50%;
+  flex: 0 0 48%;
+  max-width: 48%;
   min-width: 300px;
 }
+
 
 .showcase-heading {
   font-size: var(--font-5xl);
@@ -35,7 +38,7 @@
 
 .showcase-description {
   font-size: var(--font-base);
-  color: var(--color-gray);
+  color: var(--color-light-gray);
   line-height: var(--line-height-relaxed);
   margin-bottom: var(--spacing-2xl);
   /* max-width: 540px; */
@@ -66,13 +69,13 @@
 
 /* ==================== RIGHT COLUMN ==================== */
 .showcase-right {
-  flex: 1 1 45%;
+  flex: 0 0 45%;
+  max-width: 45%;
   min-width: 300px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-
 .showcase-image-wrapper {
   width: 100%;
   max-width: 500px;
@@ -249,8 +252,18 @@
 /* Laptop (1024px - 1439px) */
 @media (min-width: 1024px) and (max-width: 1439px) {
   .showcase-container {
-    padding: 0 60px;
-    gap: 40px;
+    padding: 0 var(--spacing-4xl);
+    gap: var(--spacing-lg);
+  }
+
+  .showcase-left {
+    flex: 0 0 48%;
+    max-width: 48%;
+  }
+
+  .showcase-right {
+    flex: 0 0 45%;
+    max-width: 45%;
   }
 
   .showcase-heading {
@@ -258,14 +271,36 @@
   }
 
   .showcase-image-wrapper {
-    max-width: 450px;
+    max-width: 420px;
   }
 }
 
 /* Desktop/Ultrawide (1440px+) */
 @media (min-width: 1440px) {
   .showcase-container {
-    padding: 0 80px;
-    gap: 40px;
+    padding: 0 var(--spacing-4xl);
+    gap: var(--spacing-xl);
+  }
+
+  .showcase-image-wrapper {
+    max-width: 480px;
+  }
+}
+
+@media (min-width: 1921px) {
+  .showcase-section {
+    padding: var(--spacing-3xl) 0;
+  }
+
+  .showcase-container {
+    gap: var(--spacing-5xl);
+  }
+
+  .showcase-image-wrapper {
+    max-width: 520px;
+  }
+
+  .showcase-heading {
+    font-size: var(--font-5xl);
   }
 }

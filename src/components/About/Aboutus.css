@@ -1,8 +1,3 @@
-/* ==================== ABOUT US — ANIMATED TIMELINE ====================
-   Uses only tokens already defined in global.css
-   (--color-*, --font-*, --spacing-*, --radius-*, --shadow-*, .container, .section-padding).
-======================================================================== */
-
 .about-section {
   position: relative;
   background: var(--color-white);

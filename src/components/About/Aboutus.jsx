@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import {
   Building2,
@@ -136,14 +136,16 @@ function TimelineRow({ section, index }) {
   );
 }
 
-/**
- * AboutUs — dynamic, reusable "About" timeline section.
- * Pass a different `sections` array to reuse this on other pages;
- * shape: { id, eyebrow, title?, body?, bullets?, image, icon, tone }
- * tone: 'primary' | 'secondary' | 'accent' (maps to your global.css colors)
- */
 export default function AboutUs({ sections = aboutSections, className = '' }) {
   const containerRef = useRef(null);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    // ek paint cycle wait karo taake CSS guaranteed apply ho chuki ho
+    const raf = requestAnimationFrame(() => setMounted(true));
+    return () => cancelAnimationFrame(raf);
+  }, []);
+
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -158,9 +160,10 @@ export default function AboutUs({ sections = aboutSections, className = '' }) {
           <motion.div className="about-timeline-line" style={{ scaleY: lineScale }} />
         </div>
 
-        {sections.map((section, i) => (
-          <TimelineRow key={section.id} section={section} index={i} />
-        ))}
+       {mounted &&
+          sections.map((section, i) => (
+            <TimelineRow key={section.id} section={section} index={i} />
+          ))}
       </div>
     </section>
   );

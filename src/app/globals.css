@@ -18,6 +18,7 @@
     
   /* Colors - Primary */
   --color-primary: #244098;
+  --color-primary2: #223553;
   --color-primary-dark: #1B3073;
   --color-primary-light: #5269B0;
 
@@ -36,6 +37,7 @@
     --color-gray: #6C757D;
     --color-dark-gray: #495057;
     --color-dark: #212529;
+    --color-dark-bg: #000000;
     --color-black: #000000;
     
     /* Colors - Status */
@@ -63,6 +65,7 @@
     --spacing-2xl: 3rem;     /* 48px */
     --spacing-3xl: 4rem;     /* 64px */
     --spacing-4xl: 5rem;
+    --spacing-5xl: 6rem;
     
     /* Border Radius */
     --radius-sm: 4px;

@@ -1,12 +1,11 @@
 /* ==================== CIRCLE CARDS SECTION ==================== */
 .circle-section {
   width: 100%;
-  background-color: var(--color-white);
+  background-color: var(--color-primary2);
   padding: var(--spacing-2xl) 0;
 }
 
 .circle-container {
-  max-width: 1400px;
   margin: 0 auto;
   padding: 0 var(--spacing-xl);
 }
@@ -14,7 +13,7 @@
 .circle-heading {
   font-size: var(--font-4xl);
   font-weight: 700;
-  color: var(--color-primary);
+  color: var(--color-white);
   text-align: center;
   margin-bottom: var(--spacing-2xl);
   font-family: var(--font-secondary);
@@ -199,9 +198,7 @@
 
 /* Large Desktop (1800px+) - 5 cards per row */
 @media (min-width: 1800px) {
-  .circle-container {
-    max-width: 1700px;
-  }
+
   .circle-grid {
     gap: var(--spacing-lg);
   }
@@ -223,7 +220,7 @@
 /* Laptop (1024px - 1439px) - 4 cards per row */
 @media (min-width: 1024px) and (max-width: 1439px) {
   .circle-container {
-    padding: 0 60px;
+    padding: 0 var(--spacing-lg);
   }
   .circle-grid {
     gap: var(--spacing-md);
@@ -245,10 +242,11 @@
 
 /* Tablet (768px - 1023px) - 3 cards per row */
 @media (min-width: 768px) and (max-width: 1023px) {
-  .circle-section {
+   .circle-section {
     padding: var(--spacing-2xl) 0;
   }
   .circle-container {
+    max-width: 100%;
     padding: 0 var(--spacing-lg);
   }
   .circle-heading {
@@ -279,7 +277,8 @@
   .circle-section {
     padding: var(--spacing-xl) 0;
   }
-  .circle-container {
+   .circle-container {
+    max-width: 100%;
     padding: 0 var(--spacing-md);
   }
   .circle-heading {
@@ -310,7 +309,8 @@
   .circle-section {
     padding: var(--spacing-lg) 0;
   }
-  .circle-container {
+   .circle-container {
+    max-width: 100%;
     padding: 0 var(--spacing-sm);
   }
   .circle-heading {
@@ -360,5 +360,40 @@
   }
   .circle-card-inner:active .circle-default-title {
     opacity: 0;
+  }
+}
+/* Ultrawide (1921px+) */
+@media (min-width: 1921px) {
+  .circle-section {
+    padding: var(--spacing-3xl) 0;
+  }
+
+  .circle-container {
+    padding: 0 var(--spacing-xl);
+  }
+
+  .circle-heading {
+    font-size: var(--font-5xl);
+  }
+
+  .circle-grid {
+    gap: var(--spacing-xl);
+  }
+
+  .circle-card {
+    width: calc((100% - (var(--spacing-xl) * 4)) / 5);
+  }
+
+  .circle-default-title h3 {
+    font-size: var(--font-xl);
+  }
+
+  .circle-content-title {
+    font-size: var(--font-lg);
+  }
+
+  .circle-content-desc {
+    font-size: var(--font-sm);
+    -webkit-line-clamp: 5;
   }
 }

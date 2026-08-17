@@ -1,21 +1,38 @@
 /* ==================== CLIENTS SLIDER SECTION ==================== */
 .clients-section {
   width: 100%;
-  background-color: var(--color-white)!important;
+  background-color: var(--color-primary2);
   padding: var(--spacing-2xl) 0;
   overflow: hidden;
+  position: relative;
+}
+
+/* Subtle pattern overlay */
+.clients-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.03) 0%, transparent 50%),
+              radial-gradient(circle at 80% 50%, rgba(255, 255, 255, 0.03) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 1;
 }
 
 .clients-container {
   margin: 0 auto;
   padding: 0;
+  position: relative;
+  z-index: 2;
 }
 
 /* ==================== HEADING ==================== */
 .clients-heading {
   font-size: var(--font-4xl);
   font-weight: 700;
-  color: var(--color-primary);
+  color: var(--color-white);
   text-align: center;
   margin-bottom: var(--spacing-2xl);
   font-family: var(--font-secondary);
@@ -38,30 +55,41 @@
 /* ==================== MARQUEE WRAPPER ==================== */
 .clients-marquee-wrapper {
   width: 100%;
-  overflow: hidden;
   position: relative;
+  padding: 20px 0;
 }
 
-/* Gradient fade effect on edges */
+/* Gradient fade effect on edges - Primary color */
 .clients-marquee-wrapper::before,
 .clients-marquee-wrapper::after {
   content: '';
   position: absolute;
   top: 0;
-  width: 60px;
+  width: 80px;
   height: 100%;
-  z-index: 2;
+  z-index: 3;
   pointer-events: none;
 }
-
 .clients-marquee-wrapper::before {
   left: 0;
-  background: linear-gradient(to right, var(--color-white) 0%, transparent 100%);
+  background: linear-gradient(to right, var(--gradient-color) 0%, transparent 100%);
 }
 
 .clients-marquee-wrapper::after {
   right: 0;
-  background: linear-gradient(to left, var(--color-white) 0%, transparent 100%);
+  background: linear-gradient(to left, var(--gradient-color) 0%, transparent 100%);
+}
+/* ==================== INNER CONTAINER ==================== */
+.clients-marquee-inner {
+  width: 100%;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.05);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: var(--spacing-lg) 0;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: box-shadow var(--transition-normal);
 }
 
 /* ==================== MARQUEE TRACK ==================== */
@@ -77,24 +105,42 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 280px;
+  width: 380px!important;
   padding: 0 30px;
 }
 
+/* Logo box for consistent sizing */
+.clients-logo-box {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* background: var(--color-white);
+  border-radius: var(--radius-lg); */
+  padding: 15px;
+  /* box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); */
+  transition: all var(--transition-normal);
+}
+
+/* .clients-logo-box:hover {
+  background: var(--color-white);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+} */
+
 .clients-logo {
   width: 100%;
-  height: auto;
-  max-height: 180px;
-  object-fit: contain;
+  height: 100%;
+  object-fit: cover;
   display: block;
   filter: grayscale(100%);
   opacity: 0.7;
   transition: all var(--transition-normal);
 }
 
-.clients-logo:hover {
-  filter: grayscale(0%);
-  opacity: 1;
+.clients-logo-wrapper:hover .clients-logo {
+  filter: grayscale(0%) !important;
+  opacity: 1 !important;
 }
 
 /* ==================== RESPONSIVE ==================== */
@@ -102,34 +148,36 @@
 /* Ultrawide (1600px+) */
 @media (min-width: 1600px) {
   .clients-logo-wrapper {
-    width: 300px;
+    width: 400px!important;
     padding: 0 35px;
   }
 
-  .clients-logo {
-    max-height: 200px;
+  .clients-logo-box {
+    height: 100%;
+    padding: 18px;
   }
 
   .clients-marquee-wrapper::before,
   .clients-marquee-wrapper::after {
-    width: 80px;
+    width: 100px;
   }
 }
 
 /* Desktop (1024px - 1599px) */
 @media (min-width: 1024px) and (max-width: 1599px) {
   .clients-logo-wrapper {
-    width: 250px;
+    width: 380px!important;
     padding: 0 28px;
   }
 
-  .clients-logo {
-    max-height: 170px;
+  .clients-logo-box {
+    /* height: 110px; */
+    padding: 14px;
   }
 
   .clients-marquee-wrapper::before,
   .clients-marquee-wrapper::after {
-    width: 60px;
+    width: 70px;
   }
 }
 
@@ -146,17 +194,22 @@
   }
 
   .clients-logo-wrapper {
-    width: 200px;
+    width: 360px!important;
     padding: 0 20px;
   }
 
-  .clients-logo {
-    max-height: 140px;
+  .clients-logo-box {
+    height: 100%;
+    padding: 12px;
+  }
+
+  .clients-marquee-inner {
+    padding: var(--spacing-md) 0;
   }
 
   .clients-marquee-wrapper::before,
   .clients-marquee-wrapper::after {
-    width: 40px;
+    width: 50px;
   }
 }
 
@@ -179,17 +232,23 @@
   }
 
   .clients-logo-wrapper {
-    width: 160px;
+    width: 280px!important;
     padding: 0 15px;
   }
 
-  .clients-logo {
-    max-height: 120px;
+  .clients-logo-box {
+    height: 100%;
+    padding: 10px;
+    border-radius: var(--radius-md);
+  }
+
+  .clients-marquee-inner {
+    padding: var(--spacing-sm) 0;
   }
 
   .clients-marquee-wrapper::before,
   .clients-marquee-wrapper::after {
-    width: 30px;
+    width: 35px;
   }
 }
 
@@ -212,17 +271,23 @@
   }
 
   .clients-logo-wrapper {
-    width: 140px;
-    padding: 0 12px;
+    width: 220!important;
+    padding: 0 10px;
   }
 
-  .clients-logo {
-    max-height: 100px;
+  .clients-logo-box {
+    height: 100%;
+    padding: 8px;
+    border-radius: var(--radius-sm);
+  }
+
+  .clients-marquee-inner {
+    padding: var(--spacing-xs) 0;
   }
 
   .clients-marquee-wrapper::before,
   .clients-marquee-wrapper::after {
-    width: 20px;
+    width: 25px;
   }
 }
 

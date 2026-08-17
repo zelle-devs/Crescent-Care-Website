@@ -10,9 +10,9 @@ const aboutData = [
     },
     subHeading: "Your Trusted Healthcare Partner",
     description: "Crescent Care is Pakistan's leading TPA company, dedicated to providing seamless healthcare administration and exceptional service to our clients.",
-    buttonText: "Learn More",
-    buttonLink: "#about-section",
-    logo: "/tag-tpa-1-2.png"
+    // buttonText: "Learn More",
+    // buttonLink: "#about-section",
+    // logo: "/tag-tpa-1-2.png"
   }
 ];
 

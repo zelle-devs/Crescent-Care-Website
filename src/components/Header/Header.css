@@ -28,13 +28,40 @@
 .header-actions {
   display: flex;
   align-items: center;
-  gap: var(--spacing-sm);
 }
 
 .nav-dropdown {
   position: relative;
 }
 
+/* LOGIN — solid accent pill button, ALWAYS red, no hover-fill animation */
+.header-actions .nav-dropdown:nth-child(1) {
+  margin-right: 28px;
+}
+
+.header-actions .nav-dropdown:nth-child(1)::after {
+  content: '';
+  position: absolute;
+  right: -14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1px;
+  height: 22px;
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.header-actions .nav-dropdown:nth-child(1) .nav-dropdown-trigger {
+  border: none;
+  border-radius: var(--radius-md);
+  padding: var(--spacing-sm) var(--spacing-md);
+  color: var(--color-white) !important;
+}
+.header-actions .nav-dropdown:nth-child(2) .nav-dropdown-trigger {
+  border: none;
+  border-radius: var(--radius-md);
+  padding: var(--spacing-sm) var(--spacing-md);
+  color: var(--color-white) !important;
+}
 
 /* =========================
    DROPDOWN BUTTON
@@ -174,7 +201,8 @@ border: 1px solid rgba(0, 0, 0, 0.3);
 
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-xl);
-  min-width: 280px;
+  /* min-width: 280px; */
+  width: max-content;
   padding: var(--spacing-xs) 0;
   opacity: 0;
   visibility: hidden;
@@ -207,7 +235,7 @@ border: 1px solid rgba(0, 0, 0, 0.3);
   color: var(--color-accent);
 }
 
-.nav-dropdown-link.has-tooltip::after {
+/* .nav-dropdown-link.has-tooltip::after {
   content: '';
   position: absolute;
   right: var(--spacing-md);
@@ -217,28 +245,28 @@ border: 1px solid rgba(0, 0, 0, 0.3);
   height: 6px;
   background: var(--color-accent);
   border-radius: var(--radius-full);
-}
+} */
 
 /* Tooltip for Login dropdown */
 .tooltip {
   position: absolute;
-  left: -320px;
+  left: -210px;
   top: 0;
   /* background: var(--color-white); */
-  background: rgba(0, 0, 0, 0.32);
-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  background: var(--color-dark);
+/* box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 backdrop-filter: blur(8.2px);
-border: 1px solid rgba(0, 0, 0, 0.3);
+border: 1px solid rgba(0, 0, 0, 0.3); */
 
   box-shadow: var(--shadow-xl);
   border-radius: var(--radius-md);
-  padding: var(--spacing-lg);
-  width: 300px;
+  padding: var(--spacing-sm);
+  width: 200px;
   opacity: 0;
   visibility: hidden;
   transition: all var(--transition-normal);
   z-index: var(--z-tooltip);
-  border-left: 3px solid var(--color-accent);
+  /* border-left: 3px solid var(--color-accent); */
 }
 
 .nav-dropdown-item:hover .tooltip {
@@ -801,3 +829,6 @@ border: 1px solid rgba(0, 0, 0, 0.3);
     display: none !important;
   }
 }
+
+
+

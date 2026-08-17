@@ -4,7 +4,7 @@
   width: 100%;
   /* padding: var(--spacing-3xl) var(--spacing-xl); */
   padding: var(--spacing-3xl) 0;
-  background: var(--color-dark);
+  background: var(--color-dark-bg)!important;
   overflow: hidden;
 }
 
