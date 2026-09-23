@@ -32,6 +32,8 @@
 
 .nav-dropdown {
   position: relative;
+  /* border-left: 2px solid rgba(255, 255, 255, 0.2); */
+  padding: 0 7px;
 }
 
 /* LOGIN — solid accent pill button, ALWAYS red, no hover-fill animation */
@@ -72,15 +74,15 @@
   overflow: hidden;
 
   background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-
+  /* border: 1px solid rgba(255, 255, 255, 0.3); */
+border: none;
   color: var(--color-white);
   font-size: var(--font-sm);
   font-family: var(--font-primary);
   cursor: pointer;
 
   padding: var(--spacing-sm) var(--spacing-md);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-md);
 
   display: flex;
   align-items: center;
@@ -830,5 +832,245 @@ border: 1px solid rgba(0, 0, 0, 0.3);
   }
 }
 
+/* ==================== THEME TOGGLE ==================== */
+.header-theme-toggle {
+  display: flex;
+  align-items: center;
+  /* margin-right: 16px; */
+  padding-right: 16px;
+  /* border-right: 1px solid rgba(255, 255, 255, 0.2); */
+}
 
+/* Light mode mein border color change */
+[data-theme="light"] .header-theme-toggle {
+  border-right-color: rgba(0, 0, 0, 0.15);
+}
 
+.header-theme-toggle-mobile {
+  display: none;
+}
+
+/* ==================== MOBILE THEME TOGGLE ==================== */
+@media (max-width: 768px) {
+  .header-bottom-actions-row {
+    flex-wrap: wrap;
+  }
+
+  .header-theme-toggle-mobile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-sm);
+    min-height: 42px;
+  }
+}
+
+/* ==================== LIGHT MODE OVERRIDES ==================== */
+/* Sirf white → dark. Baaki colors same rahenge */
+
+/* ---------- TOP ROW ---------- */
+
+/* Nav dropdown trigger text (Login, Download) */
+html[data-theme="light"] .header .nav-dropdown-trigger {
+  color: var(--color-dark);
+}
+
+/* Nav dropdown border-left separator */
+html[data-theme="light"] .header .nav-dropdown {
+  border-left-color: rgba(0, 0, 0, 0.15);
+}
+
+/* Login/Download ke beech separator */
+html[data-theme="light"] .header-actions .nav-dropdown:nth-child(1)::after {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+/* Dropdown text and arrow */
+html[data-theme="light"] .header .nav-dropdown-text,
+html[data-theme="light"] .header .nav-dropdown-arrow {
+  color: var(--color-primary);
+}
+/* ==================== LIGHT MODE - Login/Download Hover Text White ==================== */
+
+/* Login/Download hover pe text white rahe */
+html[data-theme="light"] .header .nav-dropdown:hover .nav-dropdown-trigger,
+html[data-theme="light"] .header .nav-dropdown:hover .nav-dropdown-text,
+html[data-theme="light"] .header .nav-dropdown:hover .nav-dropdown-arrow {
+  color: var(--color-white) !important;
+}
+
+/* Dropdown menu links */
+html[data-theme="light"] .header .nav-dropdown-link {
+  color: var(--color-dark);
+}
+html[data-theme="light"] .header .nav-dropdown-link:hover {
+  color: var(--color-primary);
+}
+html[data-theme="light"] .header .nav-dropdown-menu{
+  background: rgba(255, 255, 255, 0.463) !important;
+    backdrop-filter: blur(15px) !important;
+    -webkit-backdrop-filter: blur(15px) !important;
+}
+
+/* ---------- BOTTOM ROW (Main Navigation) ---------- */
+
+/* Main nav links */
+html[data-theme="light"] .header .main-nav-link {
+  color: var(--color-primary);
+}
+
+/* Main nav dropdown trigger (Network Partners) */
+html[data-theme="light"] .header .main-nav-dropdown-trigger {
+  color: var(--color-primary);
+}
+html[data-theme="light"] .header .main-nav-dropdown-trigger:hover {
+  color: var(--color-white);
+}
+/* Main nav dropdown arrow */
+html[data-theme="light"] .header .main-nav-dropdown-arrow {
+  color: var(--color-primary);
+}
+html[data-theme="light"] .header .main-nav-dropdown-arrow:hover {
+  color: var(--color-white);
+}
+
+/* Main nav dropdown links */
+html[data-theme="light"] .header .main-nav-dropdown-link {
+  color: var(--color-dark);
+}
+html[data-theme="light"] .header .main-nav-dropdown-link:hover {
+  color: var(--color-primary);
+}
+html[data-theme="light"] .header .main-nav-dropdown-menu {
+   background: rgba(255, 255, 255, 0.463) !important;
+    backdrop-filter: blur(15px) !important;
+    -webkit-backdrop-filter: blur(15px) !important;
+}
+/* ---------- MOBILE TOGGLE (Hamburger) ---------- */
+html[data-theme="light"] .header .header-mobile-toggle {
+  color: var(--color-dark);
+}
+
+/* ---------- MOBILE SIDEBAR ---------- */
+
+/* Mobile sidebar background - light mode */
+@media (max-width: 768px) {
+  html[data-theme="light"] .header .header-bottom {
+    background: rgba(255, 255, 255, 0.95);
+    border-color: rgba(0, 0, 0, 0.1);
+  }
+
+  /* Mobile nav links */
+  html[data-theme="light"] .header .main-nav-link {
+    color: var(--color-dark) !important;
+  }
+
+  /* Mobile nav dropdown trigger */
+  html[data-theme="light"] .header .main-nav-dropdown-trigger {
+    color: var(--color-dark) !important;
+  }
+
+  /* Mobile dropdown links */
+  html[data-theme="light"] .header .main-nav-dropdown-link {
+    color: rgba(33, 37, 41, 0.75) !important;
+  }
+
+  /* Mobile nav items border */
+  html[data-theme="light"] .header .main-nav-item {
+    border-bottom-color: rgba(0, 0, 0, 0.06);
+  }
+
+  /* Mobile bottom header (logo area) border */
+  html[data-theme="light"] .header .header-bottom-header {
+    border-bottom-color: rgba(0, 0, 0, 0.06);
+  }
+
+  /* Quick Access title */
+  html[data-theme="light"] .header .header-bottom-actions-title {
+    color: rgba(0, 0, 0, 0.5);
+  }
+
+  /* Mobile actions border-top */
+  html[data-theme="light"] .header .header-bottom-actions {
+    border-top-color: rgba(0, 0, 0, 0.08);
+  }
+
+  /* Mobile dropdown trigger buttons (Login/Download) */
+  html[data-theme="light"] .header .header-bottom-actions .nav-dropdown-trigger {
+    color: var(--color-dark);
+    border-color: rgba(0, 0, 0, 0.15);
+    background: rgba(0, 0, 0, 0.03);
+  }
+
+  /* Mobile dropdown menu */
+  html[data-theme="light"] .header .header-bottom-actions .nav-dropdown-menu {
+    background: rgba(255, 255, 255, 0.98) !important;
+    border-color: rgba(0, 0, 0, 0.08) !important;
+  }
+
+  /* Mobile dropdown menu links */
+  html[data-theme="light"] .header .header-bottom-actions .nav-dropdown-link {
+    color: var(--color-dark) !important;
+  }
+
+  /* Mobile theme toggle wrapper */
+  html[data-theme="light"] .header .header-theme-toggle-mobile {
+    background: rgba(0, 0, 0, 0.03);
+    border-color: rgba(0, 0, 0, 0.15);
+  }
+}
+
+/* ---------- THEME TOGGLE WRAPPER ---------- */
+html[data-theme="light"] .header-theme-toggle {
+  border-right-color: rgba(0, 0, 0, 0.15);
+}
+
+/* ==================== LIGHT MODE - DIFFERENT LOGO ==================== */
+
+/* Desktop header logo */
+html[data-theme="light"] .header .header-logo img {
+  content: url('/logo-light.png');  /* ← Apna light logo ka path daalein */
+}
+
+/* Mobile sidebar logo */
+html[data-theme="light"] .header .header-bottom-logo img {
+  content: url('/logo-light.png');  /* ← Same light logo */
+}
+
+/* ---------- Main Nav Links Hover ---------- */
+html[data-theme="light"] .header .main-nav-link::before {
+  background: var(--color-primary) !important;
+}
+
+/* ---------- Main Nav Dropdown Trigger Hover (Network Partners) ---------- */
+html[data-theme="light"] .header .main-nav-dropdown-trigger::before {
+  background: var(--color-primary) !important;
+}
+
+/* ---------- Login/Download Dropdown Trigger Hover ---------- */
+html[data-theme="light"] .header .nav-dropdown-trigger::before {
+  background: var(--color-primary) !important;
+}
+
+/* ---------- Mobile Nav Links Hover (Sidebar) ---------- */
+@media (max-width: 768px) {
+  
+  html[data-theme="light"] .header .main-nav-link:hover {
+    color: var(--color-primary) !important;
+  }
+
+  html[data-theme="light"] .header .main-nav-dropdown-trigger:hover {
+    color: var(--color-primary) !important;
+  }
+
+  html[data-theme="light"] .header .main-nav-dropdown-link:hover {
+    color: var(--color-primary) !important;
+  }
+
+  html[data-theme="light"] .header .header-bottom-actions .nav-dropdown-link:hover {
+    color: var(--color-primary) !important;
+  }
+}

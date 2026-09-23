@@ -435,3 +435,220 @@
     font-size: 0.85rem;
   }
 }
+
+/* ==================== LIGHT MODE OVERRIDES ==================== */
+
+
+html[data-theme="light"] .footer {
+  background-color: var(--color-primary) !important;
+  background-image: none !important;  
+  color: var(--color-white);
+}
+
+html[data-theme="light"] .footer-brand-desc {
+  color: var(--color-white);
+}
+
+html[data-theme="light"] .footer-newsletter-input {
+  border-bottom-color: rgba(255, 255, 255, 0.5);
+  color: var(--color-white);
+}
+
+html[data-theme="light"] .footer-newsletter-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+html[data-theme="light"] .footer-newsletter-input:focus {
+  border-bottom-color: var(--color-white);
+}
+
+html[data-theme="light"] .footer-newsletter-btn {
+  border-color: rgba(255, 255, 255, 0.4);
+  color: var(--color-white);
+}
+
+html[data-theme="light"] .footer-newsletter-btn:hover {
+  background-color: var(--color-white);
+  color: var(--color-dark);
+  border-color: var(--color-white);
+}
+
+html[data-theme="light"] .footer-heading {
+  color: var(--color-white);
+}
+
+html[data-theme="light"] .footer-accordion-icon {
+  color: var(--color-white);
+}
+
+html[data-theme="light"] .footer-link {
+  color: var(--color-white);
+}
+
+html[data-theme="light"] .footer-link-arrow {
+  color: var(--color-white);
+}
+
+html[data-theme="light"] .footer-link:hover {
+  color: var(--color-white);
+}
+
+html[data-theme="light"] .footer-contact-item {
+  color: var(--color-white);
+}
+
+html[data-theme="light"] .footer-contact-item a {
+  color: var(--color-white);
+}
+
+html[data-theme="light"] .footer-contact-item a:hover {
+  color: var(--color-white);
+}
+
+html[data-theme="light"] .footer-contact-icon {
+  color: var(--color-white);
+}
+
+html[data-theme="light"] .footer-divider {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+html[data-theme="light"] .footer-social-btn {
+  color: var(--color-white);
+}
+
+html[data-theme="light"] .footer-social-btn:hover {
+  color: var(--color-secondary);
+}
+
+html[data-theme="light"] .footer-copyright {
+  color: var(--color-white);
+}
+
+html[data-theme="light"] .footer-credit-link {
+  color: var(--color-secondary-light);
+}
+
+html[data-theme="light"] .footer-credit-link:hover {
+  color: var(--color-accent);
+}
+
+@media (max-width: 768px) {
+  html[data-theme="light"] .footer-links {
+    border-top-color: rgba(255, 255, 255, 0.1);
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
+
+html[data-theme="light"] .footer-logo-icon {
+  content: url('/logo.png'); 
+}
+
+
+/* 
+html[data-theme="light"] .footer {
+  background-color: var(--color-primary-light-bg) !important;
+  background-image: none !important;  
+  color: var(--color-dark);
+}
+
+html[data-theme="light"] .footer-brand-desc {
+  color: var(--color-dark-gray);
+}
+
+html[data-theme="light"] .footer-newsletter-input {
+  border-bottom-color: rgba(0, 0, 0, 0.4);
+  color: var(--color-dark);
+}
+
+html[data-theme="light"] .footer-newsletter-input::placeholder {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+html[data-theme="light"] .footer-newsletter-input:focus {
+  border-bottom-color: var(--color-dark);
+}
+
+html[data-theme="light"] .footer-newsletter-btn {
+  border-color: rgba(0, 0, 0, 0.4);
+  color: var(--color-dark);
+}
+
+html[data-theme="light"] .footer-newsletter-btn:hover {
+  background-color: var(--color-dark);
+  color: var(--color-white);
+  border-color: var(--color-dark);
+}
+
+html[data-theme="light"] .footer-heading {
+  color: var(--color-dark);
+}
+
+html[data-theme="light"] .footer-accordion-icon {
+  color: var(--color-dark);
+}
+
+html[data-theme="light"] .footer-link {
+  color: var(--color-dark-gray);
+}
+
+html[data-theme="light"] .footer-link-arrow {
+  color: var(--color-dark);
+}
+
+html[data-theme="light"] .footer-link:hover {
+  color: var(--color-dark);
+}
+
+html[data-theme="light"] .footer-contact-item {
+  color: var(--color-dark-gray);
+}
+
+html[data-theme="light"] .footer-contact-item a {
+  color: var(--color-dark-gray);
+}
+
+html[data-theme="light"] .footer-contact-item a:hover {
+  color: var(--color-dark);
+}
+
+html[data-theme="light"] .footer-contact-icon {
+  color: var(--color-dark);
+}
+
+html[data-theme="light"] .footer-divider {
+  background-color: rgba(0, 0, 0, 0.15);
+}
+
+html[data-theme="light"] .footer-social-btn {
+  color: var(--color-dark);
+}
+
+html[data-theme="light"] .footer-social-btn:hover {
+  color: var(--color-secondary);
+}
+
+html[data-theme="light"] .footer-copyright {
+  color: var(--color-dark-gray);
+}
+
+html[data-theme="light"] .footer-credit-link {
+  color: var(--color-secondary);
+}
+
+html[data-theme="light"] .footer-credit-link:hover {
+  color: var(--color-primary);
+}
+
+@media (max-width: 768px) {
+  html[data-theme="light"] .footer-links {
+    border-top-color: rgba(0, 0, 0, 0.1);
+    border-bottom-color: rgba(0, 0, 0, 0.1);
+  }
+}
+
+
+html[data-theme="light"] .footer-logo-icon {
+  content: url('/logo-light.png'); 
+} */

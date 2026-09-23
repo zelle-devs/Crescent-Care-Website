@@ -2,6 +2,7 @@ const servicesData = [
   {
     id: 1,
     backgroundImage: "/Services/services-hero.png", // Update with your actual image path
+    backgroundImageLight: "/Services/services-hero-light.jpg",
     heading: {
       part1: "Our",
       part2: "Services",

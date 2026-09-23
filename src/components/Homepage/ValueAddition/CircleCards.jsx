@@ -76,7 +76,10 @@ const CircleCards = () => {
   return (
     <section className="circle-section">
       <div className="circle-container">
-        <h2 className="circle-heading">Value Addition</h2>
+        <h2 className="circle-heading">
+  <span className="circle-heading-part1">Value</span>{' '}
+  <span className="circle-heading-part2">Addition</span>
+</h2>
 
         <motion.div
           className="circle-grid"

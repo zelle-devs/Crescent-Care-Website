@@ -3,15 +3,47 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import './StatsBanner.css';
+import { useTheme } from '@/app/context/ThemeContext';
 
 const StatsBanner = ({
+  // Content props
   title = 'We Have Done The Impossible',
   description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.',
   stats = [
-    { value: '3.5K', label: 'Projects Done', numericValue: 3.5, suffix: 'K' },
-    { value: '1.2K', label: 'Happy Client', numericValue: 1.2, suffix: 'K' },
-    { value: '50%', label: 'Growth over year', numericValue: 50, suffix: '%' }
+    { numericValue: 3.5, suffix: 'K', label: 'Projects Done' },
+    { numericValue: 1.2, suffix: 'K', label: 'Happy Client' },
+    { numericValue: 50, suffix: '%', label: 'Growth over year' }
   ],
+  
+  // Section background
+  sectionBackground = 'var(--color-dark-bg)',
+  
+  // Main banner colors
+  bannerBackground = 'linear-gradient(180deg, #2B5F2F 0%, #4D9B52 100%)',
+  bannerBorderRadius = '24px',
+  bannerShadow = 'var(--shadow-lg)',
+  
+  // Text box colors
+  textBoxBackground = 'linear-gradient(0deg, #2B5F2F 0%, #4D9B52 100%)',
+  textBoxBorderRadius = '20px',
+  textBoxShadow = '0 15px 35px rgba(0, 0, 0, 0.35)',
+  
+  // Title colors
+  titleColor = 'var(--color-white)',
+  descriptionColor = 'var(--color-white)',
+  
+  // Stats colors
+  statValueColor = 'var(--color-white)',
+  statLabelColor = 'rgba(255, 255, 255, 0.9)',
+  dividerColor = 'rgba(255, 255, 255, 0.3)',
+  
+  // Animation props
+  counterDuration = 2000,
+  animationEnabled = true,
+  counterEnabled = true,
+  
+  // Layout props
+  offsetEnabled = true,
   className = ''
 }) => {
   // Animation Variants
@@ -36,44 +68,88 @@ const StatsBanner = ({
   };
 
   return (
-    <section className={`stats-banner-section ${className}`}>
+    <section 
+      className={`stats-banner-section ${className}`}
+      style={{ backgroundColor: sectionBackground }}
+    >
       <div className="stats-banner-container">
         <motion.div
-          className="stats-banner-main"
-          variants={bannerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
+          className={`stats-banner-main ${!offsetEnabled ? 'stats-banner-no-offset' : ''}`}
+          style={{
+            background: bannerBackground,
+            borderRadius: bannerBorderRadius,
+            boxShadow: bannerShadow
+          }}
+          variants={animationEnabled ? bannerVariants : undefined}
+          initial={animationEnabled ? 'hidden' : undefined}
+          whileInView={animationEnabled ? 'visible' : undefined}
+          viewport={animationEnabled ? { once: true, amount: 0.2 } : undefined}
         >
           {/* OFFSET LEFT TEXT BOX */}
           <motion.div
             className="stats-banner-text-box"
-            variants={textBoxVariants}
+            style={{
+              background: textBoxBackground,
+              borderRadius: textBoxBorderRadius,
+              boxShadow: textBoxShadow
+            }}
+            variants={animationEnabled ? textBoxVariants : undefined}
           >
             <motion.div className="stats-banner-text-inner">
-              <h2 className="stats-banner-title">{title}</h2>
-              <p className="stats-banner-description">{description}</p>
+              <h2 
+                className="stats-banner-title"
+                style={{ color: titleColor }}
+              >
+                {title}
+              </h2>
+              <p 
+                className="stats-banner-description"
+                style={{ color: descriptionColor }}
+              >
+                {description}
+              </p>
             </motion.div>
           </motion.div>
 
           {/* RIGHT SIDE STATS COLUMNS */}
           <motion.div
             className="stats-banner-stats"
-            variants={statsContainerVariants}
+            variants={animationEnabled ? statsContainerVariants : undefined}
           >
             {stats.map((stat, index) => (
               <React.Fragment key={index}>
-                {index > 0 && <div className="stats-banner-divider" />}
+                {index > 0 && (
+                  <div 
+                    className="stats-banner-divider"
+                    style={{ background: dividerColor }}
+                  />
+                )}
                 <motion.div
                   className="stats-banner-stat-item"
-                  variants={statItemVariants}
+                  variants={animationEnabled ? statItemVariants : undefined}
                 >
-                  <CounterValue 
-                    numericValue={stat.numericValue || 0}
-                    suffix={stat.suffix || ''}
-                    decimals={stat.numericValue < 10 ? 1 : 0}
-                  />
-                  <span className="stats-banner-stat-label">{stat.label}</span>
+                  {counterEnabled ? (
+                    <CounterValue 
+                      numericValue={stat.numericValue || 0}
+                      suffix={stat.suffix || ''}
+                      decimals={stat.numericValue < 10 && !Number.isInteger(stat.numericValue) ? 1 : 0}
+                      duration={counterDuration}
+                      color={statValueColor}
+                    />
+                  ) : (
+                    <span 
+                      className="stats-banner-stat-value"
+                      style={{ color: statValueColor }}
+                    >
+                      {stat.numericValue}{stat.suffix}
+                    </span>
+                  )}
+                  <span 
+                    className="stats-banner-stat-label"
+                    style={{ color: statLabelColor }}
+                  >
+                    {stat.label}
+                  </span>
                 </motion.div>
               </React.Fragment>
             ))}
@@ -85,15 +161,14 @@ const StatsBanner = ({
 };
 
 // Counter Component
-const CounterValue = ({ numericValue, suffix = '', decimals = 0 }) => {
+const CounterValue = ({ numericValue, suffix = '', decimals = 0, duration = 2000, color = 'var(--color-white)' }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.5 });
   const [displayValue, setDisplayValue] = useState(0);
 
   useEffect(() => {
     if (isInView) {
-      const duration = 2000; // 2 seconds
-      const steps = 60; // 60 frames
+      const steps = 60;
       const increment = numericValue / steps;
       let currentStep = 0;
 
@@ -109,10 +184,14 @@ const CounterValue = ({ numericValue, suffix = '', decimals = 0 }) => {
 
       return () => clearInterval(timer);
     }
-  }, [isInView, numericValue]);
+  }, [isInView, numericValue, duration]);
 
   return (
-    <span ref={ref} className="stats-banner-stat-value">
+    <span 
+      ref={ref} 
+      className="stats-banner-stat-value"
+      style={{ color }}
+    >
       {displayValue.toFixed(decimals)}
       {suffix}
     </span>

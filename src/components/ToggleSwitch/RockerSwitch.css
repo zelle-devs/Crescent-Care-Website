@@ -1,0 +1,269 @@
+/* ==================== ROCKER SWITCH - YES/NO TOGGLE ==================== */
+
+/* Base Switch */
+.rocker {
+  display: inline-block;
+  position: relative;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+  color: #888;
+  overflow: hidden;
+  border-bottom: 0.5em solid #eee;
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  flex-shrink: 0;
+  transition: border-bottom-color var(--transition-normal, 0.3s ease);
+}
+
+/* Size: Medium (Default) */
+.rocker-md {
+  font-size: 1.2em;
+  width: 7em;
+  height: 4em;
+}
+
+/* Size: Small */
+.rocker-sm {
+  font-size: 0.75em;
+  width: 7em;
+  height: 4em;
+}
+
+/* Size: Large */
+.rocker-lg {
+  font-size: 1.8em;
+  width: 7em;
+  height: 4em;
+}
+
+/* Background */
+.rocker::before {
+  content: "";
+  position: absolute;
+  top: 0.5em;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #999;
+  border: 0.5em solid #eee;
+  border-bottom: 0;
+  transition: background-color var(--transition-normal, 0.3s ease),
+              border-color var(--transition-normal, 0.3s ease);
+}
+
+/* Hide checkbox */
+.rocker input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+  pointer-events: none;
+}
+
+/* Both side labels */
+.switch-left,
+.switch-right {
+  cursor: pointer;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.5em;
+  width: 3em;
+  transition: 0.2s;
+  user-select: none;
+  z-index: 1;
+}
+
+/* Left side (Yes) - raised default */
+.switch-left {
+  height: 2.4em;
+  width: 2.75em;
+  left: 0.85em;
+  bottom: 0.4em;
+  background-color: #ddd;
+  transform: rotate(15deg) skewX(15deg);
+  color: #888;
+}
+
+/* Right side (No) - pressed default */
+.switch-right {
+  right: 0.5em;
+  bottom: 0;
+  background-color: #bd5757;
+  color: #fff;
+}
+
+/* Side edges */
+.switch-left::before,
+.switch-right::before {
+  content: "";
+  position: absolute;
+  width: 0.4em;
+  height: 2.45em;
+  bottom: -0.45em;
+  background-color: #ccc;
+  transform: skewY(-65deg);
+  transition: background-color var(--transition-normal, 0.3s ease);
+}
+
+.switch-left::before {
+  left: -0.4em;
+}
+
+.switch-right::before {
+  right: -0.375em;
+  background-color: transparent;
+  transform: skewY(65deg);
+}
+
+/* ==================== CHECKED STATE (Yes pressed) ==================== */
+.rocker input:checked + .switch-left {
+  background-color: #0084d0;
+  color: #fff;
+  bottom: 0px;
+  left: 0.5em;
+  height: 2.5em;
+  width: 3em;
+  transform: rotate(0deg) skewX(0deg);
+}
+
+.rocker input:checked + .switch-left::before {
+  background-color: transparent;
+  width: 3.0833em;
+}
+
+.rocker input:checked + .switch-left + .switch-right {
+  background-color: #ddd;
+  color: #888;
+  bottom: 0.4em;
+  right: 0.8em;
+  height: 2.4em;
+  width: 2.75em;
+  transform: rotate(-15deg) skewX(-15deg);
+}
+
+.rocker input:checked + .switch-left + .switch-right::before {
+  background-color: #ccc;
+}
+
+/* ==================== HOVER STATES ==================== */
+.rocker:hover .switch-left {
+  background-color: #e5e5e5;
+}
+
+.rocker:hover .switch-right {
+  background-color: #a84646;
+}
+
+.rocker input:checked:hover + .switch-left {
+  background-color: #0074b8;
+}
+
+.rocker input:checked:hover + .switch-left + .switch-right {
+  background-color: #e5e5e5;
+}
+
+/* ==================== FOCUS (Keyboard) ==================== */
+.rocker input:focus + .switch-left {
+  color: #333;
+  /* outline: 2px solid #0084d0; */
+  outline-offset: 2px;
+}
+
+.rocker input:checked:focus + .switch-left {
+  color: #fff;
+}
+
+.rocker input:focus + .switch-left + .switch-right {
+  color: #fff;
+}
+
+.rocker input:checked:focus + .switch-left + .switch-right {
+  color: #333;
+}
+
+/* ==================== DISABLED STATE ==================== */
+.rocker-disabled,
+.rocker input:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.rocker-disabled .switch-left,
+.rocker-disabled .switch-right,
+.rocker input:disabled + .switch-left,
+.rocker input:disabled + .switch-left + .switch-right {
+  cursor: not-allowed;
+}
+
+/* ==================== RESPONSIVE - 300px to 3000px ==================== */
+
+/* Extra Small (300px - 480px) */
+@media (max-width: 480px) {
+  .rocker-md {
+    font-size: 1em;
+  }
+
+  .rocker-lg {
+    font-size: 1.4em;
+  }
+}
+
+/* Small (481px - 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .rocker-md {
+    font-size: 1.1em;
+  }
+}
+
+/* Large (1441px - 1920px) */
+@media (min-width: 1441px) and (max-width: 1920px) {
+  .rocker-md {
+    font-size: 1.35em;
+  }
+
+  .rocker-lg {
+    font-size: 2em;
+  }
+}
+
+/* 2K (1921px - 2560px) */
+@media (min-width: 1921px) and (max-width: 2560px) {
+  .rocker-md {
+    font-size: 1.5em;
+  }
+
+  .rocker-lg {
+    font-size: 2.2em;
+  }
+}
+
+/* 4K (2561px - 3000px+) */
+@media (min-width: 2561px) {
+  .rocker-md {
+    font-size: 1.7em;
+  }
+
+  .rocker-lg {
+    font-size: 2.5em;
+  }
+
+  .rocker-sm {
+    font-size: 1.1em;
+  }
+}
+
+/* ==================== REDUCED MOTION ==================== */
+@media (prefers-reduced-motion: reduce) {
+  .rocker,
+  .rocker::before,
+  .switch-left,
+  .switch-right,
+  .switch-left::before,
+  .switch-right::before {
+    transition: none;
+  }
+}

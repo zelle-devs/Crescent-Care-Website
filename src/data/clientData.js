@@ -2,6 +2,7 @@ const clientData = [
   {
     id: 1,
     backgroundImage: "/Client/hero.jpg",
+    backgroundImageLight: "/Client/hero-light.jpg",
     heading: {
       part1: "Our Valued",
       part2: "Clients",

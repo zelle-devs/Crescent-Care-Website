@@ -297,3 +297,100 @@
     animation-play-state: paused;
   }
 }
+
+/* ==================== LIGHT MODE OVERRIDES ==================== */
+/* 
+  Dark mode: bilkul unchanged (blue & black dono variants)
+  Light mode: colors bright/light
+*/
+
+/* ---------- DEFAULT THEME (blue) - Light Mode ---------- */
+html[data-theme="light"] .clients-section {
+  background-color: var(--color-off-white);
+  /* Ya aap chahein toh: #F5F7FA */
+}
+
+/* Subtle pattern overlay - lighter in light mode */
+html[data-theme="light"] .clients-section::before {
+  background: radial-gradient(circle at 20% 50%, rgba(36, 64, 152, 0.04) 0%, transparent 50%),
+              radial-gradient(circle at 80% 50%, rgba(36, 64, 152, 0.04) 0%, transparent 50%);
+}
+
+/* Heading text */
+html[data-theme="light"] .clients-section .clients-heading {
+  color: var(--color-dark);
+}
+
+/* Heading underline - accent secondary stays */
+html[data-theme="light"] .clients-section .clients-heading::after {
+  background-color: var(--color-primary);
+}
+
+/* Marquee inner container */
+html[data-theme="light"] .clients-section .clients-marquee-inner {
+  background-color: rgba(36, 64, 152, 0.04);
+  border-top-color: rgba(36, 64, 152, 0.12);
+  border-bottom-color: rgba(36, 64, 152, 0.12);
+  box-shadow: 0 20px 50px rgba(36, 64, 152, 0.08);
+}
+
+/* Gradient fade edges */
+html[data-theme="light"] .clients-marquee-wrapper::before {
+  background: linear-gradient(to right, var(--color-off-white) 0%, transparent 100%);
+}
+
+html[data-theme="light"] .clients-marquee-wrapper::after {
+  background: linear-gradient(to left, var(--color-off-white) 0%, transparent 100%);
+}
+
+/* Logos - light mode mein grayscale hatao ya rakho */
+html[data-theme="light"] .clients-section .clients-logo {
+  filter: grayscale(100%);
+  opacity: 0.6;
+}
+
+html[data-theme="light"] .clients-section .clients-logo-wrapper:hover .clients-logo {
+  filter: grayscale(0%);
+  opacity: 1;
+}
+
+/* ---------- BLACK THEME OVERRIDE ---------- */
+/* Agar user theme="black" pass kare toh light mode mein bhi black rahe? 
+   Filhaal aap dono themes use kar rahe ho, toh agar black theme ko 
+   light mode mein bhi dark rakhna hai toh yeh use karein.
+   
+   Warna agar black theme bhi light mein bright karni hai, toh kuch 
+   karne ki zaroorat nahi — upar wala CSS already apply ho jayega.
+*/
+
+/* 
+  NOTE: Aapke JSX mein section background inline style se aata hai
+  (activeTheme.sectionBackground). Isliye CSS override ke liye
+  !important use karna padega.
+*/
+
+/* Light mode mein inline background ko override karo */
+html[data-theme="light"] .clients-section {
+  background-color: var(--color-off-white) !important;
+}
+
+/* Inner container ka inline bg bhi override */
+html[data-theme="light"] .clients-section .clients-marquee-inner {
+  background-color: rgba(36, 64, 152, 0.04) !important;
+  border-top-color: rgba(36, 64, 152, 0.12) !important;
+  border-bottom-color: rgba(36, 64, 152, 0.12) !important;
+}
+
+/* Heading inline color override */
+html[data-theme="light"] .clients-section .clients-heading {
+  color: var(--color-dark) !important;
+}
+
+/* Gradient fade ke liye light mode color */
+html[data-theme="light"] .clients-marquee-wrapper::before {
+  background: linear-gradient(to right, var(--color-off-white) 0%, transparent 100%) !important;
+}
+
+html[data-theme="light"] .clients-marquee-wrapper::after {
+  background: linear-gradient(to left, var(--color-off-white) 0%, transparent 100%) !important;
+}

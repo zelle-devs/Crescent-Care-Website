@@ -2,6 +2,7 @@ const heroData = [
   {
     id: 1,
     backgroundImage: "/Homepage/1.jpg",
+    backgroundImageLight: "/Homepage/lh_1.png",
     heading: {
       part1: "Complete Care in ,",
       part2: "One App",
@@ -17,6 +18,7 @@ const heroData = [
   {
     id: 2,
     backgroundImage: "/Homepage/2.jpg",
+    backgroundImageLight: "/Homepage/light-2.jpg",
     heading: {
       part1: "Your Health, ",
       part2: "One Tap Away",
@@ -32,6 +34,7 @@ const heroData = [
   {
     id: 3,
     backgroundImage: "/Homepage/3.jpg",
+    backgroundImageLight: "/Homepage/light-3.jpg",
     heading: {
       part1: "Welcome To",
       part2: "Crescent Care",

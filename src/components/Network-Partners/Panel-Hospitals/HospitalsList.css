@@ -839,3 +839,338 @@
     padding: 16px;
   }
 }
+
+/* ==================== PREMIUM LIGHT MODE ==================== */
+
+/* ---------- Section Background ---------- */
+html[data-theme="light"] .hospitals-section {
+  background-color: var(--color-off-white);
+}
+
+/* ---------- Card ---------- */
+html[data-theme="light"] .hospitals-card {
+  background: var(--color-white);
+  border: 1px solid rgba(36, 64, 152, 0.08);
+  box-shadow:
+    0 1px 2px rgba(36, 64, 152, 0.04),
+    0 8px 24px rgba(36, 64, 152, 0.06);
+}
+
+/* ---------- Header ---------- */
+html[data-theme="light"] .hospitals-header {
+  background: var(--color-white);
+  border-bottom: 1px solid rgba(36, 64, 152, 0.08);
+}
+
+html[data-theme="light"] .hospitals-title {
+  color: var(--color-dark);
+}
+
+html[data-theme="light"] .hospitals-count-badge {
+  background: rgba(36, 64, 152, 0.08);
+  color: var(--color-primary);
+}
+
+/* ---------- Download Button ---------- */
+html[data-theme="light"] .hospitals-download-btn {
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+
+html[data-theme="light"] .hospitals-download-btn:hover {
+  background: var(--color-primary-dark);
+  box-shadow: 0 6px 16px rgba(36, 64, 152, 0.25);
+}
+
+/* ---------- Search Bar ---------- */
+html[data-theme="light"] .hospitals-search-input {
+  background: var(--color-off-white);
+  border: 1px solid rgba(36, 64, 152, 0.12);
+  color: var(--color-dark);
+}
+
+html[data-theme="light"] .hospitals-search-input::placeholder {
+  color: var(--color-gray);
+}
+
+html[data-theme="light"] .hospitals-search-wrapper.hospitals-search-focused .hospitals-search-input {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(36, 64, 152, 0.1);
+}
+
+html[data-theme="light"] .hospitals-search-clear {
+  background: rgba(36, 64, 152, 0.08);
+  color: var(--color-primary);
+}
+
+html[data-theme="light"] .hospitals-search-clear:hover {
+  background: rgba(36, 64, 152, 0.15);
+}
+
+/* ---------- View Toggle ---------- */
+html[data-theme="light"] .hospitals-view-toggle {
+  background: var(--color-off-white);
+  border: 1px solid rgba(36, 64, 152, 0.08);
+}
+
+html[data-theme="light"] .hospitals-view-btn {
+  color: var(--color-gray);
+}
+
+html[data-theme="light"] .hospitals-view-active {
+  background: var(--color-primary);
+  color: var(--color-white);
+  box-shadow: 0 2px 8px rgba(36, 64, 152, 0.3);
+}
+
+/* ---------- Table ---------- */
+html[data-theme="light"] .hospitals-table-wrapper {
+  background: var(--color-white);
+}
+
+html[data-theme="light"] .hospitals-th {
+  color: var(--color-gray);
+}
+
+html[data-theme="light"] .hospitals-th:hover {
+  color: var(--color-primary);
+}
+
+html[data-theme="light"] .hospitals-sort-icon {
+  color: var(--color-gray);
+}
+
+/* Table Rows */
+html[data-theme="light"] .hospitals-table-row {
+  background: #FAFBFC;
+  box-shadow: 0 1px 2px rgba(36, 64, 152, 0.04);
+}
+
+html[data-theme="light"] .hospitals-table-row:hover {
+  background: rgba(36, 64, 152, 0.04) !important;
+  box-shadow:
+    0 2px 6px rgba(36, 64, 152, 0.08),
+    0 0 0 1px rgba(36, 64, 152, 0.08);
+  transform: translateY(-1px);
+}
+
+html[data-theme="light"] .hospitals-td {
+  color: var(--color-dark-gray);
+}
+
+html[data-theme="light"] .hospitals-td-name {
+  color: var(--color-dark);
+}
+
+html[data-theme="light"] .hospitals-sno-badge {
+  background: var(--color-white);
+  border: 1px solid rgba(36, 64, 152, 0.15);
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+html[data-theme="light"] .hospitals-city-badge {
+  background: rgba(36, 64, 152, 0.08);
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+html[data-theme="light"] .hospitals-td-address {
+  color: var(--color-gray);
+}
+
+html[data-theme="light"] .hospitals-contact-text {
+  color: var(--color-gray);
+}
+
+/* ---------- Grid View ---------- */
+html[data-theme="light"] .hospitals-grid-view {
+  background: var(--color-white);
+}
+
+html[data-theme="light"] .hospitals-grid-card {
+  background: #FAFBFC;
+  border: 1px solid rgba(36, 64, 152, 0.08);
+  box-shadow: 0 1px 3px rgba(36, 64, 152, 0.04);
+}
+
+html[data-theme="light"] .hospitals-grid-card:hover {
+  box-shadow:
+    0 4px 12px rgba(36, 64, 152, 0.08),
+    0 12px 32px rgba(36, 64, 152, 0.06);
+  border-color: var(--color-primary);
+  transform: translateY(-2px);
+}
+
+html[data-theme="light"] .hospitals-grid-sno {
+  color: var(--color-primary);
+}
+
+html[data-theme="light"] .hospitals-grid-province {
+  background: rgba(36, 64, 152, 0.08);
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+html[data-theme="light"] .hospitals-grid-name {
+  color: var(--color-dark);
+}
+
+html[data-theme="light"] .hospitals-grid-name svg {
+  color: var(--color-primary);
+}
+
+html[data-theme="light"] .hospitals-grid-detail {
+  color: var(--color-gray);
+}
+
+html[data-theme="light"] .hospitals-grid-label {
+  color: var(--color-dark-gray);
+}
+
+/* ---------- Empty State ---------- */
+html[data-theme="light"] .hospitals-empty-state {
+  color: var(--color-gray);
+}
+
+/* ---------- Footer ---------- */
+html[data-theme="light"] .dt-footer {
+  background: var(--color-white);
+  border-top: 1px solid rgba(36, 64, 152, 0.08);
+}
+
+html[data-theme="light"] .dt-footer-info {
+  color: var(--color-gray);
+}
+
+/* Pagination */
+html[data-theme="light"] .dt-page-btn {
+  color: var(--color-dark-gray);
+}
+
+html[data-theme="light"] .dt-page-btn:hover:not(:disabled) {
+  background: rgba(36, 64, 152, 0.08);
+  color: var(--color-primary);
+}
+
+html[data-theme="light"] .dt-page-btn--nav {
+  background: rgba(36, 64, 152, 0.06);
+  color: var(--color-primary);
+}
+
+html[data-theme="light"] .dt-page-btn--nav:hover:not(:disabled) {
+  background: rgba(36, 64, 152, 0.12);
+  color: var(--color-primary);
+}
+
+html[data-theme="light"] .dt-page-btn--active {
+  background: var(--color-primary);
+  color: var(--color-white);
+  box-shadow: 0 3px 10px rgba(36, 64, 152, 0.35);
+}
+
+html[data-theme="light"] .dt-page-btn--active:hover {
+  background: var(--color-primary-dark);
+  color: var(--color-white);
+}
+
+/* ---------- Modal ---------- */
+html[data-theme="light"] .hospital-modal-overlay {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+html[data-theme="light"] .hospital-modal {
+  background: var(--color-white);
+  box-shadow:
+    0 20px 40px rgba(36, 64, 152, 0.15),
+    0 0 0 1px rgba(36, 64, 152, 0.06);
+}
+
+html[data-theme="light"] .hospital-modal-header {
+  border-bottom: 1px solid rgba(36, 64, 152, 0.08);
+}
+
+html[data-theme="light"] .hospital-modal-name {
+  color: var(--color-dark);
+}
+
+html[data-theme="light"] .hospital-modal-badge {
+  background: rgba(36, 64, 152, 0.08);
+  color: var(--color-primary);
+}
+
+html[data-theme="light"] .hospital-modal-close {
+  border: 1px solid rgba(36, 64, 152, 0.12);
+  background: var(--color-white);
+  color: var(--color-gray);
+}
+
+html[data-theme="light"] .hospital-modal-close:hover {
+  background: rgba(36, 64, 152, 0.06);
+  color: var(--color-primary);
+  border-color: rgba(36, 64, 152, 0.2);
+}
+
+html[data-theme="light"] .hospital-modal-detail-item {
+  background: #FAFBFC;
+}
+
+html[data-theme="light"] .hospital-modal-detail-item:hover {
+  background: rgba(36, 64, 152, 0.04);
+}
+
+html[data-theme="light"] .hospital-modal-detail-label {
+  color: var(--color-gray);
+}
+
+html[data-theme="light"] .hospital-modal-detail-value {
+  color: var(--color-dark);
+}
+
+/* ---------- Provider Badges (Light Premium) ---------- */
+html[data-theme="light"] .provider-hospital {
+  background: rgba(36, 64, 152, 0.1);
+  color: var(--color-primary);
+  border: 1px solid rgba(36, 64, 152, 0.2);
+}
+
+html[data-theme="light"] .provider-clinic {
+  background: rgba(255, 193, 7, 0.12);
+  color: #92400E;
+  border: 1px solid rgba(255, 193, 7, 0.3);
+}
+
+html[data-theme="light"] .provider-diagnostic {
+  background: rgba(57, 126, 63, 0.1);
+  color: #166534;
+  border: 1px solid rgba(57, 126, 63, 0.25);
+}
+
+html[data-theme="light"] .provider-lab {
+  background: rgba(215, 62, 42, 0.08);
+  color: #991B1B;
+  border: 1px solid rgba(215, 62, 42, 0.2);
+}
+
+html[data-theme="light"] .provider-pharmacy {
+  background: rgba(40, 167, 69, 0.1);
+  color: #065F46;
+  border: 1px solid rgba(40, 167, 69, 0.25);
+}
+
+html[data-theme="light"] .provider-other {
+  background: rgba(108, 117, 125, 0.1);
+  color: var(--color-dark-gray);
+  border: 1px solid rgba(108, 117, 125, 0.2);
+}
+
+/* ---------- Yes/No Badges (Light Premium) ---------- */
+html[data-theme="light"] .yes-badge {
+  background: rgba(40, 167, 69, 0.12);
+  color: #065F46;
+}
+
+html[data-theme="light"] .no-badge {
+  background: rgba(215, 62, 42, 0.1);
+  color: #991B1B;
+}

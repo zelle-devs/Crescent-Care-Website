@@ -51,9 +51,10 @@ const WhyChooseTPA = () => {
         <motion.div className="why-choose-us-content" variants={childVariants}>
           <span className="why-choose-tag">Why Choose Us ?</span>
           
-          <h2 className="why-choose-heading">
-            Elevate Your Safety With Our Expertise
-          </h2>
+        <h2 className="why-choose-heading">
+  <span className="why-choose-heading-part1">Elevate Your Safety</span>{' '}
+  <span className="why-choose-heading-part2">With Our Expertise</span>
+</h2>
           
           <p className="why-choose-intro">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.

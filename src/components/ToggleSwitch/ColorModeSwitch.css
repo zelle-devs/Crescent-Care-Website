@@ -1,0 +1,251 @@
+/* ==================== COLOR MODE SWITCH ==================== */
+
+.color-mode-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  vertical-align: middle;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ---------- Sun & Moon Icons ---------- */
+.color-mode-switch-icon {
+  flex-shrink: 0;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.color-mode-switch-icon-sun {
+  color: #F59E0B;
+  filter: drop-shadow(0 0 4px rgba(245, 158, 11, 0.4));
+}
+
+.color-mode-switch-icon-moon {
+  color: #6B7280;
+  transition: transform 0.3s ease, filter 0.3s ease, color 0.3s ease;
+}
+
+.color-mode-switch:has(.color-mode-switch-input:checked) .color-mode-switch-icon-moon {
+  color: #FBBF24;
+  filter: drop-shadow(0 0 6px rgba(251, 191, 36, 0.6));
+}
+
+.color-mode-switch:has(.color-mode-switch-input:checked) .color-mode-switch-icon-sun {
+  color: #9CA3AF;
+  filter: none;
+  transform: scale(0.9);
+}
+
+/* ---------- Switch Wrapper ---------- */
+.color-mode-switch-label {
+  position: relative;
+  display: inline-block;
+  margin: 0;
+  cursor: pointer;
+  /* Font size is the master control - everything scales from here */
+  font-size: 1em;
+}
+
+/* ---------- Inner Track ---------- */
+.color-mode-switch-inner {
+  display: block;
+  margin: 0;
+  width: 9.33em;       /* 140px @ 15px base */
+  height: 2em;         /* 30px */
+  background: #E0E0E0;
+  border-radius: 1.75em;
+  overflow: hidden;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+/* Right label (shown when unchecked) */
+.color-mode-switch-inner::before {
+  content: attr(data-on);
+  position: absolute;
+  font-size: 0.8em;
+  font-weight: 500;
+  top: 50%;
+  right: 1.33em;
+  transform: translateY(-50%);
+  color: #424242;
+  transition: color 0.3s ease, left 0.3s ease, right 0.3s ease;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* Left knob (shown when unchecked) */
+.color-mode-switch-inner::after {
+  content: attr(data-off);
+  width: 4.67em;       /* 70px */
+  height: calc(100% - 0.27em);  /* auto-fit with tiny padding */
+  background: #fff;
+  border-radius: 1.75em;
+  position: absolute;
+  left: 0.13em;
+  top: 0.13em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 0.8em;
+  font-weight: 500;
+  color: #424242;
+  transition: all 0.3s ease;
+  box-shadow: 0px 0px 6px -2px #111;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* ---------- Hidden Checkbox ---------- */
+.color-mode-switch-input {
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  margin: 0;
+}
+
+/* ---------- CHECKED STATE (Dark Mode ON) ---------- */
+.color-mode-switch-input:checked + .color-mode-switch-inner {
+  background: #151515;
+  color: #fff;
+}
+
+.color-mode-switch-input:checked + .color-mode-switch-inner::after {
+  content: attr(data-on);
+  /* Move to right side */
+  left: calc(100% - 4.67em - 0.13em);
+  background: #3c3c3c;
+  color: #fff;
+}
+
+.color-mode-switch-input:checked + .color-mode-switch-inner::before {
+  content: attr(data-off);
+  right: auto;
+  left: 1.33em;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* ---------- FOCUS (Accessibility) ---------- */
+.color-mode-switch-input:focus-visible + .color-mode-switch-inner {
+  outline: 2px solid #F59E0B;
+  outline-offset: 3px;
+}
+
+/* ---------- DISABLED ---------- */
+.color-mode-switch-disabled .color-mode-switch-label,
+.color-mode-switch-input:disabled + .color-mode-switch-inner {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.color-mode-switch-disabled {
+  pointer-events: none;
+}
+
+/* ==================== SIZES ==================== */
+/* Size controls the master font-size on .color-mode-switch-label
+   Everything (width, height, knob, text) scales automatically */
+
+/* Small */
+.color-mode-switch-sm .color-mode-switch-label {
+  font-size: 0.79em;    /* 11px */
+}
+
+.color-mode-switch-sm .color-mode-switch-icon {
+  width: 18px;
+  height: 18px;
+}
+
+/* Medium (default) */
+.color-mode-switch-md .color-mode-switch-label {
+  font-size: 1em;       /* 14px */
+}
+
+/* Large */
+.color-mode-switch-lg .color-mode-switch-label {
+  font-size: 1.21em;    /* 17px */
+}
+
+.color-mode-switch-lg .color-mode-switch-icon {
+  width: 28px;
+  height: 28px;
+}
+
+/* ==================== RESPONSIVE (300px - 3000px) ==================== */
+
+/* Extra Small (300px - 480px) */
+@media (max-width: 480px) {
+  .color-mode-switch-md .color-mode-switch-label {
+    font-size: 0.85em;
+  }
+  .color-mode-switch-md .color-mode-switch-icon {
+    width: 20px;
+    height: 20px;
+  }
+  .color-mode-switch-lg .color-mode-switch-label {
+    font-size: 1em;
+  }
+}
+
+/* Small (481px - 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .color-mode-switch-md .color-mode-switch-label {
+    font-size: 0.95em;
+  }
+}
+
+/* Large (1441px - 1920px) */
+@media (min-width: 1441px) and (max-width: 1920px) {
+  .color-mode-switch-md .color-mode-switch-label {
+    font-size: 1.05em;
+  }
+}
+
+/* 2K (1921px - 2560px) */
+@media (min-width: 1921px) and (max-width: 2560px) {
+  .color-mode-switch-md .color-mode-switch-label {
+    font-size: 1.15em;
+  }
+  .color-mode-switch-md .color-mode-switch-icon {
+    width: 26px;
+    height: 26px;
+  }
+}
+
+/* 4K (2561px - 3000px+) */
+@media (min-width: 2561px) {
+  .color-mode-switch-md .color-mode-switch-label {
+    font-size: 1.3em;
+  }
+  .color-mode-switch-md .color-mode-switch-icon {
+    width: 32px;
+    height: 32px;
+  }
+  .color-mode-switch-sm .color-mode-switch-icon {
+    width: 22px;
+    height: 22px;
+  }
+  .color-mode-switch-lg .color-mode-switch-label {
+    font-size: 1.5em;
+  }
+  .color-mode-switch-lg .color-mode-switch-icon {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+/* ==================== REDUCED MOTION ==================== */
+@media (prefers-reduced-motion: reduce) {
+  .color-mode-switch-inner,
+  .color-mode-switch-inner::before,
+  .color-mode-switch-inner::after,
+  .color-mode-switch-icon {
+    transition: none;
+  }
+}

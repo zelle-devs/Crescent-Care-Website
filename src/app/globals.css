@@ -21,9 +21,11 @@
   --color-primary2: #223553;
   --color-primary-dark: #1B3073;
   --color-primary-light: #5269B0;
+  --color-primary-light-bg: #e0e2e8;
 
   /* Colors - Secondary */
   --color-secondary: #397E3F;
+  --color-secondary-light: #4ec058;
   --color-secondary-dark: #2B6030;
 
   /* Colors - Accent */
@@ -406,4 +408,31 @@
   *::-webkit-scrollbar-thumb {
     border-radius: 6px;
   }
+}
+
+/* ==================== LIGHT MODE OVERRIDES ==================== */
+
+/* ==================== THEME: BODY BACKGROUND ONLY ==================== */
+/* Dark mode (default) - image ke saath */
+html[data-theme="dark"] body {
+  background-color: transparent;
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.78), rgba(0, 0, 0, 0.78)),
+    url('/Homepage/bg-image.jpg');
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+/* Light mode - clean white bg */
+html[data-theme="light"] body {
+  background-color: transparent;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.78), rgba(0, 0, 0, 0.78)),
+    url('/Homepage/bg-image.jpg');
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
 }

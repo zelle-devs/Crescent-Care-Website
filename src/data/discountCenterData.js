@@ -2,6 +2,7 @@ const discountCenterData = [
   {
     id: 1,
     backgroundImage: "/network/discount-hero.jpg", // Update with your actual image path
+    backgroundImageLight: "/network/discount-hero.jpg",
     heading: {
       part1: "Discount",
       part2: "Centers",

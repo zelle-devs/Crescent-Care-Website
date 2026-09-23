@@ -48,6 +48,44 @@ floatAnimation={true}
     { numericValue: 500, suffix: ' +', label: 'Nationwide Network' }
   ]}
 />
+{/* <StatsBanner 
+  sectionBackground="var(--color-white)"
+  bannerBackground="var(--color-primary)"
+  textBoxBackground="var(--color-primary-dark)"
+  titleColor="var(--color-white)"
+  descriptionColor="rgba(255, 255, 255, 0.85)"
+/>
+<StatsBanner 
+  sectionBackground="var(--color-primary2)"
+  bannerBackground="linear-gradient(180deg, #1B3073 0%, #244098 100%)"
+  textBoxBackground="linear-gradient(0deg, #1B3073 0%, #244098 100%)"
+  titleColor="var(--color-white)"
+  descriptionColor="rgba(255, 255, 255, 0.85)"
+/>
+<StatsBanner 
+  sectionBackground="var(--color-dark-bg)"
+  bannerBackground="linear-gradient(180deg, #B83223 0%, #D73E2A 100%)"
+  textBoxBackground="linear-gradient(0deg, #B83223 0%, #D73E2A 100%)"
+  titleColor="var(--color-white)"
+  descriptionColor="rgba(255, 255, 255, 0.85)"
+/>
+<StatsBanner 
+  title="Pakistan's No. 1 TPA"
+  description="Crescent Care is transforming healthcare benefits..."
+  sectionBackground="var(--color-primary2)"
+  bannerBackground="linear-gradient(135deg, #397E3F 0%, #2B6030 100%)"
+  textBoxBackground="var(--color-secondary)"
+  titleColor="var(--color-white)"
+  descriptionColor="rgba(255, 255, 255, 0.9)"
+  statValueColor="#FFFFFF"
+  statLabelColor="rgba(255, 255, 255, 0.85)"
+  dividerColor="rgba(255, 255, 255, 0.4)"
+  stats={[
+    { numericValue: 3.5, suffix: 'M +', label: "Total Member's" },
+    { numericValue: 7.5, suffix: 'B +', label: "Client's Portfolio" },
+    { numericValue: 500, suffix: ' +', label: 'Nationwide Network' }
+  ]}
+/> */}
     </>
   );
 }

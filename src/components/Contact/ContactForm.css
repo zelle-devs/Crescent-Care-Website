@@ -1,7 +1,7 @@
 /* ==================== CONTACT FORM SECTION ==================== */
 .contact-form-section {
-  width: 100%;
   background-color: var(--color-dark-bg);
+  width: 100%;
   padding: var(--spacing-3xl) var(--spacing-xl);
 }
 
@@ -358,4 +358,8 @@
     font-size: 0.7rem;
     line-height: var(--line-height-normal);
   }
+}
+
+html[data-theme="light"] .contact-form-section {
+  background: var(--color-white);
 }

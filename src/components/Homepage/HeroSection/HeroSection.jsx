@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import "./HeroSection.css";
 import heroData from "@/data/heroData";
+import { useTheme } from "@/app/context/ThemeContext";
 
 const HeroSection = ({
   slides = [heroData],
@@ -23,6 +24,16 @@ const HeroSection = ({
   const [sliceComplete, setSliceComplete] = useState(false);
   const stripCount = 30;
   const slicerStrips = Array.from({ length: stripCount });
+
+  const { theme } = useTheme();   // ← ADD THIS
+
+  // Helper function - current theme ke hisaab se image de
+  const getBgImage = (slide) => {
+    if (theme === 'light' && slide.backgroundImageLight) {
+      return slide.backgroundImageLight;
+    }
+    return slide.backgroundImage;
+  };
 
   if (!slides || slides.length === 0) {
     return null;
@@ -182,39 +193,7 @@ const HeroSection = ({
   onTouchMove={handleTouchMove}
   onTouchEnd={handleTouchEnd}
     >
-      {/* {!sliceComplete && slides[currentSlide].backgroundImage && (
-  <div className="hero-slice-reveal" aria-hidden="true">
-    {slicerStrips.map((_, i) => {
-      const filled = i % 2 === 0;
-      const bgPositionX = stripCount === 1 ? 0 : (i / (stripCount - 1)) * 100;
-      return (
-        <motion.div
-          key={i}
-          className="hero-slice-strip"
-          style={{
-            left: `${(i / stripCount) * 100}%`,
-            width: `${100 / stripCount}%`,
-            backgroundImage: `url(${slides[currentSlide].backgroundImage})`,
-            backgroundSize: `${stripCount * 100}% 100%`,
-            backgroundPosition: `${bgPositionX}% center`,
-          }}
-          initial={{
-            clipPath: filled ? "inset(0% 0% 0% 0%)" : "inset(0% 50% 0% 50%)",
-          }}
-          animate={{ clipPath: "inset(0% 0% 0% 0%)" }}
-          transition={{
-            duration: filled ? 0 : 0.6,
-            delay: filled ? 0 : 0.3 + i * 0.05,
-            ease: [0.65, 0, 0.35, 1],
-          }}
-          onAnimationComplete={() => {
-            if (i === stripCount - 1) setSliceComplete(true);
-          }}
-        />
-      );
-    })}
-  </div>
-)} */}
+    
       {!sliceComplete && slides[currentSlide].backgroundImage && (
         <div className="hero-slice-reveal" aria-hidden="true">
           {slicerStrips.map((_, i) => {
@@ -228,12 +207,12 @@ const HeroSection = ({
             const collapsedClip = `inset(0% ${100 - mid}% 0% ${mid}%)`;
 
             return (
-              <motion.div
-                key={i}
-                className="hero-slice-strip"
-                style={{
-                  backgroundImage: `url(${slides[currentSlide].backgroundImage})`,
-                }}
+             <motion.div
+  key={i}
+  className="hero-slice-strip"
+  style={{
+    backgroundImage: `url(${getBgImage(slides[currentSlide])})`,   // ← yeh
+  }}
                 initial={{ clipPath: filled ? fullBandClip : collapsedClip }}
                 animate={{ clipPath: fullBandClip }}
                 transition={{
@@ -264,12 +243,12 @@ const HeroSection = ({
             }}
             style={{ cursor: total > 1 ? 'grab' : 'default' }}
           >
-           {slides[currentSlide].backgroundImage && (
+          {getBgImage(slides[currentSlide]) && (
   <>
     <div 
       className="hero-slide-bg"
       style={{ 
-        backgroundImage: `url(${slides[currentSlide].backgroundImage})`,
+        backgroundImage: `url(${getBgImage(slides[currentSlide])})`,   // ← yeh
         opacity: sliceComplete ? 1 : 0,
       }}
     />
@@ -290,18 +269,18 @@ const HeroSection = ({
                 {slides[currentSlide].heading && (
                   <motion.h1 className="hero-heading" variants={childVariants}>
                     {slides[currentSlide].heading.part1 && (
-                      <span
-                        className="hero-heading-part1"
-                        style={{ color: slides[currentSlide].heading.color1 || '#FFFFFF' }}
-                      >
-                        {slides[currentSlide].heading.part1}{' '}
-                      </span>
+                     <span
+  className="hero-heading-part1"
+  style={slides[currentSlide].heading.color1 ? { color: slides[currentSlide].heading.color1 } : undefined}
+>
+  {slides[currentSlide].heading.part1}{' '}
+</span>
                     )}
                     {slides[currentSlide].heading.part2 && (
-                      <span
-                        className={`hero-heading-part2 ${showWave ? 'wave-text' : ''}`}
-                        style={{ color: slides[currentSlide].heading.color2 || '#FFFFFF' }}
-                      >
+                     <span
+  className={`hero-heading-part2 ${showWave ? 'wave-text' : ''}`}
+  style={slides[currentSlide].heading.color2 ? { color: slides[currentSlide].heading.color2 } : undefined}
+>
                         {showWave
                           ? slides[currentSlide].heading.part2.split('').map((letter, letterIndex) => (
                             <span

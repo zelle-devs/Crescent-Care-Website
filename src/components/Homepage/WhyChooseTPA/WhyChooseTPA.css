@@ -279,3 +279,70 @@
     margin-bottom: -32px !important;
   }
 }
+/* ==================== LIGHT MODE OVERRIDES (FINAL) ==================== */
+
+/* ---------- BACKGROUND WHITE ---------- */
+html[data-theme="light"] .why-choose-us-section {
+  background-color: var(--color-white) !important;
+}
+
+html[data-theme="light"] .why-choose-border-container {
+  background-color: var(--color-white) !important;
+}
+
+/* ---------- HEADING - TWO COLOR ---------- */
+
+/* "Elevate Your Safety" - Primary (blue) */
+html[data-theme="light"] .why-choose-us-section .why-choose-heading .why-choose-heading-part1 {
+  color: var(--color-primary);
+}
+
+/* "With Our Expertise" - Dark */
+html[data-theme="light"] .why-choose-us-section .why-choose-heading .why-choose-heading-part2 {
+  color: var(--color-dark);
+}
+
+/* Base heading color (fallback) */
+html[data-theme="light"] .why-choose-us-section .why-choose-heading {
+  color: var(--color-dark);
+}
+
+/* ---------- INTRO TEXT ---------- */
+html[data-theme="light"] .why-choose-intro {
+  color: var(--color-dark-gray);
+}
+
+/* ---------- FEATURE ITEMS ---------- */
+html[data-theme="light"] .why-choose-feature-text h4 {
+  color: var(--color-primary);
+}
+
+html[data-theme="light"] .why-choose-feature-text p {
+  color: var(--color-dark-gray);
+}
+
+/* Feature item border-bottom */
+html[data-theme="light"] .why-choose-feature-item {
+  border-bottom-color: rgba(0, 0, 0, 0.08);
+}
+
+/* ---------- TAG (Why Choose Us) ---------- */
+html[data-theme="light"] .why-choose-tag {
+  color: var(--color-secondary);
+}
+
+/* ---------- ICON WRAPPER ---------- */
+html[data-theme="light"] .why-choose-icon-wrapper {
+  color: var(--color-secondary);
+  border-color: var(--color-secondary);
+}
+
+/* ---------- BORDER CONTAINER ---------- */
+html[data-theme="light"] .why-choose-border-container {
+  border-color: var(--color-secondary);
+}
+
+/* ---------- BADGE ---------- */
+html[data-theme="light"] .why-choose-badge {
+  background-color: var(--color-secondary);
+}

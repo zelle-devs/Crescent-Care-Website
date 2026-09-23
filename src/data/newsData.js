@@ -2,6 +2,7 @@ const newsMediaData = [
   {
     id: 1,
     backgroundImage: "/news/new-hero.png",
+    backgroundImageLight: "/news/new-hero.png",
     heading: {
       part1: "News &",
       part2: "Media",

@@ -1,0 +1,368 @@
+.theme-switch {
+  position: relative;
+  display: inline-block;
+  /* Fluid scaling from 300px to 3000px (Smaller & Compact Size) */
+  font-size: clamp(34px, 4.5vw, 56px);
+  width: 1em;
+  height: 1em;
+  cursor: pointer;
+  border-radius: 50%;
+  filter: drop-shadow(0 0.1em 0.22em rgba(0, 0, 0, 0.15));
+  -webkit-tap-highlight-color: transparent;
+}
+
+.theme-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+}
+
+.switch-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 0.044em solid #ffffff;
+  box-shadow: inset 0 0.06em 0.13em rgba(0, 0, 0, 0.3);
+  background: linear-gradient(180deg, #5ab5e6 0%, #aee0ff 100%);
+  z-index: 1;
+  transition: border-color 0.8s ease;
+}
+
+.switch-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #0b1325 0%, #1a2845 100%);
+  opacity: 0;
+  transition: opacity 0.8s ease;
+  z-index: -1;
+}
+
+.sky-vault {
+  position: absolute;
+  width: 100%;
+  height: 200%;
+  top: 0;
+  left: 0;
+  transform-origin: 50% 50%;
+  transition: transform 0.9s cubic-bezier(0.5, 0.1, 0.3, 1.2);
+  z-index: 2;
+}
+
+.sun,
+.moon {
+  position: absolute;
+  width: 0.31em;
+  height: 0.31em;
+  left: calc(50% - 0.155em);
+  border-radius: 50%;
+}
+
+.sun {
+  top: 0.13em;
+  background: linear-gradient(145deg, #fffcf0, #ffd300);
+  box-shadow:
+    0 0 0.16em rgba(255, 211, 0, 0.6),
+    inset -0.02em -0.02em 0.06em rgba(0, 0, 0, 0.1);
+}
+
+.moon {
+  bottom: 0.13em;
+  background: linear-gradient(145deg, #e2e2e5, #8a8e94);
+  box-shadow:
+    0 0 0.16em rgba(255, 255, 255, 0.4),
+    inset -0.02em -0.02em 0.06em rgba(0, 0, 0, 0.3);
+  transform: rotate(180deg);
+}
+
+.craters {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.crater {
+  position: absolute;
+  background: #7a7e85;
+  border-radius: 50%;
+  box-shadow:
+    inset 0.01em 0.01em 0.02em rgba(0, 0, 0, 0.4),
+    inset -0.01em -0.01em 0.02em rgba(255, 255, 255, 0.8);
+}
+
+.crater-1 {
+  width: 0.088em;
+  height: 0.088em;
+  top: 0.066em;
+  left: 0.066em;
+}
+
+.crater-2 {
+  width: 0.055em;
+  height: 0.055em;
+  top: 0.177em;
+  left: 0.055em;
+}
+
+.crater-3 {
+  width: 0.066em;
+  height: 0.066em;
+  top: 0.166em;
+  left: 0.177em;
+}
+
+.sky-clouds {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transition: 0.8s ease;
+  opacity: 1;
+  z-index: 1;
+}
+
+.cloud {
+  position: absolute;
+  background: white;
+  border-radius: 0.22em;
+  box-shadow: 0 0.02em 0.04em rgba(0, 0, 0, 0.1);
+}
+
+.cloud-1 {
+  width: 0.355em;
+  height: 0.133em;
+  top: 0.355em;
+  left: -0.088em;
+}
+
+.cloud-1::before {
+  content: "";
+  position: absolute;
+  width: 0.177em;
+  height: 0.177em;
+  background: white;
+  border-radius: 50%;
+  top: -0.077em;
+  left: 0.088em;
+}
+
+.cloud-2 {
+  width: 0.288em;
+  height: 0.111em;
+  top: 0.555em;
+  right: -0.066em;
+}
+
+.cloud-2::before {
+  content: "";
+  position: absolute;
+  width: 0.155em;
+  height: 0.155em;
+  background: white;
+  border-radius: 50%;
+  top: -0.066em;
+  left: 0.066em;
+}
+
+.sky-stars {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transition: 0.8s ease;
+  opacity: 0;
+  transform: translateY(-0.16em);
+  z-index: 1;
+}
+
+.star {
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 0 0.033em white;
+}
+
+.star-1 {
+  width: 0.022em;
+  height: 0.022em;
+  top: 0.2em;
+  left: 0.2em;
+}
+
+.star-2 {
+  width: 0.033em;
+  height: 0.033em;
+  top: 0.311em;
+  left: 0.666em;
+}
+
+.star-3 {
+  width: 0.022em;
+  height: 0.022em;
+  top: 0.5em;
+  left: 0.244em;
+}
+
+.star-4 {
+  width: 0.016em;
+  height: 0.016em;
+  top: 0.2em;
+  left: 0.5em;
+}
+
+.landscape {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.mountain {
+  position: absolute;
+  bottom: 0.133em;
+  width: 0;
+  height: 0;
+  border-left: 0.266em solid transparent;
+  border-right: 0.266em solid transparent;
+  transition: border-bottom-color 0.8s ease;
+}
+
+.mountain-1 {
+  left: -0.088em;
+  border-bottom: 0.466em solid #4ca382;
+}
+
+.mountain-2 {
+  right: -0.088em;
+  border-bottom: 0.355em solid #65b899;
+}
+
+.terrain {
+  position: absolute;
+  bottom: -0.222em;
+  left: -0.166em;
+  width: 1.333em;
+  height: 0.444em;
+  background: #348e6a;
+  border-radius: 50%;
+  transition: background 0.8s ease;
+}
+
+.tree {
+  position: absolute;
+  width: 0.2em;
+  height: 0.288em;
+  filter: drop-shadow(0.01em 0.02em 0.01em rgba(0, 0, 0, 0.25));
+  z-index: 4;
+}
+
+.tree::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 85%;
+  background: linear-gradient(90deg, #3aa673 0%, #236b47 50%, #15452d 100%);
+  clip-path: polygon(
+    50% 0%,
+    80% 35%,
+    60% 35%,
+    90% 70%,
+    65% 70%,
+    100% 100%,
+    0% 100%,
+    35% 70%,
+    10% 70%,
+    40% 35%,
+    20% 35%
+  );
+  transition: background 0.8s ease;
+}
+
+.tree::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 40%;
+  width: 20%;
+  height: 15%;
+  background: linear-gradient(90deg, #704629 0%, #4a2d1a 100%);
+  transition: background 0.8s ease;
+  border-radius: 1px;
+}
+
+.tree-1 {
+  left: 0.155em;
+  bottom: 0.133em;
+  transform: scale(0.85);
+}
+
+.tree-2 {
+  right: 0.2em;
+  bottom: 0.155em;
+  transform: scale(1.05);
+}
+
+.tree-3 {
+  left: 0.355em;
+  bottom: 0.077em;
+  transform: scale(0.65);
+  z-index: 5;
+}
+
+.tree-3::before {
+  background: linear-gradient(90deg, #2d8a5c 0%, #1a5436 50%, #0f3621 100%);
+}
+
+.theme-switch input:checked + .switch-bg {
+  border-color: #2a3b5c;
+}
+
+.theme-switch input:checked + .switch-bg::before {
+  opacity: 1;
+}
+
+.theme-switch input:checked + .switch-bg .sky-vault {
+  transform: rotate(180deg);
+}
+
+.theme-switch input:checked + .switch-bg .sky-clouds {
+  opacity: 0;
+  transform: translateY(0.16em);
+}
+
+.theme-switch input:checked + .switch-bg .sky-stars {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.theme-switch input:checked + .switch-bg .landscape .mountain-1 {
+  border-bottom-color: #162238;
+}
+
+.theme-switch input:checked + .switch-bg .landscape .mountain-2 {
+  border-bottom-color: #1e2c45;
+}
+
+.theme-switch input:checked + .switch-bg .landscape .terrain {
+  background: #0d1526;
+}
+
+.theme-switch input:checked + .switch-bg .landscape .tree::before {
+  background: linear-gradient(90deg, #1a283b 0%, #101a29 50%, #070c14 100%);
+}
+
+.theme-switch input:checked + .switch-bg .landscape .tree-3::before {
+  background: linear-gradient(90deg, #131e2e 0%, #0b121f 50%, #05080f 100%);
+}
+
+.theme-switch input:checked + .switch-bg .landscape .tree::after {
+  background: linear-gradient(90deg, #111a26 0%, #080d14 100%);
+}

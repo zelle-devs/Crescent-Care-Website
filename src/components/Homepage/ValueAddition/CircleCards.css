@@ -397,3 +397,20 @@
     -webkit-line-clamp: 5;
   }
 }
+
+html[data-theme="light"] .circle-section{
+  background-color: var(--color-white);
+}
+html[data-theme="light"] .circle-section .circle-heading .circle-heading-part1 {
+  color: var(--color-primary);
+}
+
+/* "Addition" - Dark */
+html[data-theme="light"] .circle-section .circle-heading .circle-heading-part2 {
+  color: var(--color-dark);
+}
+
+/* Base heading color (fallback agar koi span na ho) */
+html[data-theme="light"] .circle-section .circle-heading {
+  color: var(--color-dark);
+}

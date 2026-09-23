@@ -1,0 +1,235 @@
+.switch-wrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  /* Fluid scaling from 300px to 3000px screen width */
+  font-size: clamp(10px, 1.2vw, 24px);
+  width: 5.8em;
+  height: 2.5em;
+  border: 1px solid rgb(58, 58, 58);
+  border-radius: 1.25em;
+  cursor: pointer;
+  user-select: none;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+}
+
+.slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: black;
+  border-radius: 1.25em;
+  transition: 0.4s ease;
+  overflow: hidden;
+  z-index: 2;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 1.9em;
+  width: 1.9em;
+  left: 0.3em;
+  bottom: 0.3em;
+  background-color: white;
+  transition: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 50%;
+  overflow: hidden;
+  z-index: 3;
+}
+
+.moons-hole {
+  position: absolute;
+  opacity: 1;
+  transition: 0.6s ease;
+}
+
+.moon-hole {
+  position: absolute;
+  border-radius: 50%;
+}
+
+.moon-hole:nth-child(1) {
+  background-color: rgb(85, 85, 85);
+  height: 0.32em;
+  width: 0.32em;
+  top: 1.62em;
+  left: 1.25em;
+}
+
+.moon-hole:nth-child(2) {
+  background-color: rgb(85, 85, 85);
+  height: 0.62em;
+  width: 0.62em;
+  top: 1em;
+  left: 0.44em;
+}
+
+.moon-hole:nth-child(3) {
+  background-color: rgb(85, 85, 85);
+  height: 0.25em;
+  width: 0.25em;
+  top: 0.75em;
+  left: 1.31em;
+}
+
+input:checked + .slider {
+  background-color: #62cff0;
+}
+
+input:checked + .slider:before {
+  transform: translateX(3.3em);
+  background-color: orange;
+}
+
+input:checked + .slider .moons-hole {
+  transform: translateX(3.3em);
+  opacity: 0;
+}
+
+.stars {
+  position: absolute;
+  right: 0.38em;
+  top: 0;
+  bottom: 0;
+  transition: 0.6s ease;
+  transform: translateY(0px);
+}
+
+.star {
+  position: absolute;
+  fill: white;
+  animation: star-twinkle 2s infinite;
+  opacity: 1;
+}
+
+.star:nth-child(1) {
+  top: 0.31em;
+  right: 1.8em;
+  width: 1.25em;
+  animation-delay: 0.3s;
+}
+
+.star:nth-child(2) {
+  top: 1.12em;
+  right: 0.56em;
+  width: 0.94em;
+}
+
+.star:nth-child(3) {
+  top: 0.31em;
+  right: 0.94em;
+  width: 0.62em;
+  animation-delay: 0.6s;
+}
+
+.star:nth-child(4) {
+  top: 1.62em;
+  right: 1.75em;
+  width: 0.75em;
+  animation-delay: 0.9s;
+}
+
+.star:nth-child(5) {
+  top: 0.12em;
+  right: 3.12em;
+  width: 0.5em;
+  animation-delay: 1.2s;
+}
+
+input:checked + .slider .stars {
+  transform: translateY(-2em);
+  opacity: 0;
+}
+
+@keyframes star-twinkle {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.2); }
+  80% { transform: scale(0.8); }
+  100% { transform: scale(1); }
+}
+
+.clouds {
+  position: absolute;
+  left: 0.38em;
+  top: 0;
+  bottom: 0;
+  width: 1.25em;
+  transition: 0.6s ease;
+  transform: translateX(-3.4em);
+}
+
+.black-clouds {
+  position: absolute;
+  left: 0.38em;
+  top: 0;
+  bottom: 0;
+  width: 1.25em;
+  transition: 0.6s ease;
+  transform: translateX(-3.4em);
+  opacity: 0;
+  z-index: 0;
+}
+
+.black-cloud {
+  position: absolute;
+  width: 1.25em;
+  height: 1.25em;
+  background-color: #555;
+  opacity: 0.6;
+  border-radius: 50%;
+  animation: cloud-move 6s infinite;
+  animation-delay: 1s;
+}
+
+.black-cloud:nth-child(1) { top: 0.06em; right: 0.18em; }
+.black-cloud:nth-child(2) { top: 0.94em; left: 0.56em; }
+.black-cloud:nth-child(3) { top: 1.25em; left: 1.68em; }
+
+input:checked + .slider .black-clouds {
+  transform: translateX(2em);
+  opacity: 1;
+}
+
+.cloud {
+  position: absolute;
+  width: 1.25em;
+  height: 1.25em;
+  background-color: white;
+  border-radius: 50%;
+  z-index: 1;
+  animation: cloud-move 6s infinite;
+}
+
+.cloud:nth-child(1) { top: 0; height: 1.31em; width: 1.31em; right: 0.87em; }
+.cloud:nth-child(2) { height: 1.56em; width: 1.56em; border-radius: 50%; top: 0.87em; right: 0.37em; }
+.cloud:nth-child(3) { height: 1.44em; width: 1.44em; top: 1.75em; left: 0.25em; }
+.cloud:nth-child(4) { top: 1.62em; left: 1.25em; }
+.cloud:nth-child(5) { top: 1.87em; left: 1.87em; }
+.cloud:nth-child(6) { top: 1.68em; left: 2.87em; }
+.cloud:nth-child(7) { top: 1.94em; left: 3.62em; }
+
+input:checked + .slider .clouds {
+  transform: translateX(2em);
+  opacity: 1;
+}
+
+@keyframes cloud-move {
+  0% { transform: translateX(-2em); }
+  40% { transform: translateX(-2.25em); }
+  80% { transform: translateX(-1.75em); }
+  100% { transform: translateX(-2em); }
+}

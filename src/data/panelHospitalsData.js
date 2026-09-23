@@ -2,6 +2,7 @@ const panelHospitalsData = [
   {
     id: 1,
     backgroundImage: "/network/panel-hero.png",
+    backgroundImageLight: "/network/panel-hero-light.jpg",
     heading: {
       part1: "Panel",
       part2: "Hospitals",

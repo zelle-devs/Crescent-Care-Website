@@ -512,3 +512,73 @@
     rgba(0, 0, 0, 0.3) 100%
   );
 }
+
+/* ==================== LIGHT MODE OVERRIDES ==================== */
+
+/* Soft Bright Overlay */
+html[data-theme="light"] .hero-slide-overlay {
+  /* background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.55) 0%,
+    rgba(255, 255, 255, 0.35) 50%,
+    rgba(255, 255, 255, 0.15) 100%
+  ); */
+ background: none;
+}
+
+html[data-theme="light"] .hero-slice-strip::after {
+  /* background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.55) 0%,
+    rgba(255, 255, 255, 0.35) 50%,
+    rgba(255, 255, 255, 0.15) 100%
+  ); */
+  background: none;
+}
+
+/* Heading Part1 - Sirf white color wale ko black karo */
+/* Agar color1 "#FFFFFF" hai toh inline style lagta hai — usko override karo */
+html[data-theme="light"] .hero-heading-part1[style*="#FFFFFF"],
+html[data-theme="light"] .hero-heading-part1[style*="rgb(255, 255, 255)"],
+html[data-theme="light"] .hero-heading-part1[style*="white"] {
+  color: var(--color-dark) !important;
+}
+
+/* Agar color1 set hi nahi hai toh bhi default black */
+html[data-theme="light"] .hero-heading-part1:not([style]) {
+  color: var(--color-dark);
+}
+
+/* Subheading */
+html[data-theme="light"] .hero-subheading {
+  color: var(--color-primary);
+  opacity: 0.9;
+}
+
+/* Description */
+html[data-theme="light"] .hero-description {
+  color: var(--color-primary);
+  opacity: 0.85;
+}
+
+html[data-theme="light"] .slider-dot{
+   background: var(--color-primary-light);
+  border: 2px solid var(--color-primary);
+}
+html[data-theme="light"] .slider-dot.active {
+background: var(--color-primary);
+  border-color: var(--color-primary);
+}
+html[data-theme="light"] .slider-dot:hover{
+  background: var(--color-primary);
+}
+/* @media (max-width: 768px) {
+  html[data-theme="light"] .hero-slide-overlay {
+    background: linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.75) 0%,
+      rgba(255, 255, 255, 0.5) 50%,
+      rgba(255, 255, 255, 0.3) 100%
+    );
+  }
+} */

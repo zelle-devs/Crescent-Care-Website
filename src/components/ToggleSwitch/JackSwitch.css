@@ -1,0 +1,183 @@
+/* ==================== JACK SWITCH ==================== */
+
+.jack-switch {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  margin: 0;
+
+  /* Base dimensions (Medium) */
+  width: 3em;
+  height: 1.5em;
+  padding: 0.15em;
+
+  /* Colors */
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #fdf67b;
+
+  /* Shape */
+  border-radius: 0.75em;
+  box-shadow: 0.125em 0.125em 0 0.125em rgba(0, 0, 0, 0.3) inset;
+
+  /* Reset */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  outline: none;
+  border: none;
+
+  /* Animation */
+  transition:
+    background-color 0.1s 0.3s ease-out,
+    box-shadow 0.1s 0.3s ease-out;
+
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+
+/* Knob & Arrow (pseudo elements) */
+.jack-switch::before,
+.jack-switch::after {
+  content: "";
+  display: block;
+}
+
+/* Knob (circle) */
+.jack-switch::before {
+  background-color: #d7d7d7;
+  border-radius: 50%;
+  width: 1.2em;
+  height: 1.2em;
+  transition:
+    background-color 0.1s 0.3s ease-out,
+    transform 0.3s ease-out;
+  z-index: 1;
+}
+
+/* Arrow / indicator */
+.jack-switch::after {
+  background:
+    linear-gradient(transparent 50%, rgba(0, 0, 0, 0.15) 0) 0 50% / 50% 100%,
+    repeating-linear-gradient(90deg, #bbb 0, #bbb, #bbb 20%, #999 20%, #999 40%)
+      0 50% / 50% 100%,
+    radial-gradient(circle at 50% 50%, #888 25%, transparent 26%);
+  background-repeat: no-repeat;
+  border: 0.25em solid transparent;
+  border-left: 0.4em solid #d8d8d8;
+  border-right: 0 solid transparent;
+  transition:
+    border-left-color 0.1s 0.3s ease-out,
+    transform 0.3s ease-out;
+  transform: translateX(-22.5%);
+  transform-origin: 25% 50%;
+  width: 1.2em;
+  height: 1em;
+  box-sizing: border-box;
+}
+
+/* ---------- CHECKED STATE ---------- */
+.jack-switch:checked {
+  background-color: rgba(0, 0, 0, 0.45);
+  box-shadow: 0.125em 0.125em 0 0.125em rgba(0, 0, 0, 0.1) inset;
+}
+
+.jack-switch:checked::before {
+  background-color: currentColor;
+  transform: translateX(125%);
+}
+
+.jack-switch:checked::after {
+  border-left-color: currentColor;
+  transform: translateX(-2.5%) rotateY(180deg);
+}
+
+/* ---------- FOCUS STATE ---------- */
+.jack-switch:focus-visible {
+  outline: 2px solid var(--color-primary, #244098);
+  outline-offset: 3px;
+}
+
+/* ---------- DISABLED STATE ---------- */
+.jack-switch-disabled,
+.jack-switch:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ==================== SIZES ==================== */
+
+/* Small */
+.jack-switch-sm {
+  font-size: 0.8em;
+}
+
+/* Medium (default) */
+.jack-switch-md {
+  font-size: 1em;
+}
+
+/* Large */
+.jack-switch-lg {
+  font-size: 1.4em;
+}
+
+/* ==================== RESPONSIVE (300px - 3000px) ==================== */
+
+/* Extra Small (300px - 480px) */
+@media (max-width: 480px) {
+  .jack-switch-md {
+    font-size: 0.9em;
+  }
+  .jack-switch-lg {
+    font-size: 1.2em;
+  }
+}
+
+/* Small (481px - 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .jack-switch-md {
+    font-size: 0.95em;
+  }
+}
+
+/* Large (1441px - 1920px) */
+@media (min-width: 1441px) and (max-width: 1920px) {
+  .jack-switch-md {
+    font-size: 1.1em;
+  }
+  .jack-switch-lg {
+    font-size: 1.5em;
+  }
+}
+
+/* 2K (1921px - 2560px) */
+@media (min-width: 1921px) and (max-width: 2560px) {
+  .jack-switch-md {
+    font-size: 1.2em;
+  }
+  .jack-switch-lg {
+    font-size: 1.7em;
+  }
+}
+
+/* 4K (2561px - 3000px+) */
+@media (min-width: 2561px) {
+  .jack-switch-md {
+    font-size: 1.4em;
+  }
+  .jack-switch-lg {
+    font-size: 2em;
+  }
+  .jack-switch-sm {
+    font-size: 1.1em;
+  }
+}
+
+/* ==================== REDUCED MOTION ==================== */
+@media (prefers-reduced-motion: reduce) {
+  .jack-switch,
+  .jack-switch::before,
+  .jack-switch::after {
+    transition: none;
+  }
+}

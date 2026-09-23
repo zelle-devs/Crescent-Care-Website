@@ -304,3 +304,15 @@
     font-size: var(--font-5xl);
   }
 }
+html[data-theme="light"] .showcase-section {
+  background-color: var(--color-white);
+}
+html[data-theme="light"] .showcase-heading {
+  color: var(--color-secondary);
+}
+html[data-theme="light"] .showcase-description {
+    color: var(--color-primary);
+}
+html[data-theme="light"] .showcase-description strong {
+    color: var(--color-secondary);
+}

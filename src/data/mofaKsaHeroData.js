@@ -2,6 +2,7 @@ const mofaKsaHeroData = [
   {
     id: 1,
     backgroundImage: "/network/Mofa-Ksa-hero.png", // Update with your actual image path
+     backgroundImageLight: "/network/Mofa-Ksa-hero-light.jpg",
     heading: {
       part1: "MOFA",
       part2: "KSA Panel",

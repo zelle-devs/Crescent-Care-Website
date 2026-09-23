@@ -31,7 +31,7 @@
   border: 2px solid var(--color-white);
   border-radius: 40px 90px;
   padding: 28px 15px;
-  background-color: var(--color-primary2);
+  /* background-color: var(--color-primary2); */
   aspect-ratio: 5 / 3;
 }
 
@@ -77,7 +77,7 @@
   font-family: var(--font-secondary);
   font-size: var(--font-4xl);
   font-weight: 700;
-  color: var(--color-white);
+  color: var(--color-white)!important;
   line-height: var(--line-height-tight);
   letter-spacing: var(--letter-spacing-tight);
   margin: 0 0 var(--spacing-lg) 0;
@@ -462,4 +462,46 @@
   .about-trust-avatars-text {
     font-size: var(--font-lg);
   }
+}
+
+html[data-theme="light"] .about-trust-section{
+  background-color: var(--color-white)!important;
+}
+html[data-theme="light"] .about-trust-border-container{
+  border: 2px solid var(--color-secondary);
+}
+html[data-theme="light"] .about-trust-tag{
+  background-color: var(--color-secondary);
+  color: var(--color-white);
+}
+html[data-theme="light"] .about-trust-heading{
+color: var(--color-dark)!important;
+}
+html[data-theme="light"] .about-trust-description{
+color: var(--color-primary)!important;
+}
+html[data-theme="light"] .about-trust-avatar{
+  border-color: var(--color-secondary);
+}
+html[data-theme="light"] .about-trust-avatars-text {
+color: var(--color-dark)!important;
+}
+
+
+/* ==================== LIGHT MODE - TWO COLOR HEADING ==================== */
+
+/* Light mode mein highlight part blue ho */
+html[data-theme="light"] .about-trust-section .about-trust-heading-highlight {
+  color: var(--color-primary);
+}
+
+/* Light mode mein baaki heading dark ho */
+html[data-theme="light"] .about-trust-section .about-trust-heading {
+  color: var(--color-dark) !important;
+}
+
+/* Dark mode mein baaki heading white ho (default) */
+html[data-theme="dark"] .about-trust-section .about-trust-heading-highlight,
+:root:not([data-theme="light"]) .about-trust-section .about-trust-heading-highlight {
+  color: var(--color-white);
 }

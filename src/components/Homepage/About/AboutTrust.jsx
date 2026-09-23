@@ -12,6 +12,7 @@ const AboutTrust = ({
   // Content props
   tag = '10 Years Of Experience',
   heading = 'Innovating Trust, Our Journey In Securing Your Tomorrow',
+  headingHighlight = 'Innovating Trust, Our Journey',
   description = 'Aenean vestibulum condimentum condimentum. Donec a urna sed magna convallis rhoncus. Integer vel dui nec magna varius feugiat. Sed euismod, nunc sit amet aliquam tincidunt, nisl nunc aliquet nunc, vitae aliquam nisl nunc vitae nunc.',
   
   // Avatars props
@@ -123,13 +124,23 @@ const AboutTrust = ({
             </motion.span>
           )}
 
-          <motion.h2 
-            className="about-trust-heading" 
-            style={{ color: contentTextColor }}
-            variants={animationEnabled ? childVariants : undefined}
-          >
-            {heading}
-          </motion.h2>
+        <motion.h2 
+  className="about-trust-heading" 
+  style={{ color: contentTextColor }}
+  variants={animationEnabled ? childVariants : undefined}
+>
+  {headingHighlight ? (
+    <>
+      <span className="about-trust-heading-highlight">
+        {headingHighlight}
+      </span>
+      {' '}
+      {heading.replace(headingHighlight, '').trim()}
+    </>
+  ) : (
+    heading
+  )}
+</motion.h2>
 
           <motion.p 
             className="about-trust-description" 

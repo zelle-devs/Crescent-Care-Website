@@ -192,3 +192,20 @@
     font-size: var(--font-lg);
   }
 }
+
+html[data-theme="light"] .partners-section {
+border-top: 2px solid var(--color-primary-light-bg);
+border-bottom: 2px solid var(--color-primary-light-bg);
+}
+html[data-theme="light"] .partners-left {
+  background: var(--color-primary-light-bg);
+}
+html[data-theme="light"] .partners-title {
+color: var(--color-dark);
+}
+html[data-theme="light"] .partners-desc {
+  color: var(--color-dark);
+}
+html[data-theme="light"] .partners-stage {
+    background: var(--color-white);
+}

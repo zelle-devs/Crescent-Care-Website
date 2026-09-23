@@ -2,6 +2,7 @@ const aboutData = [
   {
     id: 1,
     backgroundImage: "/About/about-hero.png", // Update with your actual image path
+    backgroundImageLight: "/about/about-hero-light.jpg",
     heading: {
       part1: "About",
       part2: "Crescent Care",

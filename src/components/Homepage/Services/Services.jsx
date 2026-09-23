@@ -11,13 +11,13 @@ const Services = () => {
   const servicesData = [
     {
       id: 1,
-      icon: <FaRegBuilding color="#ffffff" size={36} />,
+      icon: <FaRegBuilding  size={36} />,
       title: "Claim Management",
       description: "Our services strive towards complete implementation of automated end to-end process flows until the claims are successfully resolved"
     },
     {
       id: 2,
-      icon: <CiShop color="#ffffff" size={36} />,
+      icon: <CiShop  size={36} />,
       title: "Market Research",
       description: "Quality Market research for making insightful decision"
     },
@@ -25,8 +25,8 @@ const Services = () => {
       id: 3,
       icon: (
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-          <FaRegComment color="#ffffff" size={20} style={{ marginLeft: '15px' }} className="logo"/>
-          <FaRegUser color="#ffffff" size={20} style={{ marginTop: '4px' }} />
+          <FaRegComment  size={20} style={{ marginLeft: '15px' }} className="logo"/>
+          <FaRegUser  size={20} style={{ marginTop: '4px' }} />
         </div>
       ),
       title: "Risk Management",
@@ -34,19 +34,19 @@ const Services = () => {
     },
     {
       id: 4,
-      icon: <FaEarthAsia color="#ffffff" size={36} />,
+      icon: <FaEarthAsia  size={36} />,
       title: "Provider Network",
       description: "Group of physicians and specialists of health care providers for your out of costs to be minimal."
     },
     {
       id: 5,
-      icon: <FaFileLines color="#ffffff" size={36} />,
+      icon: <FaFileLines  size={36} />,
       title: "Policy Administration",
       description: "Includes appropriate additions, deletions, and changes to policy benefits and coverage throughout the year"
     },
     {
       id: 6,
-      icon: <BiPhoneCall color="#ffffff" size={36} />,
+      icon: <BiPhoneCall  size={36} />,
       title: "Call Center",
       description: "24/7 customer care service to assist and guide for healthy customer relationship"
     }
@@ -106,9 +106,10 @@ const Services = () => {
         whileInView="visible"
         viewport={{ once: true, amount: 0.1 }}
       >
-        <motion.h2 className="services-heading" variants={headingVariants}>
-          Our Services
-        </motion.h2>
+       <motion.h2 className="services-heading" variants={headingVariants}>
+  <span className="services-heading-part1">Our</span>{' '}
+  <span className="services-heading-part2">Services</span>
+</motion.h2>
         
         <div className="services-grid">
           {servicesData.map((service) => (

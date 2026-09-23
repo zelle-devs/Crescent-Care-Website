@@ -5,6 +5,13 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import "./Header.css";
 import { BiChevronDown } from "react-icons/bi";
+import { useTheme } from "@/app/context/ThemeContext";
+import ThemeToggle from "../ToggleSwitch/ThemeToggle";
+import LightSwitch from "../ToggleSwitch/LightSwitch";
+import ThemeToggle2 from "../ToggleSwitch/ThemeToggle2";
+import JackSwitch from "../ToggleSwitch/JackSwitch";
+import ColorModeSwitch from "../ToggleSwitch/ColorModeSwitch";
+import RockerSwitch from "../ToggleSwitch/RockerSwitch";
 
 const Header = () => {
   const [openDropdown, setOpenDropdown] = useState(null);
@@ -12,6 +19,7 @@ const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const headerRef = useRef(null);
   const closeTimeoutRef = useRef(null);
+   const { theme, toggleTheme } = useTheme(); 
 
   // Login & Download dropdown data
   const dropdownData = {
@@ -234,6 +242,8 @@ const handleNavDropdownMouseEnter = (dropdownName) => {
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.6, ease: "easeOut" }}
           >
+          
+
             {Object.entries(dropdownData).map(([key, data]) => (
               <div 
                 key={key} 
@@ -274,6 +284,16 @@ const handleNavDropdownMouseEnter = (dropdownName) => {
                 </div>
               </div>
             ))}
+               {/* ===== THEME TOGGLE - ADD THIS ===== */}
+  <div className="header-theme-toggle">
+    <JackSwitch
+      checked={theme === 'light'}
+      onChange={toggleTheme}
+      onDark={theme === 'dark'}
+      size="md"
+      ariaLabel="Toggle dark mode"
+    />
+  </div>
           </motion.div>
         </div>
       </div>
@@ -404,8 +424,19 @@ const handleNavDropdownMouseEnter = (dropdownName) => {
             </motion.div>
           </div>
         ))}
+
       </div>
     </div>
+  </div>
+        {/* ===== MOBILE THEME TOGGLE - ADD THIS ===== */}
+  <div className="header-theme-toggle-mobile">
+    <ColorModeSwitch
+      checked={theme === 'light'}
+      onChange={toggleTheme}
+      onDark={theme === 'dark'}
+      size="md"
+      ariaLabel="Toggle dark mode"
+    />
   </div>
 </motion.div>
 

@@ -4,7 +4,7 @@
   width: 100%;
   /* padding: var(--spacing-3xl) var(--spacing-xl); */
   padding: var(--spacing-3xl) 0;
-  background: var(--color-dark-bg)!important;
+  background: var(--color-dark-bg);
   overflow: hidden;
 }
 
@@ -264,4 +264,24 @@
   .carousel-track {
     gap: var(--spacing-sm);
   }
+}
+
+html[data-theme="light"] .carousel-section {
+background: var(--color-white);
+}
+
+html[data-theme="light"] .carousel-title {
+color: var(--color-dark);
+}
+html[data-theme="light"] .carousel-subtitle {
+color: var(--color-dark-gray);
+}
+
+html[data-theme="light"] .carousel-row::before {
+  left: 0;
+  background: linear-gradient(to right, var(--color-dark-gray) 0%, transparent 100%);
+}
+html[data-theme="light"] .carousel-row::after {
+  right: 0;
+  background: linear-gradient(to left, var(--color-dark-gray) 0%, transparent 100%);
 }
