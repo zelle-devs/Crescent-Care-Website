@@ -12,7 +12,8 @@ const HeroSection = ({
   showDots = true,
   autoPlayInterval = 5000,
   showWave = false,
-  height = "100vh"
+  height = "100vh",
+  trigger = true,
 }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
@@ -25,15 +26,43 @@ const HeroSection = ({
   const stripCount = 30;
   const slicerStrips = Array.from({ length: stripCount });
 
-  const { theme } = useTheme();   // ← ADD THIS
+ const { theme, mounted } = useTheme();
+
+//  useEffect(() => {
+//   if (!mounted) return;
+
+//   setSliceComplete(false);
+// }, [theme, mounted]);
+// Reset slice animation on theme change
+useEffect(() => {
+  if (!mounted) return;
+  setSliceComplete(false);
+}, [theme, mounted]);
+
+// START slice animation only when trigger is true
+useEffect(() => {
+  if (!mounted) return;
+  if (!trigger) return;
+
+  // Chota delay taake DOM ready ho
+  const timer = setTimeout(() => {
+    setSliceComplete(false);  // ensure slice is reset
+    // Slice anim apne aap chalu ho jayegi (kyunki AnimatePresence render karti hai)
+  }, 50);
+
+  return () => clearTimeout(timer);
+}, [trigger, mounted]);
 
   // Helper function - current theme ke hisaab se image de
-  const getBgImage = (slide) => {
-    if (theme === 'light' && slide.backgroundImageLight) {
-      return slide.backgroundImageLight;
-    }
-    return slide.backgroundImage;
-  };
+ const getBgImage = (slide) => {
+  if (!mounted) return null;
+
+  if (theme === 'light' && slide.backgroundImageLight) {
+    return slide.backgroundImageLight;
+  }
+
+  return slide.backgroundImage;
+};
 
   if (!slides || slides.length === 0) {
     return null;
@@ -194,8 +223,10 @@ const HeroSection = ({
   onTouchEnd={handleTouchEnd}
     >
     
-      {!sliceComplete && slides[currentSlide].backgroundImage && (
-        <div className="hero-slice-reveal" aria-hidden="true">
+      {/* {mounted && !sliceComplete && getBgImage(slides[currentSlide]) && (
+        <div className="hero-slice-reveal" aria-hidden="true"> */}
+        {mounted && trigger && !sliceComplete && getBgImage(slides[currentSlide]) && (
+  <div className="hero-slice-reveal" aria-hidden="true">
           {slicerStrips.map((_, i) => {
             const filled = i % 2 === 0;
             const stripW = 100 / stripCount;
@@ -243,13 +274,13 @@ const HeroSection = ({
             }}
             style={{ cursor: total > 1 ? 'grab' : 'default' }}
           >
-          {getBgImage(slides[currentSlide]) && (
+{mounted && getBgImage(slides[currentSlide]) && (
   <>
-    <div 
+    <div
       className="hero-slide-bg"
-      style={{ 
-        backgroundImage: `url(${getBgImage(slides[currentSlide])})`,   // ← yeh
-        opacity: sliceComplete ? 1 : 0,
+      style={{
+        backgroundImage: `url(${getBgImage(slides[currentSlide])})`,
+        opacity: trigger ? (sliceComplete ? 1 : 0) : 1, 
       }}
     />
     <div className="hero-slide-overlay" />
@@ -259,12 +290,12 @@ const HeroSection = ({
             {/* Content */}
             <div className="hero-content-container">
               <motion.div
-                className="hero-content"
-                variants={contentVariants}
-                initial="initial"
-                animate={sliceComplete ? "animate" : "initial"}
-                exit="exit"
-              >
+  className="hero-content"
+  variants={contentVariants}
+  initial="initial"
+  animate={(trigger && sliceComplete) ? "animate" : "initial"}
+  exit="exit"
+>
                 {/* Heading */}
                 {slides[currentSlide].heading && (
                   <motion.h1 className="hero-heading" variants={childVariants}>

@@ -10,13 +10,12 @@
   gap: 16px;
   margin: 0 auto;
   padding: 0 16px 12px;
-  background-color: var(--color-white);
+  background-color: var(--color-dark-bg);
 }
 
 .expertise-card {
   position: relative;
-  background: var(--color-white);
-  border: 1px solid var(--color-light-gray);
+  background: var(--color-dark-bg);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-md);
   padding: 20px;
@@ -25,13 +24,13 @@
 }
 
 .expertise-card:hover {
-  box-shadow: var(--shadow-xl);
   border-color: transparent;
 }
 
 /* ---------- Big faded number ---------- */
 
 .expertise-number {
+  opacity: 0.15;
   position: absolute;
   top: 4px;
   right: 14px;
@@ -40,7 +39,6 @@
   font-size: 56px;
   line-height: 1;
   color: var(--color-primary);
-  opacity: 0.06;
   pointer-events: none;
   z-index: 0;
 }
@@ -51,7 +49,25 @@
 .expertise-card--accent .expertise-number {
   color: var(--color-accent);
 }
+.expertise-card--primary{
+  border: 1px dashed var(--color-primary);
+}
+.expertise-card--secondary{
+  border: 1px dashed var(--color-secondary);
+}
+.expertise-card--accent{
+  border: 1px dashed var(--color-accent);
+}
 
+.expertise-card--primary:hover{
+  box-shadow: 0 10px 25px rgba(72, 122, 221, 0.301);
+}
+.expertise-card--secondary:hover{
+  box-shadow: 0 10px 25px rgba(112, 221, 72, 0.301);
+}
+.expertise-card--accent:hover{
+  box-shadow: 0 10px 25px rgba(221, 72, 72, 0.301);
+}
 /* ---------- Icon badge ---------- */
 
 .expertise-icon-badge {
@@ -86,7 +102,7 @@
   font-weight: 600;
   font-size: 17px;
   line-height: 1.25;
-  color: var(--color-dark);
+  color: var(--color-white);
   letter-spacing: -0.01em;
   margin-bottom: 10px;
   text-align: center;
@@ -265,4 +281,27 @@
   .expertise-bar {
     transition: none;
   }
+}
+
+html[data-theme="light"] .expertise-grid {
+background-color: var(--color-white);
+}
+html[data-theme="light"] .expertise-card{
+  background-color: var(--color-white);
+}
+html[data-theme="light"] .expertise-number {
+  opacity: 0.06;
+}
+html[data-theme="light"] .expertise-card--primary,
+html[data-theme="light"] .expertise-card--secondary,
+html[data-theme="light"] .expertise-card--accent{
+  border: 1px solid var(--color-light-gray);
+}
+html[data-theme="light"] .expertise-card--primary:hover,
+html[data-theme="light"] .expertise-card--secondary:hover,
+html[data-theme="light"] .expertise-card--accent:hover{
+    box-shadow: var(--shadow-xl);
+}
+html[data-theme="light"] .expertise-title {
+color: var(--color-dark);
 }

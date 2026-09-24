@@ -9,6 +9,7 @@ import ReviewStep from './ReviewStep';
 import { updateStepInURL, getStepFromPath } from '@/app/utils/urlParams';
 import DynamicButton from './DynamicButton';
 import LoadingSpinner from './LoadingSpinner';
+import Loader from '../Loader/Loader';
 
 const stepperVariants = {
   hidden: {},
@@ -519,7 +520,7 @@ const BookingSystem = () => {
     return (
         <div className="section-padding booking-main-wrapper">
             {/* Confirming Overlay */}
-            {isConfirming && <LoadingSpinner />}
+            {isConfirming && <Loader />}
 
             {/* Stepper with dynamic progress line */}
             <motion.div

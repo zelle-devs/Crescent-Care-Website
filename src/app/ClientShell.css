@@ -1,0 +1,49 @@
+/* ==================== INITIAL LOADER - BLACK SCREEN ==================== */
+
+.initial-loader-black-screen {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  background: #000000!important;   /* Pure black */
+  z-index: 999999;       /* Above everything */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Fade out animation */
+  animation: loaderFadeOut 0.5s ease 1.9s forwards;
+}
+
+/* Loader fade out (before removal) */
+@keyframes loaderFadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+/* ==================== MAIN CONTENT FADE IN ==================== */
+
+.content-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.content-visible {
+  opacity: 1;
+  pointer-events: auto;
+  animation: contentFadeIn 0.6s ease 0.1s backwards;
+}
+
+@keyframes contentFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

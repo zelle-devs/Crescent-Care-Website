@@ -1,0 +1,411 @@
+/* ==================== NEWSLETTER MODAL ==================== */
+
+/* ---------- Overlay ---------- */
+.nl-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* ---------- Modal Container (Compact + Perfect Center) ---------- */
+.nl-modal {
+  position: relative;
+  width: 100%;
+  max-width: 720px;
+  background: #FFFFFF;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(0, 0, 0, 0.05);
+  max-height: 85vh;
+  display: flex;
+  margin: auto;
+}
+
+/* ---------- Close Button ---------- */
+.nl-modal-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 10;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  border: 1px solid #E5E7EB;
+  color: #DC2626;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.nl-modal-close:hover {
+  background: #FEE2E2;
+  transform: rotate(90deg);
+  border-color: #DC2626;
+}
+
+/* ---------- Modal Body ---------- */
+.nl-modal-body {
+  display: flex;
+  width: 100%;
+  min-height: 420px;
+}
+
+/* ==================== LEFT SIDE - 20% FULL HEIGHT IMAGE ==================== */
+.nl-modal-left {
+  flex: 0 0 30%;          /* ← 20% width */
+  background: linear-gradient(135deg, #F8F9FA 0%, #E9ECEF 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: stretch;
+  padding: 0;
+  overflow: hidden;
+}
+
+.nl-modal-image-wrapper {
+  width: 100%;
+  height: 100%;           /* ← Full height */
+  overflow: hidden;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.nl-modal-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;      /* ← Fill entire space */
+  object-position: center;
+  display: block;
+}
+
+/* ==================== RIGHT SIDE - FORM ==================== */
+.nl-modal-right {
+  flex: 1;
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+}
+
+.nl-modal-title {
+  font-family: var(--font-secondary, 'Poppins', sans-serif);
+  font-size: 20px;
+  font-weight: 700;
+  color: #244098;
+  line-height: 1.25;
+  margin: 0 0 8px;
+  letter-spacing: -0.02em;
+}
+
+.nl-modal-subtitle {
+  font-family: var(--font-primary, 'Inter', sans-serif);
+  font-size: 13px;
+  color: #4B5563;
+  line-height: 1.5;
+  margin: 0 0 20px;
+}
+
+/* ---------- Form ---------- */
+.nl-modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.nl-input {
+  width: 100%;
+  padding: 10px 14px;
+  font-family: var(--font-primary, 'Inter', sans-serif);
+  font-size: 13px;
+  color: #1F2937;
+  background: #FFFFFF;
+  border: 1.5px solid #D1D5DB;
+  border-radius: 8px;
+  outline: none;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+.nl-input::placeholder {
+  color: #9CA3AF;
+}
+
+.nl-input:focus {
+  border-color: #244098;
+  box-shadow: 0 0 0 3px rgba(36, 64, 152, 0.1);
+}
+
+.nl-submit-btn {
+  margin-top: 6px;
+  padding: 11px 20px;
+  background: #244098;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 8px;
+  font-family: var(--font-primary, 'Inter', sans-serif);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  letter-spacing: 0.3px;
+}
+
+.nl-submit-btn:hover {
+  background: #1B3073;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(36, 64, 152, 0.3);
+}
+
+.nl-submit-btn:active {
+  transform: translateY(0);
+}
+
+.nl-privacy-text {
+  margin-top: 14px;
+  font-family: var(--font-primary, 'Inter', sans-serif);
+  font-size: 11px;
+  color: #6B7280;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.nl-privacy-link {
+  color: #244098;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.nl-privacy-link:hover {
+  color: #1B3073;
+  text-decoration: underline;
+}
+
+/* ==================== SUCCESS STATE ==================== */
+.nl-modal-success {
+  text-align: center;
+  padding: 20px;
+}
+
+.nl-success-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #D1FAE5;
+  color: #065F46;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  font-weight: 700;
+  margin: 0 auto 20px;
+  animation: successPop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes successPop {
+  from { transform: scale(0); }
+  to { transform: scale(1); }
+}
+
+.nl-modal-success h3 {
+  font-family: var(--font-secondary, 'Poppins', sans-serif);
+  font-size: 20px;
+  color: #244098;
+  margin: 0 0 8px;
+}
+
+.nl-modal-success p {
+  font-family: var(--font-primary, 'Inter', sans-serif);
+  font-size: 13px;
+  color: #6B7280;
+  margin: 0;
+}
+
+/* ==================== RESPONSIVE ==================== */
+
+/* Tablet (max 900px) */
+@media (max-width: 900px) {
+  .nl-modal {
+    max-width: 620px;
+  }
+
+  .nl-modal-left {
+    flex: 0 0 22%;    /* Slightly bigger on smaller screens */
+  }
+
+  .nl-modal-right {
+    padding: 28px 24px;
+  }
+
+  .nl-modal-title {
+    font-size: 18px;
+  }
+
+  .nl-modal-subtitle {
+    font-size: 12px;
+  }
+}
+
+/* Mobile (max 768px) - Stack Vertically */
+@media (max-width: 768px) {
+  .nl-modal-overlay {
+    padding: 12px;
+  }
+
+  .nl-modal {
+    max-width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+
+  .nl-modal-body {
+    flex-direction: column;
+    min-height: auto;
+  }
+
+  /* On mobile, image becomes a top banner */
+  .nl-modal-left {
+    flex: 0 0 auto;
+    width: 100%;
+    height: 160px;      /* Fixed height banner */
+  }
+
+  .nl-modal-image-wrapper {
+    height: 160px;
+  }
+
+  .nl-modal-right {
+    padding: 24px 20px 28px;
+  }
+
+  .nl-modal-title {
+    font-size: 18px;
+    text-align: center;
+  }
+
+  .nl-modal-subtitle {
+    font-size: 12px;
+    text-align: center;
+    margin-bottom: 18px;
+  }
+
+  .nl-input {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+
+  .nl-submit-btn {
+    padding: 11px 18px;
+    font-size: 13px;
+  }
+
+  .nl-privacy-text {
+    font-size: 10px;
+    margin-top: 12px;
+  }
+}
+
+/* Small Mobile (max 480px) */
+@media (max-width: 480px) {
+  .nl-modal-overlay {
+    padding: 8px;
+  }
+
+  .nl-modal {
+    border-radius: 14px;
+  }
+
+  .nl-modal-close {
+    top: 8px;
+    right: 8px;
+    width: 30px;
+    height: 30px;
+  }
+
+  .nl-modal-left {
+    height: 130px;
+  }
+
+  .nl-modal-image-wrapper {
+    height: 130px;
+  }
+
+  .nl-modal-right {
+    padding: 20px 16px 22px;
+  }
+
+  .nl-modal-title {
+    font-size: 16px;
+  }
+
+  .nl-modal-subtitle {
+    font-size: 11px;
+    margin-bottom: 16px;
+  }
+
+  .nl-modal-form {
+    gap: 8px;
+  }
+
+  .nl-input {
+    padding: 9px 12px;
+    font-size: 12px;
+  }
+
+  .nl-submit-btn {
+    padding: 10px 16px;
+    font-size: 12px;
+  }
+
+  .nl-privacy-text {
+    font-size: 10px;
+    margin-top: 10px;
+  }
+}
+
+/* Very Small (max 360px) */
+@media (max-width: 360px) {
+  .nl-modal-title {
+    font-size: 14px;
+  }
+
+  .nl-modal-subtitle {
+    font-size: 10px;
+  }
+
+  .nl-input {
+    font-size: 11px;
+    padding: 8px 10px;
+  }
+
+  .nl-modal-left {
+    height: 110px;
+  }
+
+  .nl-modal-image-wrapper {
+    height: 110px;
+  }
+}
+
+/* ==================== REDUCED MOTION ==================== */
+@media (prefers-reduced-motion: reduce) {
+  .nl-modal-overlay,
+  .nl-modal {
+    transition: none !important;
+    animation: none !important;
+  }
+}

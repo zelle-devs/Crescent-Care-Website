@@ -1,4 +1,4 @@
-/* ==================== REVIEW STEP ==================== */
+/* ==================== REVIEW STEP - DARK MODE (DEFAULT) ==================== */
 
 .review-main {
     max-width: var(--max-width);
@@ -14,10 +14,10 @@
     align-items: stretch;
     width: 100%;
     box-sizing: border-box;
-    background: var(--bg-secondary);
+    background: var(--color-dark2);
     border-radius: var(--radius-lg);
     padding: calc(var(--spacing-unit) * 2.5) calc(var(--spacing-unit) * 0.8);
-    box-shadow: 6px 6px 12px #d1d9e6, -6px -6px 12px var(--white);
+    border: 1px solid var(--color-primary);
     min-height: auto !important;
 }
 
@@ -47,14 +47,14 @@
     background: linear-gradient(to bottom, transparent, var(--color-primary), var(--color-primary), transparent);
     height: auto;
     min-height: 250px;
-    opacity: 0.4;
+    opacity: 0.5;
     border-radius: 1px;
 }
 
-/* ==================== TITLES ==================== */
+/* ==================== TITLES - DARK ==================== */
 .step-title {
     font-size: var(--fs-h4) !important;
-    color: var(--text-main);
+    color: var(--color-primary) !important;
     margin-bottom: calc(var(--spacing-unit) * 1);
     line-height: var(--line-height-tight);
 }
@@ -62,13 +62,13 @@
 .section-label {
     font-size: var(--fs-small);
     font-weight: 700;
-    color: var(--text-main);
+    color: var(--color-primary);
     text-transform: uppercase;
     letter-spacing: 0.8px;
     margin-bottom: calc(var(--spacing-unit) * 1);
     margin-top: calc(var(--spacing-unit) * 1.75);
     padding-bottom: calc(var(--spacing-unit) * 0.5);
-    border-bottom: 1px solid rgba(36, 64, 152, 0.2);
+    border-bottom: 1px solid var(--color-primary);
 }
 
 .section-label:first-of-type {
@@ -77,7 +77,7 @@
 
 .side-label {
     font-size: var(--fs-h4);
-    color: var(--text-main);
+    color: var(--color-primary);
     margin-bottom: calc(var(--spacing-unit) * 1.5);
     text-align: left;
     font-weight: 600;
@@ -112,7 +112,7 @@
 }
 
 .edit-icon-inline:hover {
-    color: var(--text-main);
+    color: var(--color-white);
     transform: scale(1.05);
 }
 
@@ -143,18 +143,19 @@
     margin-left: 4px;
 }
 
+/* ==================== REVIEW ITEM - DARK ==================== */
 .review-item {
     padding: var(--spacing-unit);
-    background: var(--bg-secondary);
+    background: var(--color-dark2);
+    border: 1px solid var(--color-primary-overlay);
     border-radius: var(--radius-sm);
-    box-shadow: inset 2px 2px 4px #d1d9e6, inset -2px -2px 4px var(--white);
     box-sizing: border-box;
 }
 
 .review-item p {
     font-size: var(--fs-small);
     font-weight: 500;
-    color: var(--text-main);
+    color: var(--color-white);
     margin: 0;
     word-break: break-word;
 }
@@ -163,7 +164,7 @@
     grid-column: span 2;
 }
 
-/* ==================== SELECTION INFO (Right Side) ==================== */
+/* ==================== SELECTION INFO (Right Side) - DARK ==================== */
 .selection-info {
     display: flex;
     flex-direction: column;
@@ -181,12 +182,12 @@
     width: calc(var(--spacing-unit) * 4.4);
     height: calc(var(--spacing-unit) * 4.4);
     border-radius: var(--radius-sm);
-    background: var(--bg-secondary);
+    background: var(--color-dark2);
+    border: 1px solid var(--color-primary-overlay);
     display: flex;
     align-items: center;
     justify-content: center;
     color: var(--color-primary);
-    box-shadow: 3px 3px 6px #d1d9e6, -3px -3px 6px var(--white);
     flex-shrink: 0;
 }
 
@@ -202,12 +203,12 @@
 .info-text p {
     font-size: var(--fs-small);
     font-weight: 700;
-    color: var(--text-main);
+    color: var(--color-white);
     margin: 0;
     line-height: var(--line-height-tight);
 }
 
-/* ==================== NOTE ==================== */
+/* ==================== NOTE - DARK ==================== */
 .selection-note {
     margin-top: auto;
     padding-top: calc(var(--spacing-unit) * 2);
@@ -217,10 +218,10 @@
     display: flex;
     align-items: center;
     gap: calc(var(--spacing-unit) * 0.75);
-    background: rgba(0, 0, 0, 0.03);
+    background: var(--color-primary-overlay);
     padding: var(--spacing-unit);
     border-radius: var(--radius-sm);
-    border: 1px solid rgba(255, 255, 255, 0.6);
+    border: 1px solid var(--color-primary-overlay);
 }
 
 .note-icon {
@@ -233,7 +234,7 @@
 .note-content span {
     font-size: var(--fs-small);
     font-style: italic;
-    color: var(--text-body);
+    color: var(--color-gray);
     line-height: var(--line-height-tight);
 }
 
@@ -618,4 +619,111 @@
     .vertical-line {
         min-height: 150px;
     }
+}
+
+
+/* ==================== PREMIUM LIGHT MODE ==================== */
+
+/* ---------- Review Card ---------- */
+html[data-theme="light"] .review-single-card {
+    background: var(--bg-secondary);
+    border: none;
+    box-shadow:
+        6px 6px 12px rgba(36, 64, 152, 0.08),
+        -6px -6px 12px #FFFFFF;
+}
+
+/* ---------- Vertical Divider ---------- */
+html[data-theme="light"] .vertical-line {
+    background: linear-gradient(
+        to bottom,
+        transparent,
+        rgba(36, 64, 152, 0.4),
+        rgba(36, 64, 152, 0.4),
+        transparent
+    );
+    opacity: 0.5;
+}
+
+/* ---------- Titles ---------- */
+html[data-theme="light"] .step-title {
+    color: var(--color-dark) !important;
+}
+
+html[data-theme="light"] .section-label {
+    color: var(--color-dark);
+    border-bottom-color: rgba(36, 64, 152, 0.15);
+}
+
+html[data-theme="light"] .side-label {
+    color: var(--color-dark);
+}
+
+/* ---------- Edit Icon ---------- */
+html[data-theme="light"] .edit-icon-inline {
+    color: var(--color-primary);
+}
+
+html[data-theme="light"] .edit-icon-inline:hover {
+    color: var(--color-dark);
+}
+
+/* ---------- Review Item Wrapper Label ---------- */
+html[data-theme="light"] .review-item-wrapper span {
+    color: var(--color-primary);
+}
+
+/* ---------- Review Item Box ---------- */
+html[data-theme="light"] .review-item {
+    background: var(--bg-secondary);
+    border: none;
+    box-shadow:
+        inset 2px 2px 4px rgba(36, 64, 152, 0.08),
+        inset -2px -2px 4px #FFFFFF;
+}
+
+html[data-theme="light"] .review-item p {
+    color: var(--color-dark);
+}
+
+/* ---------- Info Icons ---------- */
+html[data-theme="light"] .info-icon {
+    background: var(--bg-secondary);
+    border: none;
+    color: var(--color-primary);
+    box-shadow:
+        3px 3px 6px rgba(36, 64, 152, 0.1),
+        -3px -3px 6px #FFFFFF;
+}
+
+html[data-theme="light"] .info-text span {
+    color: var(--color-gray);
+}
+
+html[data-theme="light"] .info-text p {
+    color: var(--color-dark);
+}
+
+/* ---------- Note Box ---------- */
+html[data-theme="light"] .note-content {
+    background: rgba(36, 64, 152, 0.04);
+    border: 1px solid rgba(36, 64, 152, 0.06);
+}
+
+html[data-theme="light"] .note-icon {
+    color: var(--color-primary);
+}
+
+html[data-theme="light"] .note-content span {
+    color: var(--color-dark-gray);
+}
+
+/* ==================== SMOOTH TRANSITIONS - LIGHT ==================== */
+html[data-theme="light"] .review-single-card,
+html[data-theme="light"] .review-item,
+html[data-theme="light"] .info-icon,
+html[data-theme="light"] .note-content,
+html[data-theme="light"] .edit-icon-inline,
+html[data-theme="light"] .vertical-line {
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }

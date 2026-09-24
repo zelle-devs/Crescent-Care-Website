@@ -1,4 +1,4 @@
-/* ==================== FORM STEP ==================== */
+/* ==================== FORM STEP - DARK MODE (DEFAULT) ==================== */
 
 .split-layout-form {
     display: flex;
@@ -17,20 +17,20 @@
 }
 
 .form-card {
-    background: var(--bg-secondary);
+    background: var(--color-dark2);
     padding: calc(var(--spacing-unit) * 2.5);
     border-radius: var(--radius-lg);
-    box-shadow: 6px 6px 12px #d1d9e6, -6px -6px 12px var(--white);
+    border: 1px solid var(--color-primary);
     height: 100%;
 }
 
 /* ==================== SUMMARY CONTAINER RIGHT (25%) ==================== */
 .summary-container-right {
     flex: 0 0 25%;
-    background: var(--bg-secondary);
+    background: var(--color-dark2);
     padding: calc(var(--spacing-unit) * 2.5) calc(var(--spacing-unit) * 2);
     border-radius: var(--radius-lg);
-    box-shadow: 6px 6px 12px #d1d9e6, -6px -6px 12px var(--white);
+    border: 1px solid var(--color-primary);
     display: flex;
     flex-direction: column;
     min-width: 0;
@@ -39,13 +39,13 @@
 /* ==================== TITLES ==================== */
 .step-title {
     font-size: var(--fs-h4) !important;
-    color: var(--text-main);
+    color: var(--color-primary) !important;
     margin-bottom: calc(var(--spacing-unit) * 0.75);
     line-height: var(--line-height-tight);
 }
 
 .form-subtitle {
-    color: var(--text-body);
+    color: var(--color-gray);
     font-size: var(--fs-small);
     margin-bottom: calc(var(--spacing-unit) * 2.5);
     line-height: var(--line-height-normal);
@@ -54,13 +54,13 @@
 .section-label {
     font-size: var(--fs-small);
     font-weight: 700;
-    color: var(--text-main);
+    color: var(--color-white)!important;
     text-transform: uppercase;
     letter-spacing: 0.8px;
     margin-bottom: calc(var(--spacing-unit) * 1.25);
     margin-top: calc(var(--spacing-unit) * 1);
     padding-bottom: calc(var(--spacing-unit) * 0.5);
-    border-bottom: 1px solid rgba(36, 64, 152, 0.2);
+    border-bottom: 1px solid var(--color-primary);
 }
 
 .section-label:first-of-type {
@@ -69,7 +69,7 @@
 
 .side-label {
     font-size: var(--fs-h4);
-    color: var(--text-main);
+    color: var(--color-primary);
     margin-bottom: calc(var(--spacing-unit) * 1.5);
     text-align: left;
     font-weight: 600;
@@ -97,7 +97,7 @@
 .input-group label {
     font-size: var(--fs-small);
     font-weight: 700;
-    color: var(--color-primary);
+    color: var(--color-white);
     margin-left: 4px;
     display: block;
     margin-bottom: calc(var(--spacing-unit) * 0.4);
@@ -110,22 +110,30 @@
     font-weight: 700;
 }
 
-/* ==================== NEUMORPHIC INPUTS ==================== */
+/* ==================== NEUMORPHIC INPUTS - DARK ==================== */
 .neu-input {
     appearance: none;
     -webkit-appearance: none;
-    border: none;
+    border: 1px solid var(--color-primary-overlay);
     padding: var(--spacing-unit);
     border-radius: var(--radius-sm);
-    background: var(--bg-secondary);
-    box-shadow: inset 2px 2px 4px #d1d9e6, inset -2px -2px 4px var(--white);
+    background: var(--color-dark2);
     font-size: var(--fs-small);
     width: 100%;
+    height: 37px;
     font-family: var(--font-primary);
-    color: var(--text-main);
+    color: var(--color-white);
     outline: none;
     transition: var(--transition-normal);
     box-sizing: border-box;
+}
+
+.neu-input:focus {
+    border-color: var(--color-primary);
+}
+
+.neu-input::placeholder {
+    color: var(--color-gray);
 }
 
 .neu-input:focus::placeholder {
@@ -138,7 +146,7 @@ textarea.neu-input {
     min-height: 50px;
 }
 
-/* ==================== CUSTOM SELECT DROPDOWN ==================== */
+/* ==================== CUSTOM SELECT DROPDOWN - DARK ==================== */
 .custom-select-wrapper {
     position: relative;
     width: 100%;
@@ -156,7 +164,7 @@ textarea.neu-input {
 }
 
 .custom-trigger span {
-    color: var(--text-body);
+    color: var(--color-gray);
     font-weight: 500;
     font-size: var(--fs-small);
     flex: 1;
@@ -187,11 +195,11 @@ textarea.neu-input {
     top: calc(100% + 5px);
     left: 0;
     width: 100%;
-    background: var(--bg-secondary);
+    background: var(--color-dark2);
+    border: 1px solid var(--color-primary);
     border-radius: var(--radius-sm);
     padding: calc(var(--spacing-unit) * 0.6);
     z-index: 1000;
-    box-shadow: 5px 5px 10px #bec8d6, -5px -5px 10px var(--white);
     max-height: 160px;
     overflow-y: auto;
 }
@@ -201,17 +209,17 @@ textarea.neu-input {
     border-radius: var(--radius-sm);
     cursor: pointer;
     font-size: var(--fs-small);
-    color: var(--text-main);
+    color: var(--color-white);
     transition: var(--transition-normal);
     line-height: var(--line-height-tight);
 }
 
 .neu-option:hover {
-    box-shadow: inset 2px 2px 4px #d1d9e6, inset -2px -2px 4px var(--white);
+    background: var(--color-primary-overlay);
     color: var(--color-primary);
 }
 
-/* ==================== MULTI-SELECT CHIPS ==================== */
+/* ==================== MULTI-SELECT CHIPS - DARK ==================== */
 .chip-grid {
     display: flex;
     flex-wrap: wrap;
@@ -224,39 +232,39 @@ textarea.neu-input {
     gap: calc(var(--spacing-unit) * 0.5);
     padding: calc(var(--spacing-unit) * 0.65) calc(var(--spacing-unit) * 1.25);
     border-radius: 50px;
-    border: none;
-    background: var(--bg-secondary);
-    box-shadow: 2px 2px 5px #d1d9e6, -2px -2px 4px var(--white);
+    border: 1px solid var(--color-primary-overlay);
+    background: var(--color-dark2);
     font-size: var(--fs-small);
     font-family: var(--font-primary);
-    color: var(--text-body);
+    color: var(--color-white);
     cursor: pointer;
     transition: var(--transition-normal);
     white-space: nowrap;
 }
 
 .chip-item:hover {
-    box-shadow: 3px 3px 6px #d1d9e6, -3px -3px 6px var(--white);
+    border-color: var(--color-primary);
     color: var(--color-primary);
 }
 
 .chip-selected {
     background: var(--color-primary);
     color: var(--color-white);
-    box-shadow: 3px 3px 8px rgba(36, 64, 152, 0.35);
+    border-color: var(--color-primary);
     font-weight: 600;
 }
 
 .chip-selected:hover {
     background: var(--color-primary-light);
     color: var(--color-white);
+    border-color: var(--color-primary-light);
 }
 
 .chip-check {
     flex-shrink: 0;
 }
 
-/* ==================== RADIO GROUP ==================== */
+/* ==================== RADIO GROUP - DARK ==================== */
 .radio-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -269,12 +277,11 @@ textarea.neu-input {
     gap: calc(var(--spacing-unit) * 1);
     padding: calc(var(--spacing-unit) * 0.85) calc(var(--spacing-unit) * 1.25);
     border-radius: var(--radius-sm);
-    border: none;
-    background: var(--bg-secondary);
-    box-shadow: 2px 2px 5px #d1d9e6, -2px -2px 4px var(--white);
+    border: 1px solid var(--color-primary-overlay);
+    background: var(--color-dark2);
     font-size: var(--fs-small);
     font-family: var(--font-primary);
-    color: var(--text-body);
+    color: var(--color-white);
     cursor: pointer;
     transition: var(--transition-normal);
     text-align: left;
@@ -282,7 +289,7 @@ textarea.neu-input {
 }
 
 .radio-item:hover {
-    box-shadow: 3px 3px 8px #d1d9e6, -3px -3px 8px var(--white);
+    border-color: var(--color-primary);
     transform: translateY(-1px);
 }
 
@@ -290,8 +297,8 @@ textarea.neu-input {
     width: calc(var(--spacing-unit) * 2.2);
     height: calc(var(--spacing-unit) * 2.2);
     border-radius: var(--radius-full);
-    background: var(--bg-secondary);
-    box-shadow: inset 2px 2px 4px #d1d9e6, inset -2px -2px 4px var(--white);
+    background: var(--color-dark2);
+    border: 1px solid var(--color-primary-overlay);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -312,22 +319,10 @@ textarea.neu-input {
 }
 
 .radio-selected {
-    box-shadow: inset 2px 2px 4px #d1d9e6, inset -2px -2px 4px var(--white) !important;
-    color: var(--text-main);
+    border: 1px solid var(--color-primary) !important;
+    color: var(--color-white);
     font-weight: 600;
-    background: var(--bg-secondary);
-}
-
-/* ==================== RADIO RESPONSIVE ==================== */
-@media (max-width: 480px) {
-    .radio-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: calc(var(--spacing-unit) * 1.5);
-    }
-    
-    .radio-item {
-        padding: calc(var(--spacing-unit) * 0.7) calc(var(--spacing-unit) * 1);
-    }
+    background: var(--color-dark2);
 }
 
 /* ==================== ERROR ==================== */
@@ -339,11 +334,10 @@ textarea.neu-input {
 }
 
 .error-input {
-    box-shadow: inset 2px 2px 4px rgba(220, 53, 69, 0.12), inset -2px -2px 4px var(--white) !important;
     border: 1px solid var(--color-error) !important;
 }
 
-/* ==================== SUMMARY RIGHT SIDE ==================== */
+/* ==================== SUMMARY RIGHT SIDE - DARK ==================== */
 .selection-info {
     display: flex;
     flex-direction: column;
@@ -361,13 +355,14 @@ textarea.neu-input {
     width: calc(var(--spacing-unit) * 4.4);
     height: calc(var(--spacing-unit) * 4.4);
     border-radius: var(--radius-sm);
-    background: var(--bg-secondary);
+    background: var(--color-primary-overlay)!important;
+    border: 1px solid var(--color-primary);
     display: flex;
     align-items: center;
     justify-content: center;
     color: var(--color-primary);
-    box-shadow: 3px 3px 6px #d1d9e6, -3px -3px 6px var(--white);
     flex-shrink: 0;
+    box-shadow: none!important;
 }
 
 .info-text span {
@@ -375,14 +370,14 @@ textarea.neu-input {
     font-size: var(--fs-small);
     text-transform: uppercase;
     font-weight: 700;
-    color: var(--color-gray);
+    color: var(--color-primary)!important;
     line-height: var(--line-height-tight);
 }
 
 .info-text p {
     font-size: var(--fs-small);
-    font-weight: 700;
-    color: var(--text-main);
+    font-weight: 100!important;
+    color: var(--color-white)!important;
     margin: 0;
     line-height: var(--line-height-tight);
 }
@@ -396,10 +391,10 @@ textarea.neu-input {
     display: flex;
     align-items: center;
     gap: calc(var(--spacing-unit) * 0.75);
-    background: rgba(0, 0, 0, 0.03);
+    background: var(--color-primary-overlay);
     padding: var(--spacing-unit);
     border-radius: var(--radius-sm);
-    border: 1px solid rgba(255, 255, 255, 0.6);
+    border: 1px solid var(--color-primary-overlay);
 }
 
 .note-icon {
@@ -412,7 +407,7 @@ textarea.neu-input {
 .note-content span {
     font-size: var(--fs-small);
     font-style: italic;
-    color: var(--text-body);
+    color: var(--color-gray);
     line-height: var(--line-height-tight);
 }
 
@@ -816,3 +811,225 @@ textarea.neu-input {
         grid-template-columns: 1fr 1fr 1fr;
     }
 }
+
+/* ==================== PREMIUM LIGHT MODE ==================== */
+
+/* ---------- Form Card ---------- */
+html[data-theme="light"] .form-card {
+    background: var(--bg-secondary);
+    border: none;
+    box-shadow:
+        6px 6px 12px rgba(36, 64, 152, 0.08),
+        -6px -6px 12px #FFFFFF;
+}
+
+/* ---------- Summary Container Right ---------- */
+html[data-theme="light"] .summary-container-right {
+    background: var(--bg-secondary);
+    border: none;
+    box-shadow:
+        6px 6px 12px rgba(36, 64, 152, 0.08),
+        -6px -6px 12px #FFFFFF;
+}
+
+/* ---------- Titles ---------- */
+html[data-theme="light"] .step-title {
+    color: var(--color-dark) !important;
+}
+
+html[data-theme="light"] .form-subtitle {
+    color: var(--color-dark-gray);
+}
+
+html[data-theme="light"] .section-label {
+    color: var(--color-primary)!important;
+    border-bottom-color: rgba(36, 64, 152, 0.15);
+}
+
+html[data-theme="light"] .side-label {
+    color: var(--color-dark);
+}
+
+/* ---------- Input Labels ---------- */
+html[data-theme="light"] .input-group label {
+    color: var(--color-primary);
+}
+
+/* ---------- Neumorphic Inputs ---------- */
+html[data-theme="light"] .neu-input {
+    background: var(--bg-secondary);
+    border: none;
+    color: var(--color-dark);
+    box-shadow:
+        inset 2px 2px 4px rgba(36, 64, 152, 0.08),
+        inset -2px -2px 4px #FFFFFF;
+}
+
+html[data-theme="light"] .neu-input:focus {
+    box-shadow:
+        inset 2px 2px 4px rgba(36, 64, 152, 0.15),
+        inset -2px -2px 4px #FFFFFF,
+        0 0 0 2px rgba(36, 64, 152, 0.1);
+}
+
+html[data-theme="light"] .neu-input::placeholder {
+    color: rgba(0, 0, 0, 0.35);
+}
+
+/* ---------- Custom Select ---------- */
+html[data-theme="light"] .custom-trigger {
+    background: var(--bg-secondary);
+    box-shadow:
+        inset 2px 2px 4px rgba(36, 64, 152, 0.08),
+        inset -2px -2px 4px #FFFFFF;
+}
+
+html[data-theme="light"] .custom-trigger span {
+    color: var(--color-dark-gray);
+}
+
+html[data-theme="light"] .form-chevron {
+    color: var(--color-primary);
+}
+
+/* Dropdown List */
+html[data-theme="light"] .neu-dropdown-list {
+    background: var(--bg-secondary);
+    border: none;
+    box-shadow:
+        0 8px 24px rgba(36, 64, 152, 0.12),
+        0 0 0 1px rgba(36, 64, 152, 0.06);
+}
+
+html[data-theme="light"] .neu-option {
+    color: var(--color-dark);
+}
+
+html[data-theme="light"] .neu-option:hover {
+    background: rgba(36, 64, 152, 0.06);
+    color: var(--color-primary);
+}
+
+html[data-theme="light"] .neu-dropdown-list::-webkit-scrollbar-thumb {
+    background: rgba(36, 64, 152, 0.3);
+}
+
+/* ---------- Chips ---------- */
+html[data-theme="light"] .chip-item {
+    background: var(--bg-secondary);
+    border: none;
+    color: var(--color-dark-gray);
+    box-shadow:
+        2px 2px 5px rgba(36, 64, 152, 0.08),
+        -2px -2px 4px #FFFFFF;
+}
+
+html[data-theme="light"] .chip-item:hover {
+    box-shadow:
+        3px 3px 6px rgba(36, 64, 152, 0.12),
+        -3px -3px 6px #FFFFFF;
+    color: var(--color-primary);
+}
+
+html[data-theme="light"] .chip-selected {
+    background: var(--color-primary);
+    color: var(--color-white);
+    box-shadow: 3px 3px 8px rgba(36, 64, 152, 0.3);
+}
+
+html[data-theme="light"] .chip-selected:hover {
+    background: var(--color-primary-light);
+    color: var(--color-white);
+}
+
+/* ---------- Radio ---------- */
+html[data-theme="light"] .radio-item {
+    background: var(--bg-secondary);
+    border: none;
+    color: var(--color-dark-gray);
+    box-shadow:
+        2px 2px 5px rgba(36, 64, 152, 0.08),
+        -2px -2px 4px #FFFFFF;
+}
+
+html[data-theme="light"] .radio-item:hover {
+    box-shadow:
+        3px 3px 8px rgba(36, 64, 152, 0.12),
+        -3px -3px 8px #FFFFFF;
+}
+
+html[data-theme="light"] .radio-dot {
+    background: var(--bg-secondary);
+    border: none;
+    box-shadow:
+        inset 2px 2px 4px rgba(36, 64, 152, 0.08),
+        inset -2px -2px 4px #FFFFFF;
+}
+
+html[data-theme="light"] .radio-dot-fill {
+    background: var(--color-primary);
+}
+
+html[data-theme="light"] .radio-selected {
+    border: none !important;
+    color: var(--color-primary);
+    font-weight: 600;
+    background: var(--bg-secondary);
+    box-shadow:
+        inset 2px 2px 4px rgba(36, 64, 152, 0.1),
+        inset -2px -2px 4px #FFFFFF !important;
+}
+
+/* ---------- Summary Info ---------- */
+html[data-theme="light"] .info-icon {
+    background: var(--bg-secondary)!important;
+    border: none;
+    color: var(--color-primary);
+    box-shadow:
+        3px 3px 6px rgba(36, 64, 152, 0.1),
+        -3px -3px 6px #FFFFFF!important;
+}
+
+html[data-theme="light"] .info-text span {
+    color: var(--color-gray);
+}
+
+html[data-theme="light"] .info-text p {
+    color: var(--color-dark)!important;
+}
+
+/* ---------- Note ---------- */
+html[data-theme="light"] .note-content {
+    background: rgba(36, 64, 152, 0.04);
+    border: 1px solid rgba(36, 64, 152, 0.06);
+}
+
+html[data-theme="light"] .note-icon {
+    color: var(--color-primary);
+}
+
+html[data-theme="light"] .note-content span {
+    color: var(--color-dark-gray);
+}
+
+/* ---------- Error ---------- */
+html[data-theme="light"] .error-input {
+    box-shadow:
+        inset 2px 2px 4px rgba(220, 53, 69, 0.12),
+        inset -2px -2px 4px #FFFFFF !important;
+    border: 1px solid var(--color-error) !important;
+}
+
+/* ==================== SMOOTH TRANSITIONS - LIGHT ==================== */
+html[data-theme="light"] .form-card,
+html[data-theme="light"] .summary-container-right,
+html[data-theme="light"] .neu-input,
+html[data-theme="light"] .custom-trigger,
+html[data-theme="light"] .neu-dropdown-list,
+html[data-theme="light"] .chip-item,
+html[data-theme="light"] .radio-item,
+html[data-theme="light"] .radio-dot,
+html[data-theme="light"] .info-icon,
+html[data-theme="light"] .note-content {
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}   

@@ -171,7 +171,7 @@ export default function Footer() {
           </div>
 
           <p className="footer-copyright">
-            Copyright &copy; Crescentcare 2022 &ndash; 2026 | Designed &amp; Managed by{' '}
+            Copyright &copy; Crescent Care (PVT) LTD 2022 &ndash; 2026 | Designed &amp; Managed by{' '}
             <Link
               href="https://zellesolutions.com/"
               target="_blank"

@@ -11,7 +11,7 @@ const DateStep = ({ currentMonth, setCurrentMonth, selectedDate, setSelectedDate
             id: 'google-meet', 
             name: 'Google Meet', 
             color: '#4285F4',
-            bgLight: '#E8F0FE',
+            bgLight: '#4286f425',
             logo: (
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
                     <path d="M2 6C2 4.89543 2.89543 4 4 4H16C17.1046 4 18 4.89543 18 6V18C18 19.1046 17.1046 20 16 20H4C2.89543 20 2 19.1046 2 18V6Z" fill="#4285F4"/>
@@ -26,7 +26,7 @@ const DateStep = ({ currentMonth, setCurrentMonth, selectedDate, setSelectedDate
             id: 'teams', 
             name: 'Microsoft Teams', 
             color: '#6264A7',
-            bgLight: '#EDEBF6',
+            bgLight: '#6264a736',
             logo: (
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
                     <rect x="1" y="5" width="12" height="14" rx="3" fill="#6264A7"/>
@@ -39,7 +39,7 @@ const DateStep = ({ currentMonth, setCurrentMonth, selectedDate, setSelectedDate
             id: 'zoom', 
             name: 'Zoom', 
             color: '#2D8CFF',
-            bgLight: '#E6F2FF',
+            bgLight: '#2d8bff47',
             logo: (
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
                     <rect x="1" y="3" width="16" height="18" rx="3.5" fill="#2D8CFF"/>
@@ -58,7 +58,7 @@ const DateStep = ({ currentMonth, setCurrentMonth, selectedDate, setSelectedDate
             id: 'onsite',
             name: 'Onsite',
             color: 'var(--accent-hover)',
-            bgLight: '#d7e8ef',
+            bgLight: 'var(--color-primary-overlay)',
             logo: (
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
                     <path d="M4 21V8L12 3L20 8V21H14V14H10V21H4Z" fill="var(--accent-hover)"/>
@@ -69,7 +69,7 @@ const DateStep = ({ currentMonth, setCurrentMonth, selectedDate, setSelectedDate
             id: 'online',
             name: 'Online',
             color: 'var(--accent-hover)',
-            bgLight: '#d7e8ef',
+            bgLight: 'var(--color-primary-overlay)',
             logo: (
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
                     <circle cx="12" cy="12" r="9" fill="var(--accent-hover)"/>

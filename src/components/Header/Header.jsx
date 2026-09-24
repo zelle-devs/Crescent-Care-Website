@@ -430,11 +430,11 @@ const handleNavDropdownMouseEnter = (dropdownName) => {
   </div>
         {/* ===== MOBILE THEME TOGGLE - ADD THIS ===== */}
   <div className="header-theme-toggle-mobile">
-    <ColorModeSwitch
+    <JackSwitch
       checked={theme === 'light'}
       onChange={toggleTheme}
       onDark={theme === 'dark'}
-      size="md"
+      size="lg"
       ariaLabel="Toggle dark mode"
     />
   </div>

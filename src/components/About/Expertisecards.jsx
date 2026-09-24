@@ -26,7 +26,7 @@ export const fanCardsData = [
 ];
 
 const icons = [Award, Layers, ShieldCheck];
-const tones = ['primary', 'secondary', 'accent'];
+const tones = ['primary', 'accent', 'secondary'];
 
 const cardVariants = {
   hidden: { opacity: 0, y: 32 },

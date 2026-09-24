@@ -23,10 +23,11 @@
 .separate-calendar-card {
     flex: 0 0 60%;
     min-width: 0;
-    background: var(--bg-secondary);
+    background: var(--color-dark2);
     padding: calc(var(--spacing-unit) * 2.5);
+    border: 1px solid var(--color-primary);
     border-radius: var(--radius-lg);
-    box-shadow: 6px 6px 12px #d1d9e6, -6px -6px 12px var(--white);
+    /* box-shadow: 6px 6px 12px #79a4e7, -6px -6px 12px #a1bdea; */
 }
 
 .calendar-header {
@@ -46,7 +47,7 @@
 }
 
 .step-title {
-    color: var(--text-main);
+    color: var(--color-primary)!important;
     margin-bottom: calc(var(--spacing-unit) * 2);
     font-size: var(--fs-h4);
     line-height: var(--line-height-tight);
@@ -62,18 +63,27 @@
     width: calc(var(--spacing-unit) * 3.5);
     height: calc(var(--spacing-unit) * 3.5);
     border-radius: var(--radius-full);
-    border: none;
-    background: var(--bg-secondary);
+    border: 1px solid var(--color-primary);
+    background: var(--color-primary-overlay);
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    box-shadow: 3px 3px 6px #d1d9e6, -3px -3px 6px var(--white);
+    /* box-shadow: 3px 3px 6px #d1d9e6, -3px -3px 6px var(--white); */
     transition: var(--transition-normal);
+}
+.circle-btn:hover{
+    background: var(--color-primary);
+}
+.circle-btn:hover svg{
+    color: var(--color-white);
+}
+.circle-btn svg{
+    color: var(--color-primary);
 }
 
 .circle-btn:active {
-    box-shadow: inset 2px 2px 4px #d1d9e6, inset -2px -2px 4px var(--white);
+    box-shadow: inset 2px 2px 4px var(--color-primary), inset -2px -2px 4px var(--color-primary)
 }
 
 /* ==================== PILL SELECTORS (Month/Year) ==================== */
@@ -95,19 +105,20 @@
     justify-content: space-between;
     align-items: center;
     padding: calc(var(--spacing-unit) * 0.75) calc(var(--spacing-unit) * 1.5);
-    background: var(--bg-secondary);
+    background: var(--color-primary-overlay);
+    border: 1px solid var(--color-primary);
     border-radius: 40px;
-    box-shadow: 3px 3px 6px #d1d9e6, -3px -3px 6px var(--white);
+    /* box-shadow: 3px 3px 6px #d1d9e6, -3px -3px 6px var(--white); */
     cursor: pointer;
     min-width: 90px;
     font-size: var(--fs-small);
     font-weight: 600;
-    color: var(--text-main);
+    color: var(--color-primary);
     line-height: var(--line-height-tight);
 }
 
 .pill-select:active {
-    box-shadow: inset 2px 2px 4px #d1d9e6, inset -2px -2px 4px var(--white);
+    box-shadow: inset 2px 2px 4px --color-primary, inset -2px -2px 4px --color-primary
 }
 
 .pill-dropdown-list {
@@ -115,11 +126,13 @@
     top: calc(100% + 5px);
     left: 0;
     width: 100%;
-    background: var(--bg-secondary);
+    background: var(--color-dark2);
     border-radius: var(--radius-sm);
     padding: calc(var(--spacing-unit) * 0.5);
     z-index: 1100;
-    box-shadow: 6px 6px 12px #bec8d6, -6px -6px 12px var(--white);
+    border: 1px solid var(--color-primary);
+    color: var(--color-gray);
+    /* box-shadow: 6px 6px 12px #bec8d6, -6px -6px 12px var(--white); */
     max-height: 160px;
     overflow-y: auto;
 }
@@ -134,7 +147,7 @@
 }
 
 .pill-option:hover {
-    box-shadow: inset 2px 2px 4px #d1d9e6, inset -2px -2px 4px var(--white);
+    box-shadow: inset 2px 2px 4px var(--color-primary), inset -2px -2px 4px var(--color-primary);
     color: var(--color-primary);
 }
 
@@ -184,14 +197,14 @@
     font-size: var(--fs-small);
     line-height: var(--line-height-tight);
     padding: 0;
-    color: var(--text-main);
+    color: var(--color-white);
 }
 
 .selected-day {
-    color: var(--color-primary) !important;
-    background: var(--bg-secondary) !important;
+    color: var(--color-white) !important;
+    background: var(--color-primary) !important;
     font-weight: 800;
-    box-shadow: inset 2px 2px 5px #d1d9e6, inset -2px -2px 5px var(--white);
+    box-shadow: inset 2px 2px 5px var(--color-primary), inset -2px -2px 5px var(--color-primary);
 }
 
 .other-month-day {
@@ -209,7 +222,7 @@
     width: 3px;
     height: 3px;
     margin: 0 auto;
-    background-color: var(--color-primary);
+    background-color: var(--color-white);
     border-radius: var(--radius-full);
     position: absolute;
     bottom: 3px;
@@ -218,17 +231,18 @@
 /* ==================== TIME CARD (25%) ==================== */
 .separate-time-card {
     flex: 0 0 25%;
-    background: var(--bg-secondary);
+    background: var(--color-dark2);
     padding: calc(var(--spacing-unit) * 2.5) calc(var(--spacing-unit) * 2);
     border-radius: var(--radius-lg);
-    box-shadow: 6px 6px 12px #d1d9e6, -6px -6px 12px var(--white);
+    border: 1px solid var(--color-primary);
+    /* box-shadow: 6px 6px 12px #d1d9e6, -6px -6px 12px var(--white); */
     display: flex;
     flex-direction: column;
 }
 
 .side-label {
     font-size: var(--fs-h4);
-    color: var(--text-main);
+    color: var(--color-primary)!important;
     margin-bottom: calc(var(--spacing-unit) * 1.5);
     text-align: left;
     font-weight: 600;
@@ -252,10 +266,11 @@
     padding: calc(var(--spacing-unit) * 0.75) calc(var(--spacing-unit) * 0.6);
     border-radius: var(--radius-sm);
     border: none;
-    background: var(--bg-secondary);
-    box-shadow: 2px 2px 5px #d1d9e6, -2px -2px 4px var(--white);
-    font-weight: 700;
-    color: var(--color-primary);
+    background: var(--color-dark2);
+    border: 1px solid var(--color-primary-overlay);
+    /* box-shadow: 2px 2px 5px #d1d9e6, -2px -2px 4px var(--white); */
+    font-weight: 500;
+    color: var(--color-white);
     cursor: pointer;
     transition: var(--transition-normal);
     font-size: var(--fs-small);
@@ -269,8 +284,8 @@
 }
 
 .active-time {
-    box-shadow: inset 2px 2px 5px #d1d9e6, inset -2px -2px 5px var(--white);
-    color: var(--text-main);
+    box-shadow: inset 2px 2px 5px var(--color-primary), inset -2px -2px 5px var(--color-primary);
+    color: var(--color-white);
 }
 
 /* Scrollbar hide for time grid */
@@ -557,21 +572,21 @@
 .platform-section {
     width: 87%;
     max-width: 100%;
-    background: var(--bg-secondary);
+    background: var(--color-dark2);
     padding: calc(var(--spacing-unit) * 3) calc(var(--spacing-unit) * 2.5);
     border-radius: var(--radius-lg);
-    box-shadow: 
+    border: 1px solid var(--color-primary);
+    /* box-shadow: 
         8px 8px 16px #c5cdd9, 
         -8px -8px 16px #ffffff,
-        inset 0 0 0 rgba(0,0,0,0);
+        inset 0 0 0 rgba(0,0,0,0); */
     margin: 0 auto;
     margin-top: calc(var(--grid-gap) * 1.5);
     box-sizing: border-box;
-    border: 1px solid rgba(255, 255, 255, 0.6);
 }
 
 .platform-section-title {
-    color: var(--text-main);
+    color: var(--color-primary);
     margin-bottom: calc(var(--spacing-unit) * 2.5);
     font-size: var(--fs-h4);
     line-height: var(--line-height-tight);
@@ -598,11 +613,11 @@
     gap: calc(var(--spacing-unit) * 2);
     padding: calc(var(--spacing-unit) * 3) calc(var(--spacing-unit) * 1.5);
     border-radius: var(--radius-lg);
-    border: 2px solid transparent;
-    background: var(--bg-secondary);
-    box-shadow: 
+    border: 1px solid var(--color-primary);
+    background: var(--color-dark);
+    /* box-shadow: 
         6px 6px 12px #c5cdd9, 
-        -6px -6px 12px #ffffff;
+        -6px -6px 12px #ffffff; */
     cursor: pointer;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     position: relative;
@@ -626,11 +641,11 @@
 }
 
 .platform-card:hover {
-    box-shadow: 
+    /* box-shadow: 
         10px 10px 20px #bec8d6, 
-        -10px -10px 20px #ffffff;
+        -10px -10px 20px #ffffff; */
     transform: translateY(-4px);
-    border-color: rgba(36, 64, 152, 0.15);
+    border-color: var(--color-primary);
 }
 
 .platform-card:hover::before {
@@ -641,17 +656,17 @@
     border-width: 2px;
     border-color: var(--color-primary) !important;
     box-shadow: 
-        inset 4px 4px 8px rgba(0,0,0,0.06), 
-        inset -4px -4px 8px #ffffff,
-        8px 8px 16px rgba(0,0,0,0.04) !important;
+        inset 4px 4px 8px var(--color-primary), 
+        inset -4px -4px 8px var(--color-primary),
+        8px 8px 16px var(--color-primary-overlay) !important;
     transform: translateY(-2px);
 }
 
 .platform-selected:hover {
     box-shadow: 
-        inset 4px 4px 8px rgba(0,0,0,0.08), 
-        inset -4px -4px 8px #ffffff,
-        8px 8px 16px rgba(0,0,0,0.06) !important;
+        inset 4px 4px 8px var(--color-primary-overlay), 
+        inset -4px -4px 8px var(--color-primary-overlay),
+        8px 8px 16px var(--color-primary-overlay) !important;
 }
 
 .platform-logo {
@@ -662,24 +677,24 @@
     width: 64px;
     height: 64px;
     border-radius: 20px;
-    background: var(--bg-secondary);
+    background: var(--color-dark);
     box-shadow: 
-        inset 3px 3px 6px #c5cdd9, 
-        inset -3px -3px 6px #ffffff;
+        inset 3px 3px 6px var(--color-primary), 
+        inset -3px -3px 6px var(--color-primary);
     transition: all 0.4s ease;
 }
 
 .platform-selected .platform-logo {
     box-shadow: 
-        inset 4px 4px 8px rgba(0,0,0,0.1), 
-        inset -4px -4px 8px #ffffff;
+        inset 4px 4px 8px var(--color-primary-overlay), 
+        inset -4px -4px 8px var(--color-primary-overlay);
     transform: scale(1.05);
 }
 
 .platform-name {
     font-size: calc(var(--fs-small) * 1.05);
     font-weight: 600;
-    color: var(--text-body);
+    color: var(--color-gray);
     text-align: center;
     transition: all 0.3s ease;
     letter-spacing: 0.3px;
@@ -851,15 +866,276 @@
     padding: calc(var(--spacing-unit) * 0.5) calc(var(--spacing-unit) * 1);
     border-radius: var(--radius-sm);
     transition: var(--transition-normal);
-    box-shadow: 2px 2px 4px #c5cdd9, -2px -2px 4px #ffffff;
+    box-shadow: 2px 2px 4px var(--color-primary), -2px -2px 4px var(--color-primary);
 }
 
 .back-to-modes-btn:hover {
-    box-shadow: inset 2px 2px 4px #c5cdd9, inset -2px -2px 4px #ffffff;
+    box-shadow: inset 2px 2px 4px var(--color-primary), inset -2px -2px 4px var(--color-primary);
 }
 
 .backbtn {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+/* ==================== PREMIUM LIGHT MODE ==================== */
+
+/* ---------- Calendar Card ---------- */
+html[data-theme="light"] .separate-calendar-card {
+  background: var(--bg-secondary);
+  box-shadow:
+    6px 6px 12px rgba(36, 64, 152, 0.08),
+    -6px -6px 12px #FFFFFF;
+  border: 1px solid rgba(36, 64, 152, 0.04);
+}
+
+/* ---------- Time Card ---------- */
+html[data-theme="light"] .separate-time-card {
+  background: var(--bg-secondary);
+  box-shadow:
+    6px 6px 12px rgba(36, 64, 152, 0.08),
+    -6px -6px 12px #FFFFFF;
+  border: 1px solid rgba(36, 64, 152, 0.04);
+}
+
+/* ---------- Titles ---------- */
+html[data-theme="light"] .step-title,
+html[data-theme="light"] .side-label {
+  color: var(--color-dark)!important;
+}
+
+/* ---------- Circle Buttons (prev/next) ---------- */
+html[data-theme="light"] .circle-btn {
+  background: var(--bg-secondary);
+  color: var(--color-primary);
+  box-shadow:
+    3px 3px 6px rgba(36, 64, 152, 0.1),
+    -3px -3px 6px #FFFFFF;
+}
+
+html[data-theme="light"] .circle-btn:hover {
+  background: var(--bg-secondary);
+  box-shadow:
+    4px 4px 10px rgba(36, 64, 152, 0.15),
+    -4px -4px 10px #FFFFFF;
+}
+
+html[data-theme="light"] .circle-btn:active {
+  box-shadow:
+    inset 2px 2px 4px rgba(36, 64, 152, 0.1),
+    inset -2px -2px 4px #FFFFFF;
+}
+
+/* ---------- Pill Selectors (Month/Year) ---------- */
+html[data-theme="light"] .pill-select {
+  background: var(--bg-secondary);
+  color: var(--color-dark);
+  box-shadow:
+    3px 3px 6px rgba(36, 64, 152, 0.1),
+    -3px -3px 6px #FFFFFF;
+}
+
+html[data-theme="light"] .pill-select:hover {
+  background: var(--bg-secondary);
+  box-shadow:
+    4px 4px 10px rgba(36, 64, 152, 0.15),
+    -4px -4px 10px #FFFFFF;
+}
+
+html[data-theme="light"] .pill-select:active {
+  box-shadow:
+    inset 2px 2px 4px rgba(36, 64, 152, 0.1),
+    inset -2px -2px 4px #FFFFFF;
+}
+
+/* ---------- Dropdown List ---------- */
+html[data-theme="light"] .pill-dropdown-list {
+  background: var(--bg-secondary);
+  box-shadow:
+    0 8px 24px rgba(36, 64, 152, 0.12),
+    0 0 0 1px rgba(36, 64, 152, 0.06);
+}
+
+html[data-theme="light"] .pill-option {
+  color: var(--color-dark);
+}
+
+html[data-theme="light"] .pill-option:hover {
+  background: rgba(36, 64, 152, 0.06);
+  color: var(--color-primary);
+  box-shadow: none;
+}
+
+/* Dropdown scrollbar */
+html[data-theme="light"] .pill-dropdown-list::-webkit-scrollbar-thumb {
+  background: rgba(36, 64, 152, 0.3);
+}
+
+/* ---------- Calendar Day Names ---------- */
+html[data-theme="light"] .day-name {
+  color: var(--color-primary);
+}
+
+/* ---------- Day Buttons ---------- */
+html[data-theme="light"] .day-btn {
+  color: var(--color-dark);
+}
+
+html[data-theme="light"] .day-btn:hover:not(.disabled-day):not(.selected-day) {
+  background: rgba(36, 64, 152, 0.06);
+  color: var(--color-primary);
+}
+
+/* Selected Day */
+html[data-theme="light"] .selected-day {
+  color: var(--color-primary) !important;
+  background: var(--bg-secondary) !important;
+  box-shadow:
+    inset 2px 2px 5px rgba(36, 64, 152, 0.1),
+    inset -2px -2px 5px #FFFFFF;
+}
+
+html[data-theme="light"] .selected-dot {
+  background-color: var(--color-primary);
+}
+
+/* Other Month Days */
+html[data-theme="light"] .other-month-day {
+  color: rgba(36, 64, 152, 0.35) !important;
+}
+
+/* Disabled Days */
+html[data-theme="light"] .disabled-day {
+  color: rgba(0, 0, 0, 0.2) !important;
+  opacity: 0.4;
+}
+
+/* ---------- Time Buttons ---------- */
+html[data-theme="light"] .time-btn {
+  background: var(--bg-secondary);
+  color: var(--color-primary);
+  box-shadow:
+    2px 2px 5px rgba(36, 64, 152, 0.1),
+    -2px -2px 4px #FFFFFF;
+}
+
+html[data-theme="light"] .time-btn:hover {
+  background: var(--bg-secondary);
+  color: var(--color-primary-dark);
+  box-shadow:
+    3px 3px 8px rgba(36, 64, 152, 0.15),
+    -3px -3px 8px #FFFFFF;
+}
+
+html[data-theme="light"] .active-time {
+  background: var(--bg-secondary);
+  color: var(--color-primary);
+  font-weight: 800;
+  box-shadow:
+    inset 2px 2px 5px rgba(36, 64, 152, 0.1),
+    inset -2px -2px 5px #FFFFFF;
+}
+
+/* ==================== PLATFORM SECTION - LIGHT MODE ==================== */
+
+html[data-theme="light"] .platform-section {
+  background: var(--bg-secondary);
+  box-shadow:
+    8px 8px 16px rgba(36, 64, 152, 0.08),
+    -8px -8px 16px #FFFFFF;
+  border: 1px solid rgba(36, 64, 152, 0.04);
+}
+
+html[data-theme="light"] .platform-section-title {
+  color: var(--color-dark);
+}
+
+/* ---------- Platform Cards ---------- */
+html[data-theme="light"] .platform-card {
+  background: var(--bg-secondary);
+  box-shadow:
+    6px 6px 12px rgba(36, 64, 152, 0.1),
+    -6px -6px 12px #FFFFFF;
+}
+
+html[data-theme="light"] .platform-card:hover {
+  background: var(--bg-secondary);
+  box-shadow:
+    10px 10px 20px rgba(36, 64, 152, 0.15),
+    -10px -10px 20px #FFFFFF;
+  border-color: rgba(36, 64, 152, 0.15);
+}
+
+/* Platform Logo Box */
+html[data-theme="light"] .platform-logo {
+  background: var(--bg-secondary);
+  box-shadow:
+    inset 3px 3px 6px rgba(36, 64, 152, 0.08),
+    inset -3px -3px 6px #FFFFFF;
+}
+
+html[data-theme="light"] .platform-selected .platform-logo {
+  box-shadow:
+    inset 4px 4px 8px rgba(36, 64, 152, 0.12),
+    inset -4px -4px 8px #FFFFFF;
+}
+
+/* Platform Name */
+html[data-theme="light"] .platform-name {
+  color: var(--color-dark-gray);
+}
+
+/* Platform Selected */
+html[data-theme="light"] .platform-selected {
+  box-shadow:
+    inset 4px 4px 8px rgba(36, 64, 152, 0.08),
+    inset -4px -4px 8px #FFFFFF,
+    8px 8px 16px rgba(36, 64, 152, 0.08) !important;
+}
+html[data-theme="light"] .circle-btn:hover svg{
+    color: var(--color-primary);
+}
+html[data-theme="light"] .platform-selected:hover {
+  box-shadow:
+    inset 4px 4px 8px rgba(36, 64, 152, 0.1),
+    inset -4px -4px 8px #FFFFFF,
+    8px 8px 16px rgba(36, 64, 152, 0.1) !important;
+}
+
+/* ---------- Back to Modes Button ---------- */
+html[data-theme="light"] .back-to-modes-btn {
+  color: var(--color-primary);
+  background: var(--bg-secondary);
+  box-shadow:
+    2px 2px 4px rgba(36, 64, 152, 0.1),
+    -2px -2px 4px #FFFFFF;
+}
+html[data-theme="light"] .circle-btn,
+html[data-theme="light"] .pill-select,
+html[data-theme="light"] .pill-dropdown-list,
+html[data-theme="light"] .platform-card,
+html[data-theme="light"] .time-btn {
+    border: none;
+}
+
+html[data-theme="light"] .back-to-modes-btn:hover {
+  background: var(--bg-secondary);
+  box-shadow:
+    inset 2px 2px 4px rgba(36, 64, 152, 0.08),
+    inset -2px -2px 4px #FFFFFF;
+  color: var(--color-primary-dark);
+}
+
+/* ==================== SMOOTH TRANSITIONS ==================== */
+html[data-theme="light"] .separate-calendar-card,
+html[data-theme="light"] .separate-time-card,
+html[data-theme="light"] .platform-section,
+html[data-theme="light"] .circle-btn,
+html[data-theme="light"] .pill-select,
+html[data-theme="light"] .day-btn,
+html[data-theme="light"] .time-btn,
+html[data-theme="light"] .platform-card,
+html[data-theme="light"] .back-to-modes-btn {
+  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }

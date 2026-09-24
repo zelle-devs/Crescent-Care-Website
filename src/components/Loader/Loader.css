@@ -1,0 +1,283 @@
+/* ==================== LOADER - 3-RING SPINNER (FULL SCREEN OVERLAY) ==================== */
+
+/* ==================== OVERLAY (Same as LoadingSpinner) ==================== */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    box-shadow: 4px 0 20px rgba(0, 0, 0, 0.6);
+    z-index: var(--z-modal, 300);
+}
+
+/* Dark mode overlay */
+html[data-theme="dark"] .loading-overlay {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+/* Light mode overlay (default) */
+html[data-theme="light"] .loading-overlay,
+:root:not([data-theme]) .loading-overlay {
+    background: var(--color-white);
+}
+
+/* ==================== LOADER WRAPPER ==================== */
+.loader-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    position: relative;
+
+    /* Base size (Large) */
+    --loader-size: 200px;
+    --loader-border: 6px;
+}
+
+/* ==================== LOADER (OUTER RING) ==================== */
+.loader {
+    width: var(--loader-size);
+    height: var(--loader-size);
+    border-left: var(--loader-border) solid var(--loader-color-1, #244098);
+    border-radius: 50%;
+    animation: loaderSpinRight var(--loader-speed, 0.9s) linear infinite;
+    position: relative;
+    box-sizing: border-box;
+}
+
+/* ==================== MIDDLE RING (::before) ==================== */
+.loader::before,
+.loader::after {
+    content: "";
+    display: block;
+    position: absolute;
+    border-radius: 50%;
+    box-sizing: border-box;
+}
+
+.loader::before {
+    width: calc(var(--loader-size) * 0.8);
+    height: calc(var(--loader-size) * 0.8);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-right: var(--loader-border) solid var(--loader-color-2, #397E3F);
+    animation: loaderSpinLeft var(--loader-speed, 0.9s) linear infinite;
+}
+
+/* ==================== INNER RING (::after) ==================== */
+.loader::after {
+    width: calc(var(--loader-size) * 0.6);
+    height: calc(var(--loader-size) * 0.6);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 0;
+    border-top: var(--loader-border) solid var(--loader-color-3, #D73E2A);
+    animation: none;
+}
+
+/* ==================== KEYFRAMES ==================== */
+@keyframes loaderSpinRight {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes loaderSpinLeft {
+    from {
+        transform: translate(-50%, -50%) rotate(720deg);
+    }
+    to {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+}
+
+/* ==================== LOADING TEXT ==================== */
+.loader-text {
+    font-family: var(--font-secondary, 'Poppins', sans-serif);
+    font-size: var(--font-sm, 0.875rem);
+    font-weight: 600;
+    color: var(--color-primary, #244098);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    animation: loaderTextPulse 1.5s ease-in-out infinite;
+    text-align: center;
+    text-shadow: 0 0 0.1em rgba(36, 64, 152, 0.2);
+}
+
+@keyframes loaderTextPulse {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
+}
+
+/* Dark mode text */
+html[data-theme="dark"] .loader-text {
+    color: var(--color-white, #FFFFFF);
+    text-shadow: 0 0 0.1em rgba(255, 255, 255, 0.3);
+}
+
+/* ==================== SIZES ==================== */
+
+/* Small */
+.loader-wrapper-sm {
+    --loader-size: 60px;
+    --loader-border: 3px;
+    gap: 10px;
+}
+
+.loader-wrapper-sm .loader-text {
+    font-size: var(--font-xs, 0.75rem);
+    letter-spacing: 1px;
+}
+
+/* Medium */
+.loader-wrapper-md {
+    --loader-size: 120px;
+    --loader-border: 4px;
+}
+
+.loader-wrapper-md .loader-text {
+    font-size: var(--font-xs, 0.75rem);
+}
+
+/* Large (Default) */
+.loader-wrapper-lg {
+    --loader-size: 200px;
+    --loader-border: 6px;
+    gap: 20px;
+}
+
+.loader-wrapper-lg .loader-text {
+    font-size: var(--font-sm, 0.875rem);
+}
+
+/* Extra Large */
+.loader-wrapper-xl {
+    --loader-size: 280px;
+    --loader-border: 8px;
+    gap: 24px;
+}
+
+.loader-wrapper-xl .loader-text {
+    font-size: var(--font-base, 1rem);
+    letter-spacing: 2px;
+}
+
+/* ==================== RESPONSIVE - 300px to 3000px ==================== */
+
+/* Extra Small (300px - 480px) */
+@media (max-width: 480px) {
+    .loader-wrapper-md {
+        --loader-size: 90px;
+        --loader-border: 3.5px;
+    }
+
+    .loader-wrapper-lg {
+        --loader-size: 130px;
+        --loader-border: 4.5px;
+    }
+
+    .loader-wrapper-xl {
+        --loader-size: 170px;
+        --loader-border: 5.5px;
+    }
+}
+
+/* Small (481px - 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+    .loader-wrapper-md {
+        --loader-size: 110px;
+        --loader-border: 4px;
+    }
+
+    .loader-wrapper-lg {
+        --loader-size: 170px;
+        --loader-border: 5px;
+    }
+
+    .loader-wrapper-xl {
+        --loader-size: 220px;
+        --loader-border: 6.5px;
+    }
+}
+
+/* Large Screens (1441px - 1920px) */
+@media (min-width: 1441px) and (max-width: 1920px) {
+    .loader-wrapper-md {
+        --loader-size: 140px;
+        --loader-border: 4.5px;
+    }
+
+    .loader-wrapper-lg {
+        --loader-size: 220px;
+        --loader-border: 7px;
+    }
+
+    .loader-wrapper-xl {
+        --loader-size: 320px;
+        --loader-border: 9px;
+    }
+}
+
+/* 2K Screens (1921px - 2560px) */
+@media (min-width: 1921px) and (max-width: 2560px) {
+    .loader-wrapper-md {
+        --loader-size: 160px;
+        --loader-border: 5px;
+    }
+
+    .loader-wrapper-lg {
+        --loader-size: 260px;
+        --loader-border: 8px;
+    }
+
+    .loader-wrapper-xl {
+        --loader-size: 360px;
+        --loader-border: 11px;
+    }
+}
+
+/* 4K Screens (2561px - 3000px+) */
+@media (min-width: 2561px) {
+    .loader-wrapper-md {
+        --loader-size: 200px;
+        --loader-border: 6px;
+    }
+
+    .loader-wrapper-lg {
+        --loader-size: 320px;
+        --loader-border: 10px;
+    }
+
+    .loader-wrapper-xl {
+        --loader-size: 440px;
+        --loader-border: 14px;
+    }
+
+    .loader-wrapper-sm {
+        --loader-size: 100px;
+        --loader-border: 4px;
+    }
+}
+
+/* ==================== REDUCED MOTION ==================== */
+@media (prefers-reduced-motion: reduce) {
+    .loader,
+    .loader::before,
+    .loader::after {
+        animation-duration: 10s;
+    }
+}
