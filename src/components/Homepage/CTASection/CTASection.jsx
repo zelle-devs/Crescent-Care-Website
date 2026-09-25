@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import "./CTASection.css";
+import Link from "next/link";
 
 const CTASection = () => {
   // Parent container variants
@@ -68,6 +69,7 @@ const CTASection = () => {
           processed by Crescent Care Health TPA.
         </motion.p>
 
+<Link href="/contact">
         <motion.button
           className="cta-button"
           variants={buttonVariants}
@@ -75,6 +77,7 @@ const CTASection = () => {
         >
           Get In Touch
         </motion.button>
+        </Link>
       </motion.div>
     </section>
   );

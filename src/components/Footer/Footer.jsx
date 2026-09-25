@@ -14,6 +14,7 @@ const quickLinks = [
   { label: 'Contact', href: '/contact' },
   { label: 'FAQs', href: '/faqs' },
   { label: 'Complaints Procedure', href: '/complaints-procedure' },
+  { label: 'Get Consultation', href: '/consultation' },
 ];
 
 export default function Footer() {

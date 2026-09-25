@@ -1,0 +1,540 @@
+/* ==================== ALTERNATING CARD SECTION - PREMIUM 3D ==================== */
+
+.alt-card-section {
+    background-color: var(--color-dark-bg);
+  position: relative;
+  width: 100%;
+  padding: var(--spacing-2xl) var(--spacing-xl);
+  overflow: hidden;
+}
+
+.alt-card-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ==================== TITLE WITH LINES ==================== */
+.alt-card-title-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+  width: 100%;
+}
+
+.alt-card-title-line {
+    background: var(--color-secondary)!important;
+  flex: 0 0 auto;
+  width: 60px;
+  height: 3px;
+  border-radius: 2px;
+}
+
+.alt-card-title {
+  font-family: var(--font-secondary);
+  font-size: var(--font-2xl);
+  font-weight: 700;
+  color: var(--color-primary-light);
+  text-align: center;
+  line-height: var(--line-height-tight);
+  letter-spacing: var(--letter-spacing-tight);
+  margin: 0;
+  white-space: nowrap;
+  text-shadow: 0 2px 20px rgba(82, 105, 176, 0.3);
+}
+
+/* ==================== DESCRIPTION ==================== */
+.alt-card-description {
+  font-family: var(--font-primary);
+  font-size: var(--font-sm);
+  line-height: var(--line-height-relaxed);
+  color: rgba(255, 255, 255, 0.7);
+  text-align: center;
+  max-width: 850px;
+  margin: 0 auto var(--spacing-xl);
+}
+
+/* ==================== CARDS LIST ==================== */
+.alt-card-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+/* ==================== SINGLE CARD - PREMIUM 3D ==================== */
+.alt-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: var(--spacing-xl);
+  align-items: center;
+  padding: var(--spacing-xl) var(--spacing-2xl);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.3),
+    0 20px 40px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  isolation: isolate;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  min-height: 260px;
+}
+
+/* ==================== 3D GLOSS OVERLAY ==================== */
+.alt-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.12) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  pointer-events: none;
+  z-index: 0;
+  border-radius: 20px 20px 0 0;
+}
+
+/* ==================== RADIAL GLOW OVERLAY ==================== */
+.alt-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 100% 0%, rgba(255, 255, 255, 0.1) 0%, transparent 40%),
+    radial-gradient(circle at 0% 100%, rgba(0, 0, 0, 0.15) 0%, transparent 40%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.alt-card:hover {
+  transform: translateY(-8px) rotateX(2deg) rotateY(-2deg);
+  box-shadow:
+    0 8px 20px rgba(0, 0, 0, 0.4),
+    0 30px 60px rgba(0, 0, 0, 0.35),
+    0 0 60px rgba(82, 105, 176, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+/* ==================== IMAGE SIDE - 3D FRAME ==================== */
+.alt-card-image-wrapper {
+  position: relative;
+  z-index: 1;
+  border-radius: 16px;
+  overflow: hidden;
+  aspect-ratio: 1 / 1;
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.4),
+    0 4px 10px rgba(0, 0, 0, 0.3),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+  background: #000;
+  transform: translateZ(30px);
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+
+.alt-card:hover .alt-card-image-wrapper {
+  transform: translateZ(50px);
+  box-shadow:
+    0 15px 40px rgba(0, 0, 0, 0.5),
+    0 8px 15px rgba(0, 0, 0, 0.4),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.15);
+}
+
+.alt-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.alt-card:hover .alt-card-image {
+  transform: scale(1.08);
+}
+
+/* ==================== CONTENT SIDE ==================== */
+.alt-card-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  transform: translateZ(20px);
+}
+
+.alt-card-heading {
+  font-family: var(--font-secondary);
+  font-size: var(--font-2xl);
+  font-weight: 700;
+  color: var(--color-white);
+  line-height: var(--line-height-tight);
+  letter-spacing: var(--letter-spacing-tight);
+  margin: 0;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  position: relative;
+  display: inline-block;
+}
+
+/* Heading underline accent */
+.alt-card-heading::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 40px;
+  height: 2px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.8), transparent);
+  border-radius: 2px;
+}
+
+.alt-card-text {
+  font-family: var(--font-primary);
+  font-size: var(--font-sm);
+  line-height: var(--line-height-relaxed);
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+  max-width: 100%;
+  margin-top: 8px;
+}
+
+/* ==================== REVERSE LAYOUT ==================== */
+.alt-card-reverse {
+  grid-template-columns: 1fr 280px;
+}
+
+.alt-card-reverse .alt-card-image-wrapper {
+  order: 2;
+}
+
+.alt-card-reverse .alt-card-content {
+  order: 1;
+}
+
+.alt-card-reverse .alt-card-heading::after {
+  left: 0;
+}
+
+/* ==================== LIGHT MODE OVERRIDES ==================== */
+
+html[data-theme="light"] .alt-card-section {
+    background-color: var(--color-white);
+}
+html[data-theme="light"] .alt-card-title {
+  color: var(--color-primary);
+  text-shadow: none;
+}
+html[data-theme="light"] .alt-card-title-line {
+    background:var(--color-Secondary);
+}
+
+
+html[data-theme="light"] .alt-card-description {
+  color: var(--color-dark-gray);
+}
+
+/* Light mode — glass card looks premium with lighter shadows */
+html[data-theme="light"] .alt-card {
+  box-shadow:
+    0 4px 12px rgba(36, 64, 152, 0.08),
+    0 20px 40px rgba(36, 64, 152, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+html[data-theme="light"] .alt-card:hover {
+  box-shadow:
+    0 8px 20px rgba(36, 64, 152, 0.12),
+    0 30px 60px rgba(36, 64, 152, 0.15),
+    0 0 60px rgba(82, 105, 176, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+html[data-theme="light"] .alt-card-image-wrapper {
+  box-shadow:
+    0 10px 30px rgba(36, 64, 152, 0.15),
+    0 4px 10px rgba(36, 64, 152, 0.1),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+}
+
+/* ==================== RESPONSIVE - 300px to 3000px ==================== */
+
+/* Ultrawide (1921px - 3000px) */
+@media (min-width: 1921px) {
+  .alt-card-container {
+    max-width: 1600px;
+  }
+
+  .alt-card-section {
+    padding: var(--spacing-3xl) var(--spacing-2xl);
+  }
+
+  .alt-card-title {
+    font-size: 2.5rem;
+  }
+
+  .alt-card-title-line {
+    width: 100px;
+    height: 4px;
+  }
+
+  .alt-card-description {
+    font-size: var(--font-base);
+    max-width: 1100px;
+  }
+
+  .alt-card {
+    grid-template-columns: 340px 1fr;
+    padding: var(--spacing-2xl) var(--spacing-3xl);
+    gap: var(--spacing-2xl);
+    min-height: 300px;
+  }
+
+  .alt-card-reverse {
+    grid-template-columns: 1fr 340px;
+  }
+
+  .alt-card-heading {
+    font-size: 2.5rem;
+  }
+
+  .alt-card-text {
+    font-size: var(--font-base);
+  }
+}
+
+/* Large Desktop (1441px - 1920px) */
+@media (min-width: 1441px) and (max-width: 1920px) {
+  .alt-card-container {
+    max-width: 1300px;
+  }
+
+  .alt-card {
+    grid-template-columns: 300px 1fr;
+    gap: var(--spacing-xl);
+  }
+
+  .alt-card-reverse {
+    grid-template-columns: 1fr 300px;
+  }
+}
+
+/* Laptop (1025px - 1440px) */
+@media (min-width: 1025px) and (max-width: 1440px) {
+  .alt-card-container {
+    max-width: 1100px;
+  }
+
+  .alt-card {
+    grid-template-columns: 240px 1fr;
+    padding: var(--spacing-lg) var(--spacing-xl);
+    gap: var(--spacing-lg);
+    min-height: 220px;
+  }
+
+  .alt-card-reverse {
+    grid-template-columns: 1fr 240px;
+  }
+
+  .alt-card-heading {
+    font-size: var(--font-xl);
+  }
+
+  .alt-card-text {
+    font-size: var(--font-xs);
+  }
+}
+
+/* Tablet (769px - 1024px) */
+@media (max-width: 1024px) {
+  .alt-card-section {
+    padding: var(--spacing-2xl) var(--spacing-lg);
+  }
+
+  .alt-card-title {
+    font-size: var(--font-xl);
+    white-space: normal;
+  }
+
+  .alt-card-title-line {
+    width: 40px;
+    height: 2.5px;
+  }
+
+  .alt-card-description {
+    font-size: var(--font-sm);
+  }
+
+  .alt-card {
+    grid-template-columns: 200px 1fr;
+    padding: var(--spacing-lg) var(--spacing-xl);
+    gap: var(--spacing-lg);
+    min-height: 180px;
+  }
+
+  .alt-card-reverse {
+    grid-template-columns: 1fr 200px;
+  }
+
+  .alt-card-heading {
+    font-size: var(--font-lg);
+  }
+
+  .alt-card-text {
+    font-size: var(--font-xs);
+  }
+}
+
+/* Mobile (481px - 768px) */
+@media (max-width: 768px) {
+  .alt-card-section {
+    padding: var(--spacing-xl) var(--spacing-lg);
+  }
+
+  .alt-card-title-wrapper {
+    margin-bottom: var(--spacing-sm);
+    gap: var(--spacing-sm);
+  }
+
+  .alt-card-title {
+    font-size: var(--font-xl);
+  }
+
+  .alt-card-title-line {
+    width: 30px;
+    height: 2px;
+  }
+
+  .alt-card-description {
+    font-size: var(--font-xs);
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .alt-card-list {
+    gap: var(--spacing-md);
+  }
+
+  /* Stack vertically */
+  .alt-card,
+  .alt-card-reverse {
+    grid-template-columns: 1fr;
+    padding: var(--spacing-lg);
+    gap: var(--spacing-md);
+    min-height: auto;
+  }
+
+  .alt-card-reverse .alt-card-image-wrapper,
+  .alt-card-reverse .alt-card-content {
+    order: unset;
+  }
+
+  .alt-card-image-wrapper {
+    aspect-ratio: 16 / 9;
+    max-width: 100%;
+  }
+
+  .alt-card-content {
+    text-align: left;
+  }
+
+  .alt-card-heading {
+    font-size: var(--font-lg);
+  }
+
+  .alt-card-text {
+    font-size: var(--font-xs);
+    text-align: left;
+  }
+
+  .alt-card-heading::after {
+    left: 0;
+  }
+}
+
+/* Small Mobile (300px - 480px) */
+@media (max-width: 480px) {
+  .alt-card-section {
+    padding: var(--spacing-lg) var(--spacing-lg);
+  }
+
+  .alt-card-title {
+    font-size: var(--font-lg);
+  }
+
+  .alt-card-title-line {
+    width: 20px;
+    height: 2px;
+  }
+
+  .alt-card-description {
+    font-size: var(--font-xs);
+    margin-bottom: var(--spacing-md);
+  }
+
+  .alt-card-list {
+    gap: var(--spacing-sm);
+  }
+
+  .alt-card {
+    padding: var(--spacing-md);
+    gap: var(--spacing-sm);
+    border-radius: var(--radius-lg);
+  }
+
+  .alt-card-image-wrapper {
+    border-radius: var(--radius-md);
+    aspect-ratio: 16 / 10;
+  }
+
+  .alt-card-heading {
+    font-size: var(--font-base);
+  }
+
+  .alt-card-heading::after {
+    bottom: -4px;
+    width: 30px;
+  }
+
+  .alt-card-text {
+    font-size: var(--font-xs);
+    line-height: 1.6;
+  }
+}
+
+/* Very Small (max 360px) */
+@media (max-width: 360px) {
+  .alt-card-title {
+    font-size: 1rem;
+  }
+
+  .alt-card-title-line {
+    width: 15px;
+  }
+
+  .alt-card-heading {
+    font-size: 1rem;
+  }
+
+  .alt-card-text {
+    font-size: 0.7rem;
+  }
+}
+
+/* ==================== REDUCED MOTION ==================== */
+@media (prefers-reduced-motion: reduce) {
+  .alt-card,
+  .alt-card-image,
+  .alt-card-image-wrapper {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .alt-card:hover {
+    transform: none;
+  }
+}

@@ -183,3 +183,6 @@
     height: 56px;
   }
 }
+html[data-theme="light"] .clients-section{
+  background: transparent!important;
+}

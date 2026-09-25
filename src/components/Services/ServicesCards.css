@@ -1,8 +1,8 @@
 /* ==================== SERVICES SECTION ==================== */
 .services-section {
+  background-color: var(--color-dark-bg);
   width: 100%;
   padding: var(--spacing-2xl) var(--spacing-lg);
-  background-color: var(--color-white);
 }
 
 .services-container {
@@ -22,7 +22,7 @@
   font-family: var(--font-secondary);
   font-size: var(--font-4xl);
   font-weight: 600;
-  color: var(--color-primary);
+  color: var(--color-primary)!important;
   text-align: center;
   margin: 0;
   line-height: var(--line-height-tight);
@@ -130,7 +130,7 @@
 /* ==================== RESPONSIVE - MOBILE (300px - 767px) ==================== */
 @media (max-width: 767px) {
   .services-section {
-    padding: var(--spacing-xl) var(--spacing-md);
+    padding: var(--spacing-xl) var(--spacing-lg);
   }
 
   .services-heading-wrapper {
@@ -184,7 +184,7 @@
 /* ==================== RESPONSIVE - VERY SMALL (300px - 400px) ==================== */
 @media (max-width: 400px) {
   .services-section {
-    padding: var(--spacing-lg) var(--spacing-sm);
+    padding: var(--spacing-lg) var(--spacing-lg);
   }
 
   .services-heading {
@@ -337,4 +337,8 @@
   .service-card-learn-more {
     font-size: var(--font-sm);
   }
+}
+
+html[data-theme="light"] .services-section {
+  background-color: var(--color-white);
 }
